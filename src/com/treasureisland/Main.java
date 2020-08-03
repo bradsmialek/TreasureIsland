@@ -16,6 +16,7 @@ public class Main {
         System.out.println("MAIN CLASS: STARTING GAME....");
         createMainWindow();
         createBoard();
+
     }
 
     private static void createMainWindow(){
@@ -23,12 +24,12 @@ public class Main {
         window = new JFrame("Treasure Island");
         window.setVisible(true);
         window.setResizable(false);
-        window.setBounds(400, 200, Attributes.windowWidth, Attributes.windowHeight);
+        window.setBounds(100, 10, Attributes.windowWidth, Attributes.windowHeight);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private static void createBoard(){
-        System.out.println("MAIN: CREATING BOARD....");
+        System.out.println("MAIN CLASS: CREATING BOARD....");
         board = new Board();
         window.add(board);
         board.requestFocusInWindow();
