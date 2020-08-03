@@ -45,9 +45,9 @@ implements KeyListener {
         g.setColor(Color.BLACK);
         g.fillRect(0,0, Attributes.windowWidth, Attributes.windowHeight);
         g.setColor(Color.WHITE);
-        g.drawRoundRect(5, 5, Attributes.windowWidth-320, Attributes.windowHeight-350, 5, 5);
-        g.drawRoundRect(790, 5, Attributes.windowWidth-800, Attributes.windowHeight-150, 5, 5);
-//        g.drawRoundRect(5, Attributes.windowHeight-140, Attributes.windowWidth-15, Attributes.windowHeight-500, 5, 5);
+        g.drawRoundRect(5, 5, Attributes.windowWidth-720, Attributes.windowHeight-350, 5, 5);
+        g.drawRoundRect(790, 5, Attributes.windowWidth-800, Attributes.windowHeight-350, 5, 5);
+        g.drawRoundRect(5, Attributes.windowHeight-340, Attributes.windowWidth-15, Attributes.windowHeight-700, 5, 5);
 
         //ISLAND
         g.setColor(Color.WHITE);
