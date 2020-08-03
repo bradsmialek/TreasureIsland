@@ -50,7 +50,7 @@ public class Island {
                     return Actions.CAN_MOVE;
                 else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='^')
                     return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]==',')
+                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='P')
                     return Actions.TRAPPED;
                 break;
             case LEFT:
@@ -58,7 +58,7 @@ public class Island {
                     return Actions.CAN_MOVE;
                 else if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='^')
                     return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]==',')
+                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='P')
                     return Actions.TRAPPED;
                 break;
             case DOWN:
@@ -66,7 +66,7 @@ public class Island {
                     return Actions.CAN_MOVE;
                 else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='^')
                     return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]==',')
+                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='P')
                     return Actions.TRAPPED;
                 break;
             case RIGHT:
@@ -74,7 +74,7 @@ public class Island {
                     return Actions.CAN_MOVE;
                 else if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='^')
                     return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]==',')
+                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='P')
                     return Actions.TRAPPED;
                 break;
         }
