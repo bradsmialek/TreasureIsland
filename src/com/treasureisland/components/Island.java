@@ -1,6 +1,7 @@
 package com.treasureisland.components;
 
 import com.treasureisland.Attributes;
+import com.treasureisland.utilities.Actions;
 import com.treasureisland.utilities.ComponentsManager;
 import com.treasureisland.utilities.Directions;
 
@@ -26,6 +27,8 @@ public class Island {
             tiles.add(strs.get(i).toCharArray());
         }
 
+
+
     }
 
     public int getHeight() {
@@ -40,30 +43,58 @@ public class Island {
         return tiles.get(y)[x];
     }
 
-    public boolean playerDoesMove(Directions dir) {
+    public Actions tileDoesMove(MovingTile tile, Directions dir) {
         switch (dir) {
             case UP:
-                return tiles.get(Attributes.player.getPosY()-1)[Attributes.player.getPosX()]!='#';
+                if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='.')
+                    return Actions.CAN_MOVE;
+                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='^')
+                    return Actions.CHANGE_ISLAND;
+                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]==',')
+                    return Actions.TRAPPED;
+                break;
             case LEFT:
-                return tiles.get(Attributes.player.getPosY())[Attributes.player.getPosX()-1]!='#';
+                if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='.')
+                    return Actions.CAN_MOVE;
+                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='^')
+                    return Actions.CHANGE_ISLAND;
+                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]==',')
+                    return Actions.TRAPPED;
+                break;
             case DOWN:
-                return tiles.get(Attributes.player.getPosY()+1)[Attributes.player.getPosX()]!='#';
+                if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='.')
+                    return Actions.CAN_MOVE;
+                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='^')
+                    return Actions.CHANGE_ISLAND;
+                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]==',')
+                    return Actions.TRAPPED;
+                break;
             case RIGHT:
-                return tiles.get(Attributes.player.getPosY())[Attributes.player.getPosX()+1]!='#';
-            default:
-                return false;
+                if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='.')
+                    return Actions.CAN_MOVE;
+                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='^')
+                    return Actions.CHANGE_ISLAND;
+                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]==',')
+                    return Actions.TRAPPED;
+                break;
         }
-
+        return Actions.NOTHING;
     }
 
     public void posUpdate(){
-
+        //DELETES
         for(int i = 0 ; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
                 if (tiles.get(i)[j] == '@')
                     tiles.get(i)[j] = '.';
             }
         }
+        //PLAYER
         tiles.get(Attributes.player.getPosY())[Attributes.player.getPosX()] = '@';
     }
+
+    public static void getRandomFloor(){
+
+    }
+
 }
