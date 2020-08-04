@@ -15,4 +15,8 @@ public class Attributes {
     public static Island currentIsland;
     public static Player player;
 
+    public static Island getCurrentIsland() {
+        return currentIsland;
+    }
+
 }

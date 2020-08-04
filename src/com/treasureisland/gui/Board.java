@@ -68,7 +68,7 @@ implements KeyListener {
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 100);
 
-        g.drawString("Current Location: ", 800, 150);//+Attributes.player.getCurrentLocation()
+        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 150);
 
         g.drawString("Gold: ", 800, 170); //+Attributes.player.getGold()
         g.drawString("Keys: ", 800, 190); //+Attributes.player.getKeys()
