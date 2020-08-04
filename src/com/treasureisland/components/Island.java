@@ -99,7 +99,7 @@ public class Island {
                     case '+':
                         tiles.get(i).add(Tile.PLUS); break;
                     case '*':
-                        tiles.get(i).add(Tile.STAR); break;
+                        tiles.get(i).add(Tile.MAP); break;
                     case 'X':
                         tiles.get(i).add(Tile.X); break;
                     case '~':

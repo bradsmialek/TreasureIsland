@@ -83,6 +83,7 @@ public class MyMethods {
                 message = "You found Rum! Do you want to drink it?";
                 message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.RUM_UP;
                 break;
             case GOLD:
             case TREASURE:
@@ -98,12 +99,50 @@ public class MyMethods {
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
+                message = RandomMessage.randomMessageGenerator();
 
                 break; //Handles encounters with pirates
             default:
                 System.out.println("???");
                 break; //If something glitches out
         }
+
+    }
+
+    private enum Decision {
+        NONE,
+        RUM_UP,
+        LOCATION;
+    }
+
+    private static Decision decided = Decision.NONE;
+    //private static //something location = //whatever
+
+    //DECISION TREE
+    public static void decisionTree(boolean yn) {
+        System.out.println(yn);
+        if (decided == Decision.NONE) {
+            return;
+        }
+        else if(decided == Decision.RUM_UP && yn) {
+            Attributes.player.heal(MyMethods.getRandomNumber(5)+3);
+            message = "You drank Rum and it gave you health.";
+            message2 = "";
+            message3 = "";
+            Attributes.player.move();//replace tile to .
+        }
+        else if(decided == Decision.RUM_UP) {
+            message = "I'm too drunk already!";
+            message2 = "";
+            message3 = "";
+
+        }
+
+        decided = Decision.NONE;
+    }
+
+    //LOCATION TREE
+    public static void locationTree () {
 
     }
 
@@ -120,4 +159,7 @@ public class MyMethods {
             Attributes.player.setDead();
         }
     }
+
 }
+
+
