@@ -98,6 +98,7 @@ public class MyMethods {
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
+                message = RandomMessage.randomMessageGenerator();
 
                 break; //Handles encounters with pirates
             default:
