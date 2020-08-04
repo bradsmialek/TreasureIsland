@@ -19,6 +19,7 @@ public class MyMethods {
     private static String message3 = " ";
 
     public static void initializeTiles(){
+        System.out.println(Attributes.currentIsland.toString());
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
 //                System.out.println(i);
