@@ -66,6 +66,10 @@ public class MyMethods {
         switch(tile){
             case NOTHING:
                 Attributes.player.move(dir);
+                // every time player moves previous displayed message will dissapear
+                message = " ";
+                message2 = " ";
+                message3 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
@@ -87,6 +91,7 @@ public class MyMethods {
                 decided = Decision.RUM_UP;
                 break;
             case GOLD:
+                break;
             case TREASURE:
                 break; //Ask to open chest
             case KEY:
@@ -101,8 +106,13 @@ public class MyMethods {
                 break; //Handles encounters with pirates
             case FRIENDLY:
                 message = RandomMessage.randomMessageGenerator();
-
                 break; //Handles encounters with pirates
+            case MAP:
+                message = "Where would you like to go?";
+                message2 = "Island Two     Island Three";
+                message3 = "    [2]             [3]    ";
+                decided = Decision.LOCATION;
+
             default:
                 System.out.println("???");
                 break; //If something glitches out
@@ -143,7 +153,21 @@ public class MyMethods {
     }
 
     //LOCATION TREE
-    public static void locationTree () {
+    public static void locationTree(int islandNumber) {
+        System.out.println(islandNumber);
+        if (decided == Decision.NONE) {
+            return;
+        }
+        else if (islandNumber == 2) {
+            Attributes.currentIsland = new Island(2);
+        }
+        else if (islandNumber == 3) {
+            Attributes.currentIsland = new Island(3);
+        }
+        else if (decided == Decision.LOCATION) {
+            message = "I'm fine exploring here.";
+        }
+        decided = Decision.NONE;
 
     }
 
