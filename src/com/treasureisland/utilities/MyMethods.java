@@ -65,6 +65,10 @@ public class MyMethods {
         switch(tile){
             case NOTHING:
                 Attributes.player.move(dir);
+                // every time player moves previous displayed message will dissapear
+                message = " ";
+                message2 = " ";
+                message3 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
