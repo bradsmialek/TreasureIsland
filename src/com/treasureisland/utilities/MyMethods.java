@@ -107,23 +107,28 @@ public class MyMethods {
                 message = RandomMessage.randomMessageGenerator();
                 break; //Handles encounters with pirates
             case MAP:
-                message = "Where would you like to go?";
+                message = "Where would you like to sail to?";
                 message2 = "Island Two     Island Three";
                 message3 = "    [2]             [3]    ";
-                decided = Decision.LOCATION;
-
+                locationDecided = LocationDecision.LOCATION;
+                break;
             default:
                 System.out.println("???");
                 break; //If something glitches out
         }
+    }
 
+
+    private enum LocationDecision {
+        LOCATION,
+        NOWHERE;
     }
 
     private enum Decision {
         NONE,
         RUM_UP,
-        LOCATION;
     }
+    private static LocationDecision locationDecided = LocationDecision.NOWHERE;
 
     private static Decision decided = Decision.NONE;
     //private static //something location = //whatever
@@ -154,20 +159,19 @@ public class MyMethods {
     //LOCATION TREE
     public static void locationTree(int islandNumber) {
         System.out.println(islandNumber);
-        if (decided == Decision.NONE) {
+        if (locationDecided == LocationDecision.NOWHERE) {
             return;
         }
-        else if (islandNumber == 2) {
+        else if ( islandNumber == 2) {
             Attributes.currentIsland = new Island(2);
         }
         else if (islandNumber == 3) {
             Attributes.currentIsland = new Island(3);
         }
-        else if (decided == Decision.LOCATION) {
+        else {
             message = "I'm fine exploring here.";
         }
-        decided = Decision.NONE;
-
+        locationDecided = LocationDecision.NOWHERE;
     }
 
 
