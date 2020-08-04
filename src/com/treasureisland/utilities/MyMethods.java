@@ -99,13 +99,8 @@ public class MyMethods {
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
+                message = RandomMessage.randomMessageGenerator();
 
-                break; //Handles encounters with pirates
-            case MAP:
-                message = "GOES TO LIST OF LOCATIONS";
-                message2 = " ";
-                message3 = " ";
-                //location = //whater you do
                 break; //Handles encounters with pirates
             default:
                 System.out.println("???");
