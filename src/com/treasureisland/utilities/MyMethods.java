@@ -22,8 +22,6 @@ public class MyMethods {
         System.out.println(Attributes.currentIsland.toString());
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
-//                System.out.println(i);
-//                System.out.println(j);
                 switch (Attributes.currentIsland.getTile(j,i)) {
                     case PLAYER:
                         Attributes.player.setPos(j, i);
@@ -184,6 +182,9 @@ public class MyMethods {
             Attributes.player.setDead();
         }
     }
+
+
+
 
 }
 
