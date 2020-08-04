@@ -19,7 +19,9 @@ public class Music {
         System.out.println("MUSIC CLASS: PLAYING SONG: "+songNumber);
     }
 
-    public static void getMusic() {
+    public static void playMusic() {
+        new Music(0);
+        songClip.play();
 
     }
 }
