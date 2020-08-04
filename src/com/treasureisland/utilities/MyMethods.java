@@ -11,21 +11,23 @@ import java.util.Random;
 public class MyMethods {
 
     public static void initializeTiles(){
-        for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
-            for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
+        for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
+            for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
                 switch (Attributes.currentIsland.getTile(j,i)) {
-                    case '@':
+                    case PLAYER:
                         Attributes.player.setPos(j, i);
                         break;
                     default:
                         break;
                 }
             }
+            System.out.println("\n");
         }
     }
 
     public static int getRandomNumber(int n) {
         Random rand = new Random();
-        return rand.nextInt(n) + 1;
+//        if ()
+        return rand.nextInt(n) +1;
     }
 }

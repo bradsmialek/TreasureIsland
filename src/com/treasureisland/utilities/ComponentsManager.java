@@ -1,5 +1,7 @@
 package com.treasureisland.utilities;
 
+import com.treasureisland.Attributes;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,10 +33,11 @@ public class ComponentsManager {
             String str = reader.readLine();
             strings.add(str);
 
-            while (str != null) {
+            while(str!=null) {
                 str = reader.readLine();
                 strings.add(str);
             }
+
         }catch (IOException e) {
             System.out.println("COMPONENTS MANAGER CLASS [ERROR]: IOException");
         }

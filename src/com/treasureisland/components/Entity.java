@@ -6,7 +6,7 @@ import com.treasureisland.utilities.Directions;
 /**
  * Created by bradsmialek on Mon - 8/3/20 @ 12:49 AM
  */
-public class MovingTile {
+public class Entity {
 
     protected int posX;
     protected int posY;
@@ -14,7 +14,7 @@ public class MovingTile {
     protected int maxHealth;
 
     //PLAYER OBJECT
-    protected MovingTile(int posX, int posY) {
+    protected Entity(int posX, int posY) {
         this.setPos(posX, posY);
     }
 
@@ -42,6 +42,11 @@ public class MovingTile {
 
     public void damage(int dmg){
         this.health -= dmg;
+    }
+
+    public void heal(int amount){
+        this.health+=amount;
+        if (health>maxHealth)health=maxHealth;
     }
 
     protected void move(Directions dir) {

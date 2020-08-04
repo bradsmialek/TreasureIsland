@@ -1,7 +1,8 @@
 package com.treasureisland.components;
 
 import com.treasureisland.Attributes;
-import com.treasureisland.utilities.Actions;
+import com.treasureisland.utilities.Action;
+import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.ComponentsManager;
 import com.treasureisland.utilities.Directions;
 
@@ -13,18 +14,44 @@ import java.util.ArrayList;
  */
 public class Island {
 
-    private ArrayList<char[]> tiles;
+    private ArrayList<ArrayList<Tile>> tiles;
 
     public Island(int islandNumber) {
         System.out.println("ISLAND CLASS: CREATING ISLAND "+islandNumber);
 
-        tiles = new ArrayList<char[]>();
+        tiles = new ArrayList<ArrayList<Tile>>();
 
         ArrayList<String> strs = ComponentsManager.readIslandFile("src/com/treasureisland/islands/island"
                 +islandNumber+".txt");
 
         for(int i =0; i < strs.size()-1; i++){
-            tiles.add(strs.get(i).toCharArray());
+            char[] charray = strs.get(i).toCharArray();
+            tiles.add(new ArrayList<Tile>());
+            for (int j = 0; j < charray.length; j++){
+                switch (charray[j]){
+                    case '.':
+                        tiles.get(i).add(Tile.NOTHING);
+                        break;
+                    case '#':
+                        tiles.get(i).add(Tile.WALL);
+                        break;
+                    case '@':
+                        tiles.get(i).add(Tile.PLAYER);
+                        break;
+                    case '^':
+                        tiles.get(i).add(Tile.DOCK);
+                        break;
+                    case 'P':
+                        tiles.get(i).add(Tile.PIRATE);
+                        break;
+                    case 'F':
+                        tiles.get(i).add(Tile.FRIENDLY);
+                        break;
+                    case 'r':
+                        tiles.get(i).add(Tile.RUM);
+                        break;
+                }
+            }
         }
 
 
@@ -36,61 +63,49 @@ public class Island {
     }
 
     public int getWidth() {
-        return tiles.get(0).length;
+        return tiles.get(0).size();
     }
 
-    public char getTile(int x, int y) {
-        return tiles.get(y)[x];
+    public Tile getTile(int x, int y) {
+        return tiles.get(y).get(x);
     }
 
-    public Actions tileDoesMove(MovingTile tile, Directions dir) {
+    public char getTileChar(int x, int y) {
+        return tiles.get(y).get(x).symbol();
+    }
+
+    public boolean tileDoesMove(Entity tile, Directions dir) {
         switch (dir) {
             case UP:
-                if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='.')
-                    return Actions.CAN_MOVE;
-                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='^')
-                    return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY()-1)[tile.getPosX()]=='P')
-                    return Actions.TRAPPED;
+                if (tiles.get(tile.getPosY()-1).get(tile.getPosX()) != Tile.WALL)
+                    return  true;
                 break;
             case LEFT:
-                if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='.')
-                    return Actions.CAN_MOVE;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='^')
-                    return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()-1]=='P')
-                    return Actions.TRAPPED;
+                if (tiles.get(tile.getPosY()).get(tile.getPosX()-1) != Tile.WALL)
+                    return  true;
                 break;
             case DOWN:
-                if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='.')
-                    return Actions.CAN_MOVE;
-                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='^')
-                    return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY()+1)[tile.getPosX()]=='P')
-                    return Actions.TRAPPED;
+                if (tiles.get(tile.getPosY()+1).get(tile.getPosX()) != Tile.WALL)
+                    return  true;
                 break;
             case RIGHT:
-                if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='.')
-                    return Actions.CAN_MOVE;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='^')
-                    return Actions.CHANGE_ISLAND;
-                else if (tiles.get(tile.getPosY())[tile.getPosX()+1]=='P')
-                    return Actions.TRAPPED;
+                if (tiles.get(tile.getPosY()).get(tile.getPosX()+1) != Tile.WALL)
+                    return  true;
                 break;
         }
-        return Actions.NOTHING;
+        return false;
     }
 
     public void posUpdate(){
         //DELETES
         for(int i = 0 ; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
-                if (tiles.get(i)[j] == '@')
-                    tiles.get(i)[j] = '.';
+                if (tiles.get(i).get(j) == Tile.PLAYER)
+                    tiles.get(i).set(j, Tile.NOTHING);
             }
         }
         //PLAYER
-        tiles.get(Attributes.player.getPosY())[Attributes.player.getPosX()] = '@';
+        tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
     }
 
     public static void getRandomFloor(){

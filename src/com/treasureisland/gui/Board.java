@@ -3,9 +3,8 @@ package com.treasureisland.gui;
 
 import com.treasureisland.Attributes;
 import com.treasureisland.components.Island;
-import com.treasureisland.components.MovingTile;
 import com.treasureisland.components.Player;
-import com.treasureisland.utilities.Actions;
+import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
 
@@ -54,7 +53,7 @@ implements KeyListener {
         int x =15, y =20;
         for(int i = 0 ; i < Attributes.currentIsland.getHeight(); i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
-                g.drawString(""+Attributes.currentIsland.getTile(j,i), x, y);
+                g.drawString(""+Attributes.currentIsland.getTileChar(j,i), x, y);
                 x+=10;
             }
             y+=15; x=15;
@@ -71,67 +70,45 @@ implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-        System.out.println("MOVED");
         switch (arg0.getKeyCode()) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
-                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.UP)== Actions.CAN_MOVE){
-                    Attributes.player.move(Directions.UP);
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.UP) == Actions.CHANGE_ISLAND){
-                    Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
-                    MyMethods.initializeTiles();
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.UP) == Actions.TRAPPED){
-                    Attributes.player.damage(MyMethods.getRandomNumber(2));
-                    Attributes.player.move(Directions.UP);
-                }
+                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.UP))
+                    Attributes.player.move(Directions.UP); // Move player if can move
                 break;
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.LEFT)==Actions.CAN_MOVE){
+                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.LEFT))
                     Attributes.player.move(Directions.LEFT);
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.LEFT) == Actions.CHANGE_ISLAND){
-                    Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
-                    MyMethods.initializeTiles();
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.LEFT) == Actions.TRAPPED){
-                    Attributes.player.damage(MyMethods.getRandomNumber(2));
-                    Attributes.player.move(Directions.LEFT);
-                }
                 break;
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
-                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.DOWN)==Actions.CAN_MOVE){
+                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.DOWN))
                     Attributes.player.move(Directions.DOWN);
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.DOWN) == Actions.CHANGE_ISLAND){
-                    Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
-                    MyMethods.initializeTiles();
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.DOWN) == Actions.TRAPPED){
-                    Attributes.player.damage(MyMethods.getRandomNumber(2));
-                    Attributes.player.move(Directions.DOWN);
-                }
                 break;
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.RIGHT)==Actions.CAN_MOVE){
+                if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.RIGHT))
                     Attributes.player.move(Directions.RIGHT);
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.RIGHT) == Actions.CHANGE_ISLAND){
-                    Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
-                    MyMethods.initializeTiles();
-                }
-                else if (Attributes.currentIsland.tileDoesMove(Attributes.player, Directions.RIGHT) == Actions.TRAPPED){
-                    Attributes.player.damage(MyMethods.getRandomNumber(2));
-                    Attributes.player.move(Directions.RIGHT);
-                }
                 break;
         }
-        Attributes.currentIsland.posUpdate();
+
+        switch (Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY())) {
+            case DOCK:
+                Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
+                MyMethods.initializeTiles();
+                break;
+            case PIRATE:
+                Attributes.player.damage(MyMethods.getRandomNumber(2));
+                break;
+            case RUM:
+                Attributes.player.heal(MyMethods.getRandomNumber(3));
+                break;
+            default:
+                break;
+        }
     }
+
 
     @Override
     public void keyReleased(KeyEvent arg0) {}
