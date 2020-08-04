@@ -39,7 +39,7 @@ public enum Tile {
     Y('Y'),
     Z('Z'),
     PLUS('+'),
-    STAR('*'),
+    MAP('*'),
     X('x'),
     TILDE('~'),
     SPACE(' ');

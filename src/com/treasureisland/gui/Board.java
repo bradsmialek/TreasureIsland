@@ -57,9 +57,13 @@ implements KeyListener {
             x = 15;
         }
 
+        //Legend of characters
+        //^ ship
+        //P pirate ... etc
+
         //STATS
         g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.drawString("Player", 800, 50);
+        g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 100);
 
@@ -77,7 +81,7 @@ implements KeyListener {
     @Override
     public void keyPressed(KeyEvent arg0) {
 //        if (Attributes.player.isLiving()) {
-            System.out.println("Living");
+//            System.out.println("Living");
             switch (arg0.getKeyCode()) {
                 case KeyEvent.VK_W:
                 case KeyEvent.VK_UP:
@@ -103,7 +107,20 @@ implements KeyListener {
                     MyMethods.playerHandler(Directions.RIGHT);
                     Attributes.currentIsland.posUpdate();
                     break;
-
+                case KeyEvent.VK_Y:
+                    MyMethods.decisionTree(true);
+                    Attributes.currentIsland.posUpdate();
+                    break;
+                case KeyEvent.VK_N:
+                    MyMethods.decisionTree(false);
+                    Attributes.currentIsland.posUpdate();
+                    break;
+                case KeyEvent.VK_2:
+                    MyMethods.locationTree(2);
+                    Attributes.currentIsland.posUpdate();
+                case KeyEvent.VK_3:
+                    MyMethods.locationTree(3);
+                    Attributes.currentIsland.posUpdate();
             }
 //            MyMethods.checkIsDead();
 
