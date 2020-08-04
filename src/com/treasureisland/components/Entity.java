@@ -14,8 +14,10 @@ public class Entity {
     protected int maxHealth;
 
     //PLAYER OBJECT
-    protected Entity(int posX, int posY) {
+    protected Entity(int posX, int posY, int health) {
         this.setPos(posX, posY);
+        this.health=health;
+        this.maxHealth=health;
     }
 
     public void setPos(int posX, int posY){

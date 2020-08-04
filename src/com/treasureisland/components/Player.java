@@ -7,10 +7,12 @@ import com.treasureisland.utilities.Directions;
  */
 public class Player extends Entity {
 
+    private Directions facing;
+    private boolean alive;
+
     public Player(int posX, int posY) {
-        super(posX, posY);
-        this.health = 20;
-        this.maxHealth = 20;
+        super(posX, posY,20);
+
         System.out.println("PLAYER CLASS: CREATING PLAYER");
     }
 
@@ -19,4 +21,21 @@ public class Player extends Entity {
         super.move(dir);
         System.out.println("PLAYER CLASS: POSITION IS "+posX+" "+posY);
     }
+
+    public void move() {
+        this.move(facing);
+    }
+
+    public void setFacing(Directions dir) {
+        this.facing = dir;
+    }
+
+    public boolean isLiving() {
+        return alive;
+    }
+
+    public void setDead() {
+        this.alive = false;
+    }
+
 }

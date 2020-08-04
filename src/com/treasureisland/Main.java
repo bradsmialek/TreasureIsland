@@ -1,11 +1,13 @@
 package com.treasureisland;
 
+import com.treasureisland.components.Island;
+import com.treasureisland.components.Player;
 import com.treasureisland.gui.Board;
+import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
 
 /**
- * Created by bradsmialek on Sun - 8/2/20 @ 8:12 PM
  * No Ascii Panel, only JFranm
  */
 public class Main {
@@ -13,10 +15,10 @@ public class Main {
     private static Board board;
 
     public static void main(String[] args) {
-        System.out.println("MAIN CLASS: STARTING GAME....");
+        System.out.println("MAIN CLASS: Initializing....");
         createMainWindow();
         createBoard();
-
+        StartGame();
     }
 
     private static void createMainWindow(){
@@ -33,5 +35,14 @@ public class Main {
         board = new Board();
         window.add(board);
         board.requestFocusInWindow();
+    }
+
+    //Start Game
+    public static void StartGame() {
+        System.out.println("MAIN CLASS: STARTING GAME....");
+        Attributes.currentIsland = new Island(1);
+        Attributes.player = new Player(2, 6);
+//        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
+        MyMethods.initializeTiles();
     }
 }
