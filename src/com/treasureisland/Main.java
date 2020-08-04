@@ -40,8 +40,8 @@ public class Main {
     //Start Game
     public static void StartGame() {
         System.out.println("MAIN CLASS: STARTING GAME....");
-        Attributes.currentIsland = new Island(1);
-        Attributes.player = new Player(2, 6);
+        Attributes.currentIsland = new Island(0);
+        Attributes.player = new Player(20, 20);
 //        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
     }
