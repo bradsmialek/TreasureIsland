@@ -77,8 +77,8 @@ public class MyMethods {
                 break;
             case DOCK:
                 Attributes.player.move(dir);
-                Attributes.currentIsland = new Island(MyMethods.getRandomNumber(Attributes.islandCount));
-                message = "You went somewhere??";
+                Attributes.currentIsland = new Island(1);
+                message = "You have returned to your Ship!";
                 message2 = " ";
                 message3 = " ";
                 MyMethods.initializeTiles();
