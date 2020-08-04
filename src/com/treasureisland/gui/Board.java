@@ -115,6 +115,12 @@ implements KeyListener {
                     MyMethods.decisionTree(false);
                     Attributes.currentIsland.posUpdate();
                     break;
+                case KeyEvent.VK_2:
+                    MyMethods.locationTree(2);
+                    Attributes.currentIsland.posUpdate();
+                case KeyEvent.VK_3:
+                    MyMethods.locationTree(3);
+                    Attributes.currentIsland.posUpdate();
             }
 //            MyMethods.checkIsDead();
 
