@@ -33,7 +33,7 @@ public enum Tile {
     S('S'),
     T('T'),
     U('U'),
-    V('V'),
+    VENDOR('V'),
     W('W'),
     x('x'),
     Y('Y'),

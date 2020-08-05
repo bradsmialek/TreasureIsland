@@ -111,6 +111,13 @@ public class MyMethods {
                 message3 = "    [2]             [3]    ";
                 locationDecided = LocationDecision.LOCATION;
                 break;
+            case VENDOR:
+                message = "What would you like to Buy?";
+                message2 = "list of stuff";
+                message3 = " ";
+                // deduct from coins depending on item cost
+                //itemDecided = itemDecision.ITEMS;  or something like this
+                break;
             default:
                 System.out.println("???");
                 break; //If something glitches out
