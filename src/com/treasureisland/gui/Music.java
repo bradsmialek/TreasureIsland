@@ -8,20 +8,16 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Music {
-    public static URL song;
-    public static AudioClip songClip;
+//    public static URL song;
+//    public static AudioClip songClip;
 
 
-    public Music(int songNumber){
-        song = Music.class.getResource("src/com/treasureisland/music/song"
-                +songNumber+".wav");
-        songClip = Applet.newAudioClip(song);
-        System.out.println("MUSIC CLASS: PLAYING SONG: "+songNumber);
-    }
+//    public Music(int songNumber){
+//        song = Music.class.getResource("src/com/treasureisland/music/song"
+//                +songNumber+".wav");
+//        songClip = Applet.newAudioClip(song);
+//        System.out.println("MUSIC CLASS: PLAYING SONG: "+songNumber);
+//    }
 
-    public static void playMusic() {
-        new Music(0);
-        songClip.play();
 
-    }
 }
