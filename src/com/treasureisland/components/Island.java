@@ -91,7 +91,7 @@ public class Island {
                     case 'U':
                         tiles.get(i).add(Tile.U); break;
                     case 'V':
-                        tiles.get(i).add(Tile.V); break;
+                        tiles.get(i).add(Tile.VENDOR); break;
                     case 'W':
                         tiles.get(i).add(Tile.W); break;
                     case 'x':
@@ -110,6 +110,8 @@ public class Island {
                         tiles.get(i).add(Tile.TILDE); break;
                     case ' ':
                         tiles.get(i).add(Tile.SPACE); break;
+                    case '?':
+                        tiles.get(i).add(Tile.POI); break;
 
                 }
             }
