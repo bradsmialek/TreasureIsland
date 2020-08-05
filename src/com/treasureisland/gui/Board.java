@@ -41,8 +41,9 @@ implements KeyListener {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, Attributes.windowWidth, Attributes.windowHeight);
         g.setColor(Color.WHITE);
-        g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
-        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 350, 5, 5);
+//        g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
+        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
+        g.drawRoundRect(790, 310, Attributes.windowWidth - 800, Attributes.windowHeight - 655, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
 
@@ -66,12 +67,15 @@ implements KeyListener {
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
         g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 100);
+        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 80);
+        g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 800, 110);
+        g.drawString("Gold: "+Attributes.player.getsGold(), 800, 140);
+        g.drawString("Keys: "+Attributes.player.getsKeys(), 800, 170);
 
-        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 150);
+        g.drawString("Char Level: "+Attributes.player.getsLevel(), 800, 225);
+        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 285);
 
-        g.drawString("Gold: ", 800, 170); //+Attributes.player.getGold()
-        g.drawString("Keys: ", 800, 190); //+Attributes.player.getKeys()
+
 
         //Message
         g.drawString(MyMethods.getMessage(), 15, 680);

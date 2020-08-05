@@ -5,7 +5,7 @@ import com.treasureisland.components.Entity;
 import com.treasureisland.components.Island;
 import com.treasureisland.components.PeopleInterest;
 import com.treasureisland.components.Player;
-
+//import sun.security.pkcs11.wrapper.Functions;
 
 
 import java.sql.Ref;
@@ -91,10 +91,20 @@ public class MyMethods {
                 decided = Decision.RUM_UP;
                 break;
             case GOLD:
+                Attributes.player.move(dir);
+                Attributes.player.addsGold(MyMethods.getRandomNumber(3)+2);
+                message = "You picked up gold!";
+                message2 = " ";
+                message3 = " ";
                 break;
             case TREASURE:
                 break; //Ask to open chest
             case KEY:
+                Attributes.player.move(dir);
+                Attributes.player.addsKey();
+                message = "You picked up a normal key! Must be something nearby to unlock?";
+                message2 = " ";
+                message3 = " ";
                 break; //Adds a key
             case DOOR:
                 break; //Ask to open door
@@ -124,7 +134,7 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-//                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
 
                 message = "should tell story";
                 message2 = " ";
@@ -205,9 +215,6 @@ public class MyMethods {
             Attributes.player.setDead();
         }
     }
-
-
-
 
 }
 
