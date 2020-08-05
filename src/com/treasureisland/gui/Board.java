@@ -46,6 +46,7 @@ implements KeyListener {
         g.drawRoundRect(790, 310, Attributes.windowWidth - 340, Attributes.windowHeight - 655, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
+
         //ISLAND
         g.setColor(Color.WHITE);
         int x = 15, y = 20;
@@ -68,7 +69,7 @@ implements KeyListener {
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 100);
 
-        g.drawString("Current Location: ", 800, 150);//+Attributes.player.getCurrentLocation()
+        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 150);
 
         g.drawString("Gold: ", 800, 170); //+Attributes.player.getGold()
         g.drawString("Keys: ", 800, 190); //+Attributes.player.getKeys()
@@ -85,7 +86,8 @@ implements KeyListener {
     @Override
     public void keyPressed(KeyEvent arg0) {
 //        if (Attributes.player.isLiving()) {
-//            System.out.println("Living");
+
+        try {
             switch (arg0.getKeyCode()) {
                 case KeyEvent.VK_W:
                 case KeyEvent.VK_UP:
@@ -122,12 +124,17 @@ implements KeyListener {
                 case KeyEvent.VK_2:
                     MyMethods.locationTree(2);
                     Attributes.currentIsland.posUpdate();
+                    break;
                 case KeyEvent.VK_3:
                     MyMethods.locationTree(3);
                     Attributes.currentIsland.posUpdate();
+                    break;
             }
 //            MyMethods.checkIsDead();
-
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 //        } else {
 //            Main.StartGame();
 //        }

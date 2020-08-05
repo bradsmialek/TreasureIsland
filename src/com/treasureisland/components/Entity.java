@@ -8,8 +8,8 @@ import com.treasureisland.utilities.Directions;
  */
 public class Entity {
 
-    protected int posX;
-    protected int posY;
+    protected static int posX;
+    protected static int posY;
     protected int health;
     protected int maxHealth;
 
@@ -21,16 +21,17 @@ public class Entity {
     }
 
     public void setPos(int posX, int posY){
+//        System.out.println(posX + posY);
         this.posX = posX;
         this.posY = posY;
     }
 
     // GETTERS
-    public int getPosX() {
+    public static int getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public static int getPosY() {
         return posY;
     }
 
