@@ -121,7 +121,8 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+//                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+
                 message = "should tell story";
                 message2 = " ";
                 message3 = " ";
