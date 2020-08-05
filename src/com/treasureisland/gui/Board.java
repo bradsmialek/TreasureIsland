@@ -82,7 +82,8 @@ implements KeyListener {
     @Override
     public void keyPressed(KeyEvent arg0) {
 //        if (Attributes.player.isLiving()) {
-//            System.out.println("Living");
+
+        try {
             switch (arg0.getKeyCode()) {
                 case KeyEvent.VK_W:
                 case KeyEvent.VK_UP:
@@ -119,12 +120,17 @@ implements KeyListener {
                 case KeyEvent.VK_2:
                     MyMethods.locationTree(2);
                     Attributes.currentIsland.posUpdate();
+                    break;
                 case KeyEvent.VK_3:
                     MyMethods.locationTree(3);
                     Attributes.currentIsland.posUpdate();
+                    break;
             }
 //            MyMethods.checkIsDead();
-
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 //        } else {
 //            Main.StartGame();
 //        }
