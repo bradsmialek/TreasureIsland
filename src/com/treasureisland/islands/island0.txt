@@ -11,8 +11,8 @@
 #         OFF INTO THE SUN AND NEVER BE SEEN AGAIN.                        #
 #         WELL I JUST MIGHT HAVE THE ADVENTURE FOR YOU!                    #
 #                                                                          #
-#                                                                          #
-#         MOVE YOUR CHARACTER @ TO THE SHIP ^ TO BOARD IT AND START        #
+#         USE YOUR ARROW KEYS TO MOVE YOUR CHARACTER                       #
+#         MOVE YOUR CHARACTER TO THE SHIP ^ TO BOARD IT AND START          #
 #                                                                          #
 ############################################################################
 #..........................................................................#
