@@ -15,6 +15,9 @@ public class Island {
     private ArrayList<ArrayList<Tile>> tiles;
     private boolean firstFloor;
 
+    private static int islandNumber = 0;
+    private static String islandName = "Rum Runner Island";
+
     public Island(int islandNumber) {
         System.out.println("ISLAND CLASS: CREATING ISLAND "+islandNumber);
 
@@ -99,7 +102,7 @@ public class Island {
                     case '+':
                         tiles.get(i).add(Tile.PLUS); break;
                     case '*':
-                        tiles.get(i).add(Tile.STAR); break;
+                        tiles.get(i).add(Tile.MAP); break;
                     case 'X':
                         tiles.get(i).add(Tile.X); break;
                     case '~':
@@ -146,5 +149,29 @@ public class Island {
         }
         //Sets new pos
         tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
+    }
+
+    public static int getIslandNumber() {
+        return islandNumber;
+    }
+
+    public static void setIslandNumber(int islandNumber) {
+        Island.islandNumber = islandNumber;
+    }
+
+    public static String getIslandName(int islandNumber){
+        if (islandNumber == 0) {
+            islandName = "Introduction";
+        }
+        else if (islandNumber == 1){
+            islandName = "Black Pearl";
+        }
+        else if(islandNumber == 2) {
+            islandName = "Rum Runner Island";
+        }
+        else if(islandNumber == 3) {
+            islandName = "Port Royal";
+        }
+        return islandName;
     }
 }

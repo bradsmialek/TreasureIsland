@@ -19,10 +19,9 @@ public class MyMethods {
     private static String message3 = " ";
 
     public static void initializeTiles(){
+        System.out.println(Attributes.currentIsland.toString());
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
-//                System.out.println(i);
-//                System.out.println(j);
                 switch (Attributes.currentIsland.getTile(j,i)) {
                     case PLAYER:
                         Attributes.player.setPos(j, i);
@@ -65,6 +64,10 @@ public class MyMethods {
         switch(tile){
             case NOTHING:
                 Attributes.player.move(dir);
+                // every time player moves previous displayed message will dissapear
+                message = " ";
+                message2 = " ";
+                message3 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
@@ -83,8 +86,10 @@ public class MyMethods {
                 message = "You found Rum! Do you want to drink it?";
                 message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.RUM_UP;
                 break;
             case GOLD:
+                break;
             case TREASURE:
                 break; //Ask to open chest
             case KEY:
@@ -98,12 +103,69 @@ public class MyMethods {
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
-
+                message = RandomMessage.randomMessageGenerator();
                 break; //Handles encounters with pirates
+            case MAP:
+                message = "Where would you like to go?";
+                message2 = "Island Two     Island Three";
+                message3 = "    [2]             [3]    ";
+                decided = Decision.LOCATION;
+
             default:
                 System.out.println("???");
                 break; //If something glitches out
         }
+
+    }
+
+    private enum Decision {
+        NONE,
+        RUM_UP,
+        LOCATION;
+    }
+
+    private static Decision decided = Decision.NONE;
+    //private static //something location = //whatever
+
+    //DECISION TREE
+    public static void decisionTree(boolean yn) {
+        System.out.println(yn);
+        if (decided == Decision.NONE) {
+            return;
+        }
+        else if(decided == Decision.RUM_UP && yn) {
+            Attributes.player.heal(MyMethods.getRandomNumber(5)+3);
+            message = "You drank Rum and it gave you health.";
+            message2 = "";
+            message3 = "";
+            Attributes.player.move();//replace tile to .
+        }
+        else if(decided == Decision.RUM_UP) {
+            message = "I'm too drunk already!";
+            message2 = "";
+            message3 = "";
+
+        }
+
+        decided = Decision.NONE;
+    }
+
+    //LOCATION TREE
+    public static void locationTree(int islandNumber) {
+        System.out.println(islandNumber);
+        if (decided == Decision.NONE) {
+            return;
+        }
+        else if (islandNumber == 2) {
+            Attributes.currentIsland = new Island(2);
+        }
+        else if (islandNumber == 3) {
+            Attributes.currentIsland = new Island(3);
+        }
+        else if (decided == Decision.LOCATION) {
+            message = "I'm fine exploring here.";
+        }
+        decided = Decision.NONE;
 
     }
 
@@ -120,4 +182,10 @@ public class MyMethods {
             Attributes.player.setDead();
         }
     }
+
+
+
+
 }
+
+

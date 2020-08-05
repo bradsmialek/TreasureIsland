@@ -3,6 +3,7 @@ package com.treasureisland;
 import com.treasureisland.components.Island;
 import com.treasureisland.components.Player;
 import com.treasureisland.gui.Board;
+import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
@@ -40,8 +41,9 @@ public class Main {
     //Start Game
     public static void StartGame() {
         System.out.println("MAIN CLASS: STARTING GAME....");
-        Attributes.currentIsland = new Island(1);
-        Attributes.player = new Player(2, 6);
+        Attributes.currentIsland = new Island(Island.getIslandNumber()); //starts at island 0 .txt
+        Attributes.player = new Player(20, 20);
+        Music.playMusic();
 //        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
     }
