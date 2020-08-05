@@ -41,8 +41,9 @@ implements KeyListener {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, Attributes.windowWidth, Attributes.windowHeight);
         g.setColor(Color.WHITE);
-        g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
-        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 350, 5, 5);
+//        g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
+        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
+        g.drawRoundRect(790, 310, Attributes.windowWidth - 800, Attributes.windowHeight - 655, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
 
@@ -71,8 +72,8 @@ implements KeyListener {
         g.drawString("Gold: "+Attributes.player.getsGold(), 800, 140);
         g.drawString("Keys: "+Attributes.player.getsKeys(), 800, 170);
 
-        g.drawString("Char Level: "+Attributes.player.getsLevel(), 800, 215);
-        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 245);
+        g.drawString("Char Level: "+Attributes.player.getsLevel(), 800, 225);
+        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 285);
 
 
 
