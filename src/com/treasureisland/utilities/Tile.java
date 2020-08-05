@@ -42,7 +42,8 @@ public enum Tile {
     MAP('*'),
     X('x'),
     TILDE('~'),
-    SPACE(' ');
+    SPACE(' '),
+    POI('?');
 
     private char symbol;
 

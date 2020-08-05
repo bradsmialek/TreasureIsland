@@ -110,6 +110,8 @@ public class Island {
                         tiles.get(i).add(Tile.TILDE); break;
                     case ' ':
                         tiles.get(i).add(Tile.SPACE); break;
+                    case '?':
+                        tiles.get(i).add(Tile.POI); break;
 
                 }
             }
