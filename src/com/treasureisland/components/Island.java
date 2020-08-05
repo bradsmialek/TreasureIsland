@@ -15,7 +15,7 @@ public class Island {
     private ArrayList<ArrayList<Tile>> tiles;
     private boolean firstFloor;
 
-    private static int islandNumber = 0;
+    private static int islandNumber = 1;
     private static String islandName = "Rum Runner Island";
 
     public Island(int islandNumber) {
@@ -152,6 +152,24 @@ public class Island {
         }
         //Sets new pos
         tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
+    }
+
+    public void updatePiratesPos() {
+        //Deletes old pos
+        for(int i=0;i<this.getHeight();i++) {
+            for(int j=0;j<this.getWidth();j++) {
+                if(tiles.get(i).get(j) == Tile.PIRATE)
+                    tiles.get(i).set(j, Tile.NOTHING);
+            }
+        }
+        //Sets new pos
+        for(int i = 0; i< Attributes.pirates.size(); i++) {
+            if(Attributes.pirates.get(i).getHealth()<=0)
+                Attributes.pirates.remove(i);
+            else
+                tiles.get(Attributes.pirates.get(i).getPosY()).set(Attributes.pirates.get(i).getPosX(), Tile.PIRATE);
+        }
+
     }
 
     public static int getIslandNumber() {

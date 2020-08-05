@@ -1,11 +1,7 @@
 package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
-import com.treasureisland.components.Entity;
-import com.treasureisland.components.Island;
-import com.treasureisland.components.PeopleInterest;
-import com.treasureisland.components.Player;
-
+import com.treasureisland.components.*;
 
 
 import java.sql.Ref;
@@ -21,15 +17,19 @@ public class MyMethods {
     private static String message3 = " ";
 
     public static void initializeTiles(){
+
+        Attributes.pirates.clear();
+
         System.out.println(Attributes.currentIsland.toString());
-        for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
-            for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
-                switch (Attributes.currentIsland.getTile(j,i)) {
+
+        for (int y = 0; y < Attributes.currentIsland.getHeight()-1; y++) {
+            for (int x = 0; x < Attributes.currentIsland.getWidth()-1; x++) {
+                switch (Attributes.currentIsland.getTile(x,y)) {
                     case PLAYER:
-                        Attributes.player.setPos(j, i);
+                        Attributes.player.setPos(x, y);
                         break;
-//                    case PIRATE:
-//                        Attributes.pirates.add(new Pirate("Pirate", x, y, 10, 2, 2));
+                    case PIRATE:
+                        Attributes.pirates.add(new Pirate( x, y, 10));
                     default:
                         break;
                 }
@@ -99,7 +99,7 @@ public class MyMethods {
             case DOOR:
                 break; //Ask to open door
             case PIRATE:
-                Attributes.player.damage(MyMethods.getRandomNumber(2));
+
                 message = "You fought a pirate and took damage!";
                 message2 = " ";
                 message3 = " ";
@@ -190,6 +190,35 @@ public class MyMethods {
             message = "I'm fine exploring here.";
         }
         locationDecided = LocationDecision.NOWHERE;
+    }
+
+    public static void movePirates() {
+        for(int i = 0; i<Attributes.pirates.size(); i++) {
+            Attributes.pirates.get(i).moveRandom();
+        }
+    }
+
+    public static void pirateEncounter(Directions direction) {
+        int pirateX=0, pirateY=0;
+
+        switch(direction) {
+            case UP:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY()-1; break;
+            case LEFT:
+                pirateX = Attributes.player.getPosX()-1; pirateY = Attributes.player.getPosY(); break;
+            case DOWN:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY()+1; break;
+            case RIGHT:
+                pirateX = Attributes.player.getPosX()+1; pirateY = Attributes.player.getPosY(); break;
+        }
+
+        for(int i = 0; i<Attributes.pirates.size(); i++) {
+            if(Attributes.pirates.get(i).getPosX() == pirateX && Attributes.pirates.get(i).getPosY() == pirateY) {
+                Attributes.player.damage(MyMethods.getRandomNumber(2));
+                message = "You attacked the Pirate and left him with "+Attributes.pirates.get(i).getHealth()+" HP!";
+                message2 = "The Pirate attacked you!";
+            }
+        }
     }
 
 

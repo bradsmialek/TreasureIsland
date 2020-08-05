@@ -12,6 +12,7 @@ public class Player extends Entity {
 
     public Player(int posX, int posY) {
         super(posX, posY,20);
+        this.alive = true;
 
         System.out.println("PLAYER CLASS: CREATING PLAYER");
     }

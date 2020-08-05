@@ -81,59 +81,67 @@ implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-//        if (Attributes.player.isLiving()) {
+        if (Attributes.player.isLiving()) {
 
-        try {
-            switch (arg0.getKeyCode()) {
-                case KeyEvent.VK_W:
-                case KeyEvent.VK_UP:
-                    Attributes.player.setFacing(Directions.UP);
-                    MyMethods.playerHandler(Directions.UP);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_A:
-                case KeyEvent.VK_LEFT:
-                    Attributes.player.setFacing(Directions.LEFT);
-                    MyMethods.playerHandler(Directions.LEFT);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_S:
-                case KeyEvent.VK_DOWN:
-                    Attributes.player.setFacing(Directions.DOWN);
-                    MyMethods.playerHandler(Directions.DOWN);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_D:
-                case KeyEvent.VK_RIGHT:
-                    Attributes.player.setFacing(Directions.RIGHT);
-                    MyMethods.playerHandler(Directions.RIGHT);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_Y:
-                    MyMethods.decisionTree(true);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_N:
-                    MyMethods.decisionTree(false);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_2:
-                    MyMethods.locationTree(2);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-                case KeyEvent.VK_3:
-                    MyMethods.locationTree(3);
-                    Attributes.currentIsland.posUpdate();
-                    break;
-            }
+            try {
+                switch (arg0.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                    case KeyEvent.VK_UP:
+                        Attributes.player.setFacing(Directions.UP);
+                        MyMethods.playerHandler(Directions.UP);
+                        Attributes.currentIsland.posUpdate();
+                        MyMethods.movePirates();
+                        Attributes.currentIsland.updatePiratesPos();
+                        break;
+                    case KeyEvent.VK_A:
+                    case KeyEvent.VK_LEFT:
+                        Attributes.player.setFacing(Directions.LEFT);
+                        MyMethods.playerHandler(Directions.LEFT);
+                        Attributes.currentIsland.posUpdate();
+                        MyMethods.movePirates();
+                        Attributes.currentIsland.updatePiratesPos();
+                        break;
+                    case KeyEvent.VK_S:
+                    case KeyEvent.VK_DOWN:
+                        Attributes.player.setFacing(Directions.DOWN);
+                        MyMethods.playerHandler(Directions.DOWN);
+                        Attributes.currentIsland.posUpdate();
+                        MyMethods.movePirates();
+                        Attributes.currentIsland.updatePiratesPos();
+                        break;
+                    case KeyEvent.VK_D:
+                    case KeyEvent.VK_RIGHT:
+                        Attributes.player.setFacing(Directions.RIGHT);
+                        MyMethods.playerHandler(Directions.RIGHT);
+                        Attributes.currentIsland.posUpdate();
+                        MyMethods.movePirates();
+                        Attributes.currentIsland.updatePiratesPos();
+                        break;
+                    case KeyEvent.VK_Y:
+                        MyMethods.decisionTree(true);
+                        Attributes.currentIsland.posUpdate();
+                        break;
+                    case KeyEvent.VK_N:
+                        MyMethods.decisionTree(false);
+                        Attributes.currentIsland.posUpdate();
+                        break;
+                    case KeyEvent.VK_2:
+                        MyMethods.locationTree(2);
+                        Attributes.currentIsland.posUpdate();
+                        break;
+                    case KeyEvent.VK_3:
+                        MyMethods.locationTree(3);
+                        Attributes.currentIsland.posUpdate();
+                        break;
+                }
 //            MyMethods.checkIsDead();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        catch (Exception e) {
-            e.printStackTrace();
+    else {
+            Main.StartGame();
         }
-//        } else {
-//            Main.StartGame();
-//        }
     }
 
 

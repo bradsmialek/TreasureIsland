@@ -1,12 +1,14 @@
 package com.treasureisland;
 
 import com.treasureisland.components.Island;
+import com.treasureisland.components.Pirate;
 import com.treasureisland.components.Player;
 import com.treasureisland.gui.Board;
 import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  * No Ascii Panel, only JFranm
@@ -45,7 +47,7 @@ public class Main {
         Attributes.player = new Player(19, 19);
 
 //        Music.playMusic();
-//        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
+        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
     }
 }
