@@ -1,6 +1,7 @@
 package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
+import com.treasureisland.components.Entity;
 import com.treasureisland.components.Island;
 import com.treasureisland.components.PeopleInterest;
 import com.treasureisland.components.Player;
@@ -43,7 +44,7 @@ public class MyMethods {
         return rand.nextInt(n) +1;
     }
 
-    public static void playerHandler(Directions dir) {
+    public static void playerHandler(Directions dir) throws Exception {
         Tile tile = null;
 
         switch(dir) {
@@ -121,6 +122,7 @@ public class MyMethods {
                 break;
             case POI:
 //                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+
                 message = "should tell story";
                 message2 = " ";
                 message3 = " ";
