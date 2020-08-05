@@ -19,6 +19,7 @@ public class Island {
     private static String islandName = "Rum Runner Island";
 
     public Island(int islandNumber) {
+        Island.setIslandNumber(islandNumber);
         System.out.println("ISLAND CLASS: CREATING ISLAND "+islandNumber);
 
         tiles = new ArrayList<ArrayList<Tile>>();
