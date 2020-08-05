@@ -43,6 +43,7 @@ public class Main {
         System.out.println("MAIN CLASS: STARTING GAME....");
         Attributes.currentIsland = new Island(Island.getIslandNumber()); //starts at island 0 .txt
         Attributes.player = new Player(19, 19);
+
 //        Music.playMusic();
 //        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
