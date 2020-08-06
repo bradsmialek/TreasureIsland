@@ -28,8 +28,5 @@ public class Attributes {
         return currentMap;
     }
 
-    public static Island getCurrentIsland() {
-        return currentIsland;
-    }
 
 }

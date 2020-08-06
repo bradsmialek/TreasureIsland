@@ -17,8 +17,6 @@ public class Island {
     private static int islandNumber = 0;
     private static String islandName = "Rum Runner Island";
 
-    private static int islandNumber = 0;
-    private static String islandName = "Rum Runner Island";
 
     public Island(int islandNumber) {
         Island.setIslandNumber(islandNumber);
