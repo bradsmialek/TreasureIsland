@@ -124,8 +124,8 @@ public class MyMethods {
             case VENDOR:
                 message = "What would you like to Buy?";
                 message2 = "list of stuff";
-                Attributes.vendorItems.getAll();
-                message3 = " ";
+                //Attributes.vendorItems.getAll();
+                message3 = Attributes.vendorItems.getAll();
 
 
                 // deduct from coins depending on item cost
