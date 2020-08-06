@@ -123,15 +123,25 @@ implements KeyListener {
         //STATS
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.setColor(Color.cyan);
-        g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
+        g.drawString("Player: ", 820, 50); //TODO  ask user name and use it    +Attributes.player.getName()
         g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 80);
-        g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 800, 110);
-        g.drawString("Gold: "+Attributes.player.getsGold(), 800, 140);
-        g.drawString("Keys: "+Attributes.player.getsKeys(), 800, 170);
+        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 820, 80);
+        g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 820, 110);
+        g.drawString("Gold: "+Attributes.player.getsGold(), 820, 140);
+        g.drawString("Keys: "+Attributes.player.getsKeys(), 820, 170);
 
-        g.drawString("Char Level: "+Attributes.player.getsLevel(), 800, 225);
+        g.drawString("Char Level: "+Attributes.player.getsLevel(), 820, 225);
         g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 285);
+
+        g.drawString("Special Items: ", 1200, 50);
+        g.drawString("Keys: 0/3", 1200, 90); //+Attributes.player.getsSpecialKeys()  --------------TODO
+                                                      // 0/3
+        g.drawString("Emerald: 0/1", 1200, 120); // +Attributes.player.getsEmerald() ---------------TODO
+                                                        // 0/1
+        g.drawString("Maps: 0/4", 1200, 150); // +Attributes.player.getsEmerald() ---------------TODO
+                                                        // 0/4
+
+
 
 
 
