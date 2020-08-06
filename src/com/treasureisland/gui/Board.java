@@ -122,6 +122,7 @@ implements KeyListener {
 
         //STATS
         g.setFont(new Font("arial", Font.PLAIN, 20));
+        g.setColor(Color.cyan);
         g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
         g.setFont(new Font("arial", Font.PLAIN, 20));
         g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 80);
@@ -135,9 +136,11 @@ implements KeyListener {
 
 
         //Message
-        g.drawString(MyMethods.getMessage(), 15, 680);
-        g.drawString(MyMethods.getMessage2(), 15, 700);
-        g.drawString(MyMethods.getMessage3(), 15, 720);
+        g.setColor(Color.lightGray);
+        g.setFont(new Font("arial", Font.PLAIN, 35));
+        g.drawString(MyMethods.getMessage(), 15, 700);
+        g.drawString(MyMethods.getMessage2(), 15, 750);
+        g.drawString(MyMethods.getMessage3(), 15, 800);
     }
 
     @Override
