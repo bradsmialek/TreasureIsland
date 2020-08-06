@@ -1,12 +1,14 @@
 package com.treasureisland;
 
 import com.treasureisland.components.Island;
+import com.treasureisland.components.Maps;
 import com.treasureisland.components.Player;
 import com.treasureisland.gui.Board;
 import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
+import java.util.Map;
 
 /**
  * No Ascii Panel, only JFranm
@@ -42,6 +44,7 @@ public class Main {
     public static void StartGame() {
         System.out.println("MAIN CLASS: STARTING GAME....");
         Attributes.currentIsland = new Island(Island.getIslandNumber()); //starts at island 0 .txt
+        Attributes.currentMap = new Maps(Maps.getMapNumber());
         Attributes.player = new Player(19, 19);
 
 //        Music.playMusic();
