@@ -95,6 +95,11 @@ implements KeyListener {
                     g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                     g.setColor(Color.orange);
                 }
+                else if (Attributes.currentIsland.getTileChar(j,i) == '+'){
+                    g.setColor(Color.lightGray);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.orange);
+                }
                 else if (Attributes.currentIsland.getTileChar(j,i) == '.'){
                     g.setColor(Color.darkGray);
                     g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
