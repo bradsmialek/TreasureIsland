@@ -16,7 +16,7 @@ public enum Tile {
     KEY('!'),
     DOOR('/'),
     A('A'),
-    B('B'),
+    BLACKJACK('B'),
     C('C'),
     D('D'),
     E('E'),

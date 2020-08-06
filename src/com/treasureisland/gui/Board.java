@@ -76,7 +76,7 @@ implements KeyListener {
                 a = 840;
             }
         } catch (Exception drawCurrentMapError) {
-            System.out.println("Something went wrong while we were drawing the map");
+            System.out.println("Board Class: Something went wrong while we were drawing the map");
         }
 
         //Island
@@ -114,7 +114,7 @@ implements KeyListener {
                 x = 15;
             }
         } catch (Exception paintIslandError) {
-            System.out.println("Something went wrong while we were painting the island");
+            System.out.println("Board Class: Something went wrong while we were painting the island");
         }
 
         //Legend of characters
@@ -135,7 +135,7 @@ implements KeyListener {
             g.drawString("Char Level: " + Attributes.player.getsLevel(), 800, 225);
             g.drawString("Current Location: " + Island.getIslandName(Island.getIslandNumber()), 800, 285);
         } catch (Exception drawStatsError) {
-            System.out.println("Something went wrong while we were drawing Player stats");
+            System.out.println("Board Class: Something went wrong while we were drawing Player stats");
         }
 
 
@@ -147,7 +147,7 @@ implements KeyListener {
             g.drawString(MyMethods.getMessage2(), 15, 750);
             g.drawString(MyMethods.getMessage3(), 15, 800);
         } catch (Exception drawMessageException) {
-            System.out.println("Something went wrong while we were drawing your message board");
+            System.out.println("Board Class: Something went wrong while we were drawing your message board");
         }
     }
 
@@ -202,7 +202,7 @@ implements KeyListener {
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Player input error");
+            System.out.println("Board Class: Player input error");
         }
 //        } else {
 //            Main.StartGame();
