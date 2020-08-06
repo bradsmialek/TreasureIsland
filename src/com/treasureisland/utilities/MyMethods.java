@@ -1,11 +1,8 @@
 package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
-import com.treasureisland.components.Entity;
-import com.treasureisland.components.Island;
-import com.treasureisland.components.PeopleInterest;
-import com.treasureisland.components.Player;
-
+import com.treasureisland.components.*;
+//import sun.security.pkcs11.wrapper.Functions;
 
 
 import java.sql.Ref;
@@ -79,6 +76,7 @@ public class MyMethods {
             case DOCK:
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
+                Attributes.currentMap = new Maps(1);
                 message = "You have returned to your Ship!";
                 message2 = " ";
                 message3 = " ";
@@ -91,10 +89,20 @@ public class MyMethods {
                 decided = Decision.RUM_UP;
                 break;
             case GOLD:
+                Attributes.player.move(dir);
+                Attributes.player.addsGold(MyMethods.getRandomNumber(3)+2);
+                message = "You picked up gold!";
+                message2 = " ";
+                message3 = " ";
                 break;
             case TREASURE:
                 break; //Ask to open chest
             case KEY:
+                Attributes.player.move(dir);
+                Attributes.player.addsKey();
+                message = "You picked up a normal key! Must be something nearby to unlock?";
+                message2 = " ";
+                message3 = " ";
                 break; //Adds a key
             case DOOR:
                 break; //Ask to open door
@@ -116,12 +124,16 @@ public class MyMethods {
             case VENDOR:
                 message = "What would you like to Buy?";
                 message2 = "list of stuff";
+                Attributes.vendorItems.getAll();
                 message3 = " ";
+
+
                 // deduct from coins depending on item cost
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
                 PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+
                 message = "should tell story";
                 message2 = " ";
                 message3 = " ";
@@ -178,9 +190,12 @@ public class MyMethods {
         }
         else if ( islandNumber == 2) {
             Attributes.currentIsland = new Island(2);
+            Attributes.currentMap = new Maps(2);
+
         }
         else if (islandNumber == 3) {
             Attributes.currentIsland = new Island(3);
+            Attributes.currentMap = new Maps(3);
         }
         else {
             message = "I'm fine exploring here.";
@@ -201,9 +216,6 @@ public class MyMethods {
             Attributes.player.setDead();
         }
     }
-
-
-
 
 }
 

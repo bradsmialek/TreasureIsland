@@ -2,8 +2,10 @@ package com.treasureisland.gui;
 
 
 import com.treasureisland.Attributes;
+import com.treasureisland.Main;
 import com.treasureisland.components.Island;
-import com.treasureisland.maps.MapArt;
+import com.treasureisland.components.Player;
+import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
 
@@ -38,20 +40,76 @@ implements KeyListener {
         //BACKGROUND
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, Attributes.windowWidth, Attributes.windowHeight);
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLUE);
         g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
-        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 755, 5, 5);
-        g.drawRoundRect(790, 255, Attributes.windowWidth - 340, Attributes.windowHeight - 600, 5, 5);
+        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
+        g.drawRoundRect(790, 310, Attributes.windowWidth - 800, Attributes.windowHeight - 655, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
-        g.drawString(MapArt.map1(), 795, 275);
 
-        //ISLAND
-        g.setColor(Color.WHITE);
+        //MAP
+        g.setColor(Color.lightGray);
+        int a = 840, b = 340;
+        for (int i = 0; i < Attributes.currentMap.getHeight(); i++) {
+            for (int j = 0; j < Attributes.currentMap.getWidth(); j++) {
+
+                if(Attributes.currentMap.getTileChar(j,i) == '@'){
+                    g.setColor(Color.RED);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                    g.setColor(Color.lightGray);
+                }
+                else if(Attributes.currentMap.getTileChar(j,i) == '.'){
+                    g.setColor(Color.darkGray);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                    g.setColor(Color.orange);
+                }
+                else if(Attributes.currentMap.getTileChar(j,i) == '#'){
+                    g.setColor(Color.pink);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                    g.setColor(Color.lightGray);
+                }
+                else {
+                    g.setColor(Color.lightGray);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                }
+                a += 8;
+            }
+            b += 13;
+            a = 840;
+        }
+
+        //Island
+        g.setColor(Color.orange);
         int x = 15, y = 20;
         for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
-                g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+
+                if(Attributes.currentIsland.getTileChar(j,i) == '@'){
+                    g.setColor(Color.MAGENTA
+                    );
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.orange);
+                }
+                else if (Attributes.currentIsland.getTileChar(j,i) == '#'){
+                    g.setColor(Color.pink);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.orange);
+                }
+                else if (Attributes.currentIsland.getTileChar(j,i) == '+'){
+                    g.setColor(Color.lightGray);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.orange);
+                }
+                else if (Attributes.currentIsland.getTileChar(j,i) == '.'){
+                    g.setColor(Color.darkGray);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.orange);
+                }
+                else {
+                    g.setColor(Color.orange);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                }
+
                 x += 10;
             }
             y += 15;
@@ -64,22 +122,25 @@ implements KeyListener {
 
         //STATS
         g.setFont(new Font("arial", Font.PLAIN, 20));
+        g.setColor(Color.cyan);
         g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
         g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 100);
+        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 80);
+        g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 800, 110);
+        g.drawString("Gold: "+Attributes.player.getsGold(), 800, 140);
+        g.drawString("Keys: "+Attributes.player.getsKeys(), 800, 170);
 
-        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 150);
+        g.drawString("Char Level: "+Attributes.player.getsLevel(), 800, 225);
+        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 285);
 
-        g.drawString("Gold: ", 800, 170); //+Attributes.player.getGold()
-        g.drawString("Keys: ", 800, 190); //+Attributes.player.getKeys()
+
 
         //Message
-        g.drawString(MyMethods.getMessage(), 15, 680);
-        g.drawString(MyMethods.getMessage2(), 15, 700);
-        g.drawString(MyMethods.getMessage3(), 15, 720);
-
-        //MAPS
-        g.setColor(Color.WHITE);
+        g.setColor(Color.lightGray);
+        g.setFont(new Font("arial", Font.PLAIN, 35));
+        g.drawString(MyMethods.getMessage(), 15, 700);
+        g.drawString(MyMethods.getMessage2(), 15, 750);
+        g.drawString(MyMethods.getMessage3(), 15, 800);
     }
 
     @Override
