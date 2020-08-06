@@ -47,23 +47,43 @@ implements KeyListener {
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
 
-        //ISLAND
-        g.setColor(Color.yellow);
+        //MAP
+        g.setColor(Color.lightGray);
         int a = 840, b = 340;
         for (int i = 0; i < Attributes.currentMap.getHeight(); i++) {
             for (int j = 0; j < Attributes.currentMap.getWidth(); j++) {
-                g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+
+                if(Attributes.currentMap.getTileChar(j,i) == '@'){
+                    g.setColor(Color.RED);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                    g.setColor(Color.lightGray);
+                }
+                else {
+                    g.setColor(Color.lightGray);
+                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                }
                 a += 8;
             }
             b += 13;
             a = 840;
         }
 
+        //Island
         g.setColor(Color.yellow);
         int x = 15, y = 20;
         for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
-                g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+
+                if(Attributes.currentIsland.getTileChar(j,i) == '@'){
+                    g.setColor(Color.BLUE);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    g.setColor(Color.yellow);
+                }
+                else {
+                    g.setColor(Color.yellow);
+                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                }
+
                 x += 10;
             }
             y += 15;
