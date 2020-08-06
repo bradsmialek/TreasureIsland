@@ -20,10 +20,12 @@ public class Vendor {
 
 
 
-    public void getAll(){
+    public String getAll(){
         for(Items item : vendorItems){
             System.out.println(item.toString());
+            return item.toString();
         }
+        return item.toString();
     }
 
 

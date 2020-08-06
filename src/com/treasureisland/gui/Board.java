@@ -49,71 +49,72 @@ implements KeyListener {
 
         //MAP
         g.setColor(Color.lightGray);
-        int a = 840, b = 340;
-        for (int i = 0; i < Attributes.currentMap.getHeight(); i++) {
-            for (int j = 0; j < Attributes.currentMap.getWidth(); j++) {
+        try {
+            int a = 840, b = 340;
+            for (int i = 0; i < Attributes.currentMap.getHeight(); i++) {
+                for (int j = 0; j < Attributes.currentMap.getWidth(); j++) {
 
-                if(Attributes.currentMap.getTileChar(j,i) == '@'){
-                    g.setColor(Color.RED);
-                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
-                    g.setColor(Color.lightGray);
+                    if (Attributes.currentMap.getTileChar(j, i) == '@') {
+                        g.setColor(Color.RED);
+                        g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                        g.setColor(Color.lightGray);
+                    } else if (Attributes.currentMap.getTileChar(j, i) == '.') {
+                        g.setColor(Color.darkGray);
+                        g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                        g.setColor(Color.orange);
+                    } else if (Attributes.currentMap.getTileChar(j, i) == '#') {
+                        g.setColor(Color.pink);
+                        g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                        g.setColor(Color.lightGray);
+                    } else {
+                        g.setColor(Color.lightGray);
+                        g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
+                    }
+                    a += 8;
                 }
-                else if(Attributes.currentMap.getTileChar(j,i) == '.'){
-                    g.setColor(Color.darkGray);
-                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
-                    g.setColor(Color.orange);
-                }
-                else if(Attributes.currentMap.getTileChar(j,i) == '#'){
-                    g.setColor(Color.pink);
-                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
-                    g.setColor(Color.lightGray);
-                }
-                else {
-                    g.setColor(Color.lightGray);
-                    g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
-                }
-                a += 8;
+                b += 13;
+                a = 840;
             }
-            b += 13;
-            a = 840;
+        } catch (Exception drawCurrentMapError) {
+            System.out.println("Something went wrong while we were drawing the map");
         }
 
         //Island
-        g.setColor(Color.orange);
-        int x = 15, y = 20;
-        for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
-            for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
+        try {
+            g.setColor(Color.orange);
+            int x = 15, y = 20;
+            for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
+                for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
 
-                if(Attributes.currentIsland.getTileChar(j,i) == '@'){
-                    g.setColor(Color.MAGENTA
-                    );
-                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                    g.setColor(Color.orange);
-                }
-                else if (Attributes.currentIsland.getTileChar(j,i) == '#'){
-                    g.setColor(Color.pink);
-                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                    g.setColor(Color.orange);
-                }
-                else if (Attributes.currentIsland.getTileChar(j,i) == '+'){
-                    g.setColor(Color.lightGray);
-                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                    g.setColor(Color.orange);
-                }
-                else if (Attributes.currentIsland.getTileChar(j,i) == '.'){
-                    g.setColor(Color.darkGray);
-                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                    g.setColor(Color.orange);
-                }
-                else {
-                    g.setColor(Color.orange);
-                    g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                }
+                    if (Attributes.currentIsland.getTileChar(j, i) == '@') {
+                        g.setColor(Color.MAGENTA
+                        );
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '#') {
+                        g.setColor(Color.pink);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '+') {
+                        g.setColor(Color.lightGray);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
+                        g.setColor(Color.darkGray);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    } else {
+                        g.setColor(Color.orange);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                    }
 
-                x += 10;
+                    x += 10;
+                }
+                y += 15;
+                x = 15;
             }
-            y += 15;
-            x = 15;
+        } catch (Exception paintIslandError) {
+            System.out.println("Something went wrong while we were painting the island");
         }
 
         //Legend of characters
@@ -121,36 +122,44 @@ implements KeyListener {
         //P pirate ... etc
 
         //STATS
-        g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.setColor(Color.cyan);
-        g.drawString("Player: ", 820, 50); //TODO  ask user name and use it    +Attributes.player.getName()
-        g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 820, 80);
-        g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 820, 110);
-        g.drawString("Gold: "+Attributes.player.getsGold(), 820, 140);
-        g.drawString("Keys: "+Attributes.player.getsKeys(), 820, 170);
 
-        g.drawString("Char Level: "+Attributes.player.getsLevel(), 820, 225);
-        g.drawString("Current Location: "+Island.getIslandName(Island.getIslandNumber()), 800, 285);
+        try {
+            g.setFont(new Font("arial", Font.PLAIN, 20));
+            g.setColor(Color.cyan);
+            g.drawString("Player: ", 800, 50); //TODO  ask user name and use it    +Attributes.player.getName()
+            g.setFont(new Font("arial", Font.PLAIN, 20));
+            g.drawString("HP: " + Attributes.player.getHealth() + "/" + Attributes.player.getMaxHealth(), 800, 80);
+            g.drawString("XP: " + Attributes.player.getXP() + "/" + Attributes.player.getNextLevel(), 800, 110);
+            g.drawString("Gold: " + Attributes.player.getsGold(), 800, 140);
+            g.drawString("Keys: " + Attributes.player.getsKeys(), 800, 170);
 
-        g.drawString("Special Items: ", 1200, 50);
-        g.drawString("Keys: 0/3", 1200, 90); //+Attributes.player.getsSpecialKeys()  --------------TODO
-                                                      // 0/3
-        g.drawString("Emerald: 0/1", 1200, 120); // +Attributes.player.getsEmerald() ---------------TODO
-                                                        // 0/1
-        g.drawString("Maps: 0/4", 1200, 150); // +Attributes.player.getsEmerald() ---------------TODO
-                                                        // 0/4
+            g.drawString("Char Level: " + Attributes.player.getsLevel(), 800, 225);
+            g.drawString("Current Location: " + Island.getIslandName(Island.getIslandNumber()), 800, 285);
 
+            g.drawString("Special Items: ", 1200, 50);
+            g.drawString("Keys: 0/3", 1200, 90); //+Attributes.player.getsSpecialKeys()  --------------TODO
+            // 0/3
+            g.drawString("Emerald: 0/1", 1200, 120); // +Attributes.player.getsEmerald() ---------------TODO
+            // 0/1
+            g.drawString("Maps: 0/4", 1200, 150); // +Attributes.player.getsEmerald() ---------------TODO
+            // 0/4
 
+        } catch (Exception drawStatsError) {
+            System.out.println("Something went wrong while we were drawing Player stats");
+        }
 
 
 
         //Message
-        g.setColor(Color.lightGray);
-        g.setFont(new Font("arial", Font.PLAIN, 35));
-        g.drawString(MyMethods.getMessage(), 15, 700);
-        g.drawString(MyMethods.getMessage2(), 15, 750);
-        g.drawString(MyMethods.getMessage3(), 15, 800);
+        try {
+            g.setColor(Color.lightGray);
+            g.setFont(new Font("arial", Font.PLAIN, 35));
+            g.drawString(MyMethods.getMessage(), 15, 700);
+            g.drawString(MyMethods.getMessage2(), 15, 750);
+            g.drawString(MyMethods.getMessage3(), 15, 800);
+        } catch (Exception drawMessageException) {
+            System.out.println("Something went wrong while we were drawing your message board");
+        }
     }
 
     @Override
@@ -204,6 +213,7 @@ implements KeyListener {
         }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Player input error");
         }
 //        } else {
 //            Main.StartGame();
