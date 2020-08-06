@@ -2,10 +2,8 @@ package com.treasureisland.gui;
 
 
 import com.treasureisland.Attributes;
-import com.treasureisland.Main;
 import com.treasureisland.components.Island;
-import com.treasureisland.components.Player;
-import com.treasureisland.utilities.Tile;
+import com.treasureisland.maps.MapArt;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
 
@@ -42,10 +40,11 @@ implements KeyListener {
         g.fillRect(0, 0, Attributes.windowWidth, Attributes.windowHeight);
         g.setColor(Color.WHITE);
         g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
-        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
-        g.drawRoundRect(790, 310, Attributes.windowWidth - 340, Attributes.windowHeight - 655, 5, 5);
+        g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 755, 5, 5);
+        g.drawRoundRect(790, 255, Attributes.windowWidth - 340, Attributes.windowHeight - 600, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
 
+        g.drawString(MapArt.map1(), 795, 275);
 
         //ISLAND
         g.setColor(Color.WHITE);
