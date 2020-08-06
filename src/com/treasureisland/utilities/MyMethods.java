@@ -76,7 +76,7 @@ public class MyMethods {
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
                 Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!33333eEeeeeskvnsldkvnsdljgf;sldkjg;lsdjg;lsdmg;sldmgpoopoo";
+                message = "You have returned to your Ship!"; // 89 char
                 message2 = " ";
                 message3 = " ";
                 MyMethods.initializeTiles();
@@ -95,6 +95,9 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case TREASURE:
+                message = "You found a chest.  You need a key to open it!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open chest
             case KEY:
                 Attributes.player.move(dir);
@@ -104,6 +107,9 @@ public class MyMethods {
                 message3 = " ";
                 break; //Adds a key
             case DOOR:
+                message = "This door is locked. You need a key!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open door
             case PIRATE:
                 Attributes.player.damage(MyMethods.getRandomNumber(2));
@@ -129,8 +135,6 @@ public class MyMethods {
                 message2 = "list of stuff";
                 //Attributes.vendorItems.getAll();
                 message3 = Attributes.vendorItems.getAll();
-
-
                 // deduct from coins depending on item cost
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
