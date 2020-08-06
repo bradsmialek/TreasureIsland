@@ -1,10 +1,7 @@
 package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
-import com.treasureisland.components.Entity;
-import com.treasureisland.components.Island;
-import com.treasureisland.components.PeopleInterest;
-import com.treasureisland.components.Player;
+import com.treasureisland.components.*;
 //import sun.security.pkcs11.wrapper.Functions;
 
 
@@ -79,6 +76,7 @@ public class MyMethods {
             case DOCK:
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
+                Attributes.currentMap = new Maps(1);
                 message = "You have returned to your Ship!";
                 message2 = " ";
                 message3 = " ";
@@ -192,9 +190,12 @@ public class MyMethods {
         }
         else if ( islandNumber == 2) {
             Attributes.currentIsland = new Island(2);
+            Attributes.currentMap = new Maps(2);
+
         }
         else if (islandNumber == 3) {
             Attributes.currentIsland = new Island(3);
+            Attributes.currentMap = new Maps(3);
         }
         else {
             message = "I'm fine exploring here.";
