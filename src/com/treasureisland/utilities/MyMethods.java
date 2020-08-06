@@ -18,7 +18,6 @@ public class MyMethods {
     private static String message3 = " ";
 
     public static void initializeTiles(){
-        System.out.println(Attributes.currentIsland.toString());
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
                 switch (Attributes.currentIsland.getTile(j,i)) {
@@ -77,7 +76,7 @@ public class MyMethods {
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
                 Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!";
+                message = "You have returned to your Ship!33333eEeeeeskvnsldkvnsdljgf;sldkjg;lsdjg;lsdmg;sldmgpoopoo";
                 message2 = " ";
                 message3 = " ";
                 MyMethods.initializeTiles();
@@ -109,16 +108,20 @@ public class MyMethods {
             case PIRATE:
                 Attributes.player.damage(MyMethods.getRandomNumber(2));
                 message = "You fought a pirate and took damage!";
+                //drops items  -----------------------------------------------------------TODO
+                //option to fight and kill deal damage------------------------------------TODO
                 message2 = " ";
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
                 message = RandomMessage.randomMessageGenerator();
-                break; //Handles encounters with pirates
+                // drops random items with random generator
+                break;
             case MAP:
                 message = "Where would you like to sail to?";
-                message2 = "Island Two     Island Three";
-                message3 = "    [2]             [3]    ";
+                message2 = "Rum Runners Is. [2]    Port Royal [3]     Isle Cruces [4]";
+                message3 = "Isla De Muerta [5]    Treasure Island [6]";
+//                message4 = "";
                 locationDecided = LocationDecision.LOCATION;
                 break;
             case VENDOR:
@@ -194,6 +197,8 @@ public class MyMethods {
 
         }
         else if (islandNumber == 3) {
+            //check for special key and map ------------------------------------------TODO
+            // no key no go message
             Attributes.currentIsland = new Island(3);
             Attributes.currentMap = new Maps(3);
         }

@@ -122,6 +122,7 @@ implements KeyListener {
         //P pirate ... etc
 
         //STATS
+
         try {
             g.setFont(new Font("arial", Font.PLAIN, 20));
             g.setColor(Color.cyan);
@@ -134,9 +135,19 @@ implements KeyListener {
 
             g.drawString("Char Level: " + Attributes.player.getsLevel(), 800, 225);
             g.drawString("Current Location: " + Island.getIslandName(Island.getIslandNumber()), 800, 285);
+
+            g.drawString("Special Items: ", 1200, 50);
+            g.drawString("Keys: 0/3", 1200, 90); //+Attributes.player.getsSpecialKeys()  --------------TODO
+            // 0/3
+            g.drawString("Emerald: 0/1", 1200, 120); // +Attributes.player.getsEmerald() ---------------TODO
+            // 0/1
+            g.drawString("Maps: 0/4", 1200, 150); // +Attributes.player.getsEmerald() ---------------TODO
+            // 0/4
+
         } catch (Exception drawStatsError) {
             System.out.println("Something went wrong while we were drawing Player stats");
         }
+
 
 
         //Message
