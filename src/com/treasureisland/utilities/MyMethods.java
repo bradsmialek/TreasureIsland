@@ -18,7 +18,6 @@ public class MyMethods {
     private static String message3 = " ";
 
     public static void initializeTiles(){
-        System.out.println(Attributes.currentIsland.toString());
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
             for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
                 switch (Attributes.currentIsland.getTile(j,i)) {
@@ -77,7 +76,7 @@ public class MyMethods {
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
                 Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!";
+                message = "You have returned to your Ship!"; // 89 char
                 message2 = " ";
                 message3 = " ";
                 MyMethods.initializeTiles();
@@ -96,6 +95,9 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case TREASURE:
+                message = "You found a chest.  You need a key to open it!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open chest
             case KEY:
                 Attributes.player.move(dir);
@@ -105,29 +107,34 @@ public class MyMethods {
                 message3 = " ";
                 break; //Adds a key
             case DOOR:
+                message = "This door is locked. You need a key!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open door
             case PIRATE:
                 Attributes.player.damage(MyMethods.getRandomNumber(2));
                 message = "You fought a pirate and took damage!";
+                //drops items  -----------------------------------------------------------TODO
+                //option to fight and kill deal damage------------------------------------TODO
                 message2 = " ";
                 message3 = " ";
                 break; //Handles encounters with pirates
             case FRIENDLY:
                 message = RandomMessage.randomMessageGenerator();
-                break; //Handles encounters with pirates
+                // drops random items with random generator
+                break;
             case MAP:
                 message = "Where would you like to sail to?";
-                message2 = "Island Two     Island Three";
-                message3 = "    [2]             [3]    ";
+                message2 = "Rum Runners Is. [2]    Port Royal [3]     Isle Cruces [4]";
+                message3 = "Isla De Muerta [5]    Treasure Island [6]";
+//                message4 = "";
                 locationDecided = LocationDecision.LOCATION;
                 break;
             case VENDOR:
                 message = "What would you like to Buy?";
                 message2 = "list of stuff";
-                Attributes.vendorItems.getAll();
-                message3 = " ";
-
-
+                //Attributes.vendorItems.getAll();
+                message3 = Attributes.vendorItems.getAll();
                 // deduct from coins depending on item cost
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
@@ -194,6 +201,8 @@ public class MyMethods {
 
         }
         else if (islandNumber == 3) {
+            //check for special key and map ------------------------------------------TODO
+            // no key no go message
             Attributes.currentIsland = new Island(3);
             Attributes.currentMap = new Maps(3);
         }

@@ -47,6 +47,8 @@ public class Main {
         Attributes.currentMap = new Maps(Maps.getMapNumber());
         Attributes.player = new Player(19, 19);
 
+
+
 //        Music.playMusic();
 //        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
