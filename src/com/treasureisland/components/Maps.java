@@ -1,30 +1,26 @@
 package com.treasureisland.components;
 
-import com.treasureisland.Attributes;
-import com.treasureisland.utilities.Action;
-import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.ComponentsManager;
-import com.treasureisland.utilities.Directions;
+import com.treasureisland.utilities.Tile;
+
 import java.util.ArrayList;
 
 /**
- * Islands
+ * Created by bradsmialek on Wed - 8/5/20 @ 5:21 PM
  */
-public class Island {
-
+public class Maps {
     private ArrayList<ArrayList<Tile>> tiles;
 
-    private static int islandNumber = 0;
-    private static String islandName = "Rum Runner Island";
+    private static int mapNumber = 0;
 
-    public Island(int islandNumber) {
-        Island.setIslandNumber(islandNumber);
-        System.out.println("ISLAND CLASS: CREATING ISLAND "+islandNumber);
+    public Maps(int mapNumber) {
+        Maps.setMapNumber(mapNumber );
+        System.out.println("MAP CLASS: CREATING MAP "+mapNumber);
 
         tiles = new ArrayList<ArrayList<Tile>>();
 
-        ArrayList<String> strs = ComponentsManager.readIslandFile("src/com/treasureisland/islands/island"
-                +islandNumber+".txt");
+        ArrayList<String> strs = ComponentsManager.readIslandFile("src/com/treasureisland/maps/map"
+                +mapNumber+".txt");
 
         for(int i = 0; i < strs.size()-1 ; i++) {
             char[] charray = strs.get(i).toCharArray();
@@ -115,10 +111,7 @@ public class Island {
                 }
             }
         }
-//        if(islandNumber == 0) firstFloor = true;//-------------------------------------------------------------------------------TODO
-//        else firstFloor = false;
     }
-
 
     //Gets the size of the floor on the y coordinate
     public int getHeight() {
@@ -130,6 +123,13 @@ public class Island {
         return tiles.get(0).size();
     }
 
+    public static void setMapNumber(int islandNumber) {
+        Maps.mapNumber = islandNumber;
+    }
+
+    public static int getMapNumber() {
+        return mapNumber;
+    }
     //Returns one tile of the floor
     public Tile getTile(int x, int y) {
         return tiles.get(y).get(x);
@@ -138,42 +138,5 @@ public class Island {
     //Returns one tile of the floor
     public char getTileChar(int x, int y) {
         return tiles.get(y).get(x).symbol();
-    }
-
-
-    public void posUpdate(){
-        //DELETES
-        for(int i=0;i<this.getHeight();i++) {
-            for(int j=0;j<this.getWidth();j++) {
-                if(tiles.get(i).get(j) == Tile.PLAYER)
-                    tiles.get(i).set(j, Tile.NOTHING);
-            }
-        }
-        //Sets new pos
-        tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
-    }
-
-    public static int getIslandNumber() {
-        return islandNumber;
-    }
-
-    public static void setIslandNumber(int islandNumber) {
-        Island.islandNumber = islandNumber;
-    }
-
-    public static String getIslandName(int islandNumber){
-        if (islandNumber == 0) {
-            islandName = "Introduction";
-        }
-        else if (islandNumber == 1){
-            islandName = "Black Pearl";
-        }
-        else if(islandNumber == 2) {
-            islandName = "Rum Runner Island";
-        }
-        else if(islandNumber == 3) {
-            islandName = "Port Royal";
-        }
-        return islandName;
     }
 }
