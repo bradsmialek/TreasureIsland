@@ -24,8 +24,15 @@ public class MyMethods {
                     case PLAYER:
                         Attributes.player.setPos(j, i);
                         break;
-//                    case PIRATE:
-//                        Attributes.pirates.add(new Pirate("Pirate", x, y, 10, 2, 2));
+                    case PIRATE:
+                        Attributes.pirates.add(new Pirate("Pirate", j, i, 5)); // TODO make strength and or defense
+                        break;
+                    case POI:
+                        Attributes.peopleInterests.add(new PeopleInterest("POI", j, i, "tells story"));
+                        break;
+//                    case FRIENDLY:
+//                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
+//                        break;
                     default:
                         break;
                 }
@@ -139,7 +146,7 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+                PeopleInterest.poiTree(Entity.getPosXinterest(), Entity.getPosYinterest(), Island.getIslandName(Island.getIslandNumber()));
 
                 message = "should tell story";
                 message2 = " ";
@@ -196,15 +203,17 @@ public class MyMethods {
             return;
         }
         else if ( islandNumber == 2) {
+
             Attributes.currentIsland = new Island(2);
             Attributes.currentMap = new Maps(2);
-
+            MyMethods.initializeTiles();
         }
         else if (islandNumber == 3) {
             //check for special key and map ------------------------------------------TODO
             // no key no go message
             Attributes.currentIsland = new Island(3);
             Attributes.currentMap = new Maps(3);
+            MyMethods.initializeTiles();
         }
         else {
             message = "I'm fine exploring here.";

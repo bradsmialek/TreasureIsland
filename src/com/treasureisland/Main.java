@@ -1,13 +1,12 @@
 package com.treasureisland;
 
-import com.treasureisland.components.Island;
-import com.treasureisland.components.Maps;
-import com.treasureisland.components.Player;
+import com.treasureisland.components.*;
 import com.treasureisland.gui.Board;
 import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -45,12 +44,15 @@ public class Main {
         System.out.println("MAIN CLASS: STARTING GAME....");
         Attributes.currentIsland = new Island(Island.getIslandNumber()); //starts at island 0 .txt
         Attributes.currentMap = new Maps(Maps.getMapNumber());
-        Attributes.player = new Player(19, 19);
+        System.out.println("\n*[Creating Initial Character]*");
+        Attributes.player = new Player(19, 18);
 
 
 
 //        Music.playMusic();
-//        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
+        Attributes.pirates = new ArrayList<Pirate>();
+        Attributes.peopleInterests = new ArrayList<PeopleInterest>();
+//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
     }
 }
