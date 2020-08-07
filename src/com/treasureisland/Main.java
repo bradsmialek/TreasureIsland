@@ -2,24 +2,29 @@ package com.treasureisland;
 
 import com.treasureisland.components.*;
 import com.treasureisland.gui.Board;
-import com.treasureisland.gui.Music;
+import com.treasureisland.gui.MusicPlayer;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * No Ascii Panel, only JFrame
  */
 public class Main {
+    public static MusicPlayer mp = new MusicPlayer();
+    public static JButton musicButton;
+
+    public static String song0, musicOnOff;
+
     private static JFrame window;
     private static Board board;
 
     public static void main(String[] args) {
         System.out.println("MAIN CLASS: Initializing....");
         createMainWindow();
+        createMusicButton();
         createBoard();
         StartGame();
     }
@@ -33,6 +38,16 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public static void createMusicButton(){
+        musicButton = new JButton("Music");
+        window.add(musicButton, BorderLayout.NORTH);
+
+        song0 = ".//Resource//song0.wav";
+        System.out.println("Searching for song");
+
+        musicOnOff = "off";
+    }
+
     private static void createBoard(){
         System.out.println("MAIN CLASS: CREATING BOARD....");
         board = new Board();
@@ -43,7 +58,7 @@ public class Main {
 //        pane.setSize(Attributes.windowWidth - 20, Attributes.windowHeight - 700);
 //
 //        board.add(pane);
-        window.add(board);
+        window.add(board, BorderLayout.CENTER);
         board.requestFocusInWindow();
     }
 
@@ -62,3 +77,4 @@ public class Main {
         MyMethods.initializeTiles();
     }
 }
+

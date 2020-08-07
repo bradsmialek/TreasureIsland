@@ -238,6 +238,19 @@ implements KeyListener {
                     MyMethods.coinTossTree("Tails");
                     Attributes.currentIsland.posUpdate();
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    if (Main.musicOnOff.equals("off")) {
+                        Main.mp.setFile(Main.song0);
+                        Main.mp.play();
+                        Main.mp.loop();
+                        Main.musicOnOff = "on";
+                        Main.musicButton.setText("Music On");
+                    }
+                    else if (Main.musicOnOff.equals("on")) {
+                        Main.mp.stop();
+                        Main.musicOnOff = "off";
+                        Main.musicButton.setText("Music Off");
+                    }
             }
 //            MyMethods.checkIsDead();
         }
@@ -258,5 +271,6 @@ implements KeyListener {
     @Override
     public void keyTyped(KeyEvent arg0) {
     }
+
 
 }
