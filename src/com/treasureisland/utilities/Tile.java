@@ -17,7 +17,7 @@ public enum Tile {
     DOOR('/'),
     A('A'),
     B('B'),
-    C('C'),
+    COINTOSS('C'),
     D('D'),
     E('E'),
     F('F'),

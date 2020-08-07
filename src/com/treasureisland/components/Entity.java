@@ -3,6 +3,9 @@ package com.treasureisland.components;
 
 import com.treasureisland.utilities.Directions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by bradsmialek on Mon - 8/3/20 @ 12:49 AM
  */
@@ -10,10 +13,11 @@ public class Entity {
 
     protected static int posX;
     protected static int posY;
-    protected static int posXinterest;
-    protected static int posYinterest;
+    private static int posXinterest;
+    private static int posYinterest;
     protected static int posXpirate;
     protected static int posYpirate;
+
     protected int health;
     protected int pirateHealth;
     protected int xp;
@@ -22,6 +26,7 @@ public class Entity {
     protected int maxHealth;
 
 
+    public static List<Integer> myCoords = new ArrayList<>();
     // OBJECT Constructors
 
     //Character
@@ -44,7 +49,21 @@ public class Entity {
     protected Entity(int posX, int posY, String story) {
         System.out.println("\n[Setting POI @ x: "+posX+", y: "+posY+"]");
         this.setInterestsPos(posX, posY);
+        addtoArray(posX, posY);
     }
+
+    public static void addtoArray(int x, int y){
+
+        myCoords.add(x);
+        myCoords.add(y);
+//        System.out.println(myCoords);
+
+    }
+
+    public static List<Integer> getMyCoords() {
+        return myCoords;
+    }
+
 
     //Pirate
     protected Entity(int posX, int posY, int health) {
