@@ -75,6 +75,9 @@ public class MyMethods {
                 message = " ";
                 message2 = " ";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
@@ -82,13 +85,10 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case DOCK:
-                Attributes.player.move(dir);
-                Attributes.currentIsland = new Island(1);
-                Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!"; // 89 char
-                message2 = " ";
+                message = "Do you want to return to your Ship?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
-                MyMethods.initializeTiles();
+                decided = Decision.RETURN_TO_SHIP;
                 break; //Randomly change floor
             case RUM:
                 message = "You found Rum! Do you want to drink it?";
@@ -180,7 +180,8 @@ public class MyMethods {
     private enum Decision {
         NONE,
         RUM_UP,
-        COIN_TOSS
+        COIN_TOSS,
+        RETURN_TO_SHIP
     }
 
     private enum CoinTossDecision {
@@ -199,6 +200,19 @@ public class MyMethods {
         System.out.println(yn);
         if (decided == Decision.NONE) {
             return;
+        }
+        else if(decided == Decision.RETURN_TO_SHIP && yn) {
+            Attributes.currentIsland = new Island(1);
+            Attributes.currentMap = new Maps(1);
+            message = "You have returned to your Ship!"; // 89 char
+            message2 = " ";
+            message3 = " ";
+            MyMethods.initializeTiles();
+        }
+        else if (decided == Decision.RETURN_TO_SHIP) {
+            message = "Arhg... Fine, stay here.";
+            message2 = " ";
+            message3 = " ";
         }
         else if(decided == Decision.RUM_UP && yn) {
             Attributes.player.heal(MyMethods.getRandomNumber(5)+3);

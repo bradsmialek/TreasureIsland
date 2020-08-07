@@ -5,11 +5,11 @@ public class HeadsOrTails {
     public static void coinToss() {
 
         if (Math.random() < 0.5) {
-            System.out.println("Heads");
+            System.out.println("Landed on Heads");
             coinSide = "Heads";
         }
         else {
-            System.out.println("Tails");
+            System.out.println("Landed on Tails");
             coinSide = "Tails";
         }
     }
