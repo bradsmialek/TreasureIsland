@@ -42,7 +42,7 @@ public class PeopleInterest extends Entity {
                 messages.add("Ask master brewer for the Sunshine Rum sample.");
 //                System.out.println(messages.get(0));
             }
-//            if (x == 57 && y == 9){
+//            if (x ==  && y == 9){
 //                System.out.println("true");
 //                //go get message from this person
 //            }
@@ -58,6 +58,17 @@ public class PeopleInterest extends Entity {
         }
         if(island == "Rum Runner Island"){
             System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
+            if (x == 17 && y == 14){
+                System.out.println("true");
+                //go get message from this person
+                messages.add("poo");
+                messages.add("Ask mast");
+                messages.add("Ask master brewer for th");
+                messages.add("Asklkjlknlknlknlkjb");
+                messages.add("Ask mtest ksks d,mg slkdnglskndgoisdnvlksndlkvnsldlknf");
+                messages.add("fuck im tired");
+//                System.out.println(messages.get(0));
+            }
         }
 
         if(island == "Port Royal"){
