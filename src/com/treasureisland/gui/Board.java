@@ -26,9 +26,19 @@ import java.awt.event.KeyListener;
 public class Board extends JPanel
 implements KeyListener {
 
+    private JTextField field;
+    private JScrollPane pane;
+
     public Board() {
         addKeyListener(this);
         this.setFocusable(true);
+
+//        this.setBackground(Color.BLACK);
+//        field = new JTextField();
+//        field.setBackground(Color.cyan);
+//        pane = new JScrollPane(field);
+//        this.add(pane);
+
     }
 
     @Override
@@ -38,13 +48,15 @@ implements KeyListener {
         revalidate();
 
         //BACKGROUND
-        g.setColor(Color.BLACK);
+//        g.setColor(Color.BLACK);
         g.fillRect(0, 0, Attributes.windowWidth, Attributes.windowHeight);
         g.setColor(Color.BLUE);
         g.drawRoundRect(5, 5, Attributes.windowWidth - 720, Attributes.windowHeight - 350, 5, 5);
         g.drawRoundRect(790, 5, Attributes.windowWidth - 800, Attributes.windowHeight - 700, 5, 5);
         g.drawRoundRect(790, 310, Attributes.windowWidth - 800, Attributes.windowHeight - 655, 5, 5);
         g.drawRoundRect(5, Attributes.windowHeight - 340, Attributes.windowWidth - 15, Attributes.windowHeight - 700, 5, 5);
+
+
 
 
         //MAP
@@ -157,11 +169,15 @@ implements KeyListener {
 
         //Message
         try {
+
             g.setColor(Color.lightGray);
             g.setFont(new Font("arial", Font.PLAIN, 35));
             g.drawString(MyMethods.getMessage(), 15, 700);
             g.drawString(MyMethods.getMessage2(), 15, 750);
             g.drawString(MyMethods.getMessage3(), 15, 800);
+            g.drawString(MyMethods.getMessage(), 15, 850);
+            g.drawString(MyMethods.getMessage2(), 15, 900);
+            g.drawString(MyMethods.getMessage3(), 15, 950);
         } catch (Exception drawMessageException) {
             System.out.println("Something went wrong while we were drawing your message board");
         }
