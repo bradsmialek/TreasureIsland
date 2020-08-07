@@ -4,6 +4,8 @@ package com.treasureisland.gui;
 import com.treasureisland.Attributes;
 import com.treasureisland.Main;
 import com.treasureisland.components.Island;
+import com.treasureisland.components.Maps;
+import com.treasureisland.components.PeopleInterest;
 import com.treasureisland.components.Player;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
@@ -178,6 +180,7 @@ implements KeyListener {
             g.drawString(MyMethods.getMessage4(), 15, 850);
             g.drawString(MyMethods.getMessage5(), 15, 900);
             g.drawString(MyMethods.getMessage6(), 15, 950);
+
         } catch (Exception drawMessageException) {
             System.out.println("Something went wrong while we were drawing your message board");
         }

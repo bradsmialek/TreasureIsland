@@ -6,7 +6,7 @@ import com.treasureisland.components.*;
 
 
 import java.sql.Ref;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by bradsmialek on Mon - 8/3/20 @ 5:10 AM
@@ -76,6 +76,9 @@ public class MyMethods {
                 message = " ";
                 message2 = " ";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
@@ -151,14 +154,15 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-                PeopleInterest.poiTree(Entity.getPosXinterest(), Entity.getPosYinterest(), Island.getIslandName(Island.getIslandNumber()));
 
-                message = PeopleInterest.messages.get(0);
-                message2 = PeopleInterest.messages.get(1);
-                message3 = PeopleInterest.messages.get(2);
-                message4 = PeopleInterest.messages.get(3);
-                message5 = PeopleInterest.messages.get(4);
-                message6 = PeopleInterest.messages.get(5);
+                ArrayList<String> m = PeopleInterest.poiTree(dir, Island.getIslandName(Island.getIslandNumber()));
+
+                message = m.get(0);
+                message2 = m.get(1);
+                message3 = m.get(2);
+                message4 = m.get(3);
+                message5 = m.get(4);
+                message6 = m.get(5);
                 break;
             default:
                 System.out.println("???");
@@ -241,6 +245,18 @@ public class MyMethods {
     public static String getMessage5() {return message5;}
 
     public static String getMessage6() {return message6;}
+
+    public static void setMessage() {message = "";}
+
+    public static void setMessage2() {message2 = "";}
+
+    public static void setMessage3() {message3 = "";}
+
+    public static void setMessage4() { message4 = "";}
+
+    public static void setMessage5() {message5 = "";}
+
+    public static void setMessage6() {message6 = "";}
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {
