@@ -4,6 +4,7 @@ import com.treasureisland.components.*;
 import com.treasureisland.gui.Board;
 import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
+import com.treasureisland.utilities.Storyline;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,6 +53,8 @@ public class Main {
         System.out.println("MAIN CLASS: STARTING GAME....");
         Attributes.currentIsland = new Island(Island.getIslandNumber()); //starts at island 0 .txt
         Attributes.currentMap = new Maps(Maps.getMapNumber());
+        System.out.println("\nMAIN CLASS: CREATING STORYLINE");
+        Storyline.createStoryline();
         System.out.println("\n*[Creating Initial Character]*");
         Attributes.player = new Player(19, 18);
 
