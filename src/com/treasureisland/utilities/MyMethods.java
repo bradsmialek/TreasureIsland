@@ -137,7 +137,9 @@ public class MyMethods {
                 message = "Where would you like to sail to?";
                 message2 = "Rum Runners Is. [2]    Port Royal [3]     Isle Cruces [4]";
                 message3 = "Isla De Muerta [5]    Treasure Island [6]";
-//                message4 = "";
+                message4 = "";
+                message5 = "";
+                message6 = "";
                 locationDecided = LocationDecision.LOCATION;
                 break;
             case VENDOR:
@@ -233,6 +235,12 @@ public class MyMethods {
     public static String getMessage2() {return message2;}
 
     public static String getMessage3() {return message3;}
+
+    public static String getMessage4() {return message4;}
+
+    public static String getMessage5() {return message5;}
+
+    public static String getMessage6() {return message6;}
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {

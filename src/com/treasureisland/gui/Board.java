@@ -134,12 +134,12 @@ implements KeyListener {
             System.out.println("Something went wrong while we were painting the island");
         }
 
-        //Legend of characters
+        //Legend of characters  TODO
         //^ ship
         //P pirate ... etc
 
-        //STATS
 
+        //STATS
         try {
             g.setFont(new Font("arial", Font.PLAIN, 20));
             g.setColor(Color.cyan);
@@ -175,9 +175,9 @@ implements KeyListener {
             g.drawString(MyMethods.getMessage(), 15, 700);
             g.drawString(MyMethods.getMessage2(), 15, 750);
             g.drawString(MyMethods.getMessage3(), 15, 800);
-            g.drawString(MyMethods.getMessage(), 15, 850);
-            g.drawString(MyMethods.getMessage2(), 15, 900);
-            g.drawString(MyMethods.getMessage3(), 15, 950);
+            g.drawString(MyMethods.getMessage4(), 15, 850);
+            g.drawString(MyMethods.getMessage5(), 15, 900);
+            g.drawString(MyMethods.getMessage6(), 15, 950);
         } catch (Exception drawMessageException) {
             System.out.println("Something went wrong while we were drawing your message board");
         }
