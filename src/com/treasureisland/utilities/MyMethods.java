@@ -5,8 +5,12 @@ import com.treasureisland.components.*;
 //import sun.security.pkcs11.wrapper.Functions;
 
 
+<<<<<<< HEAD
 import java.sql.Ref;
 import java.util.*;
+=======
+import java.util.Random;
+>>>>>>> 1f2e98a57945f3c82ee678e259484d632b5bc145
 
 /**
  * Created by bradsmialek on Mon - 8/3/20 @ 5:10 AM
@@ -86,13 +90,10 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case DOCK:
-                Attributes.player.move(dir);
-                Attributes.currentIsland = new Island(1);
-                Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!"; // 89 char
-                message2 = " ";
+                message = "Do you want to return to your Ship?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
-                MyMethods.initializeTiles();
+                decided = Decision.RETURN_TO_SHIP;
                 break; //Randomly change floor
             case RUM:
                 message = "You found Rum! Do you want to drink it?";
@@ -164,6 +165,12 @@ public class MyMethods {
                 message5 = m.get(4);
                 message6 = m.get(5);
                 break;
+            case COINTOSS:
+                message = "Would you like to play CoinToss for 5 Gold?";
+                message2 = "   [Y] Yes     [N] No";
+                message3 = " ";
+                decided = Decision.COIN_TOSS;
+                break;
             default:
                 System.out.println("???");
                 break; //If something glitches out
@@ -179,8 +186,17 @@ public class MyMethods {
     private enum Decision {
         NONE,
         RUM_UP,
+        COIN_TOSS,
+        RETURN_TO_SHIP
+    }
+
+    private enum CoinTossDecision {
+        NONE,
+        SIDEOFCOIN
     }
     private static LocationDecision locationDecided = LocationDecision.NOWHERE;
+
+    private static CoinTossDecision tossDecision = CoinTossDecision.NONE;
 
     private static Decision decided = Decision.NONE;
     //private static //something location = //whatever
@@ -190,6 +206,19 @@ public class MyMethods {
         System.out.println(yn);
         if (decided == Decision.NONE) {
             return;
+        }
+        else if(decided == Decision.RETURN_TO_SHIP && yn) {
+            Attributes.currentIsland = new Island(1);
+            Attributes.currentMap = new Maps(1);
+            message = "You have returned to your Ship!"; // 89 char
+            message2 = " ";
+            message3 = " ";
+            MyMethods.initializeTiles();
+        }
+        else if (decided == Decision.RETURN_TO_SHIP) {
+            message = "Arhg... Fine, stay here.";
+            message2 = " ";
+            message3 = " ";
         }
         else if(decided == Decision.RUM_UP && yn) {
             Attributes.player.heal(MyMethods.getRandomNumber(5)+3);
@@ -202,7 +231,22 @@ public class MyMethods {
             message = "I'm too drunk already!";
             message2 = "";
             message3 = "";
-
+        }
+        else if(decided == Decision.COIN_TOSS && yn) {
+            if (Attributes.player.getsGold() >= 5) {
+                message = "Heads or Tails?";
+                message2 = "    [H]        [T]";
+                tossDecision = CoinTossDecision.SIDEOFCOIN;
+            }
+            else {
+                message = "You don't have enough Gold...";
+                message2 = " ";
+                message3 = " ";
+            }
+        }
+        else if(decided == Decision.COIN_TOSS) {
+            message = "'I'd rather not lose me money...'";
+            message2 = " ";
         }
 
         decided = Decision.NONE;
@@ -233,6 +277,49 @@ public class MyMethods {
         locationDecided = LocationDecision.NOWHERE;
     }
 
+    public static void coinTossTree(String chooseCoinSide) {
+        HeadsOrTails.coinToss();
+        System.out.println(chooseCoinSide);
+        if (tossDecision == CoinTossDecision.NONE) {
+            return;
+        }
+        else if (chooseCoinSide.equals("Heads")) {
+            System.out.println("You chose heads");
+            message = "You chose Heads...";
+            if (HeadsOrTails.coinSide.equals("Heads")) {
+                message2 = "Coin landed on Heads...";
+                message3 = "You Win!";
+                Attributes.player.addsGold(5);
+            }
+            else {
+                message = "Coin landed on Tails...";
+                message2 = "You Lose!";
+                Attributes.player.takesGold(5);
+            }
+        }
+        else if (chooseCoinSide.equals("Tails")) {
+            System.out.println("You chose Tails");
+            message = "You chose Tails";
+            if (HeadsOrTails.coinSide.equals("Tails")) {
+                message2 = "Coin landed on Tails...";
+                message3 = "You Win!";
+                Attributes.player.addsGold(5);
+            }
+            else {
+                message = "Coin landed on Heads...";
+                message2 = "You Lose!";
+                Attributes.player.takesGold(5);
+            }
+        }
+        else {
+            message = "Arhg... I hate this game.";
+        }
+        tossDecision = CoinTossDecision.NONE;
+
+    }
+
+    public static void setMessage(String message1) {message = message1;}
+    public static void setMessage2(String messageTwo) {message2 = messageTwo;}
 
     public static String getMessage() {return message;}
 

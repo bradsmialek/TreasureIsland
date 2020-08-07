@@ -1,10 +1,9 @@
 package com.treasureisland.components;
 
 import com.treasureisland.Attributes;
-import com.treasureisland.utilities.Action;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.ComponentsManager;
-import com.treasureisland.utilities.Directions;
+
 import java.util.ArrayList;
 
 /**
@@ -58,7 +57,7 @@ public class Island {
                     case 'B':
                         tiles.get(i).add(Tile.B); break;
                     case 'C':
-                        tiles.get(i).add(Tile.C); break;
+                        tiles.get(i).add(Tile.COINTOSS); break;
                     case 'D':
                         tiles.get(i).add(Tile.D); break;
                     case 'E':

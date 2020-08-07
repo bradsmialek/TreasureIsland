@@ -7,6 +7,7 @@ import com.treasureisland.components.Island;
 import com.treasureisland.components.Maps;
 import com.treasureisland.components.PeopleInterest;
 import com.treasureisland.components.Player;
+import com.treasureisland.utilities.HeadsOrTails;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
@@ -230,6 +231,14 @@ implements KeyListener {
                     break;
                 case KeyEvent.VK_3:
                     MyMethods.locationTree(3);
+                    Attributes.currentIsland.posUpdate();
+                    break;
+                case KeyEvent.VK_H:
+                    MyMethods.coinTossTree("Heads");
+                    Attributes.currentIsland.posUpdate();
+                    break;
+                case KeyEvent.VK_T:
+                    MyMethods.coinTossTree("Tails");
                     Attributes.currentIsland.posUpdate();
                     break;
             }
