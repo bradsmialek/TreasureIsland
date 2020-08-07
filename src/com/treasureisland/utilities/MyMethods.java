@@ -5,12 +5,10 @@ import com.treasureisland.components.*;
 //import sun.security.pkcs11.wrapper.Functions;
 
 
-<<<<<<< HEAD
 import java.sql.Ref;
 import java.util.*;
-=======
 import java.util.Random;
->>>>>>> 1f2e98a57945f3c82ee678e259484d632b5bc145
+
 
 /**
  * Created by bradsmialek on Mon - 8/3/20 @ 5:10 AM
