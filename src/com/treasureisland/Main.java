@@ -49,7 +49,7 @@ public class Main {
 
 
 
-//        Music.playMusic();
+        Music.playMusic("src/com/treasureisland/music/song0");
 //        Attributes.pirates = new ArrayList<Pirate>();//        Attributes.friendlies = new ArrayList<Friend>();
         MyMethods.initializeTiles();
     }

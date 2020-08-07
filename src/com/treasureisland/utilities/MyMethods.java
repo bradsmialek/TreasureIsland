@@ -68,6 +68,7 @@ public class MyMethods {
                 message = " ";
                 message2 = " ";
                 message3 = " ";
+                message4 = " ";
                 break; //Move the player if it is in front of one of these tiles
             case WALL:
                 message = "You ran into a wall!";
@@ -185,99 +186,9 @@ public class MyMethods {
             message2 = "";
             message3 = "";
         }
+
         else if(decided == Decision.PLAY_BLACKJACK && yn) {
-            if (Attributes.player.getsGold() >= 1) {
-                // Player cards
-                int player_random1 = 100;
-                int player_random2 = 100;
-
-                while (player_random1 >= 12 || player_random2 >= 12 || player_random1 < 3 || player_random2 < 3) {
-                    player_random1 = (int) (Math.random() * 100);
-                    player_random2 = (int) (Math.random() * 100);
-                }
-
-                int player_total = player_random1 + player_random2;
-
-                // Dealer cards
-                int dealer_random1 = 100;
-                int dealer_random2 = 100;
-
-                while (dealer_random1 >= 12 || dealer_random2 >= 12 || dealer_random1 < 3 || dealer_random2 < 3) {
-                    dealer_random1 = (int) (Math.random() * 100);
-                    dealer_random2 = (int) (Math.random() * 100);
-                }
-
-                int dealer_total = dealer_random1 + dealer_random2;
-
-                boolean hidden = Math.random() < 0.5; // to decide whether to hide one card or not
-
-                if (player_total == 21) {
-                    message = "Blackjack! Player Wins!";
-                    return;
-                } else {
-                    System.out.println();
-                    message = "You get a: " + player_random1 + " and a: " + player_random2 + " Your total is: " + player_total;
-                    if (hidden == true) {
-                        message2 = "The dealer has a " + dealer_random1 + " showing and a hidden card. His total is hidden too";
-                    } else {
-                        message2 = "The dealer has a " + dealer_random1 + " showing  and a " + dealer_random2 + ". Dealer Total is: " + dealer_total;
-                        if (dealer_total == 21) {
-                            message3 = "Blackjack! Dealer Wins!";
-                            return;
-                        }
-                    }
-                    message3 = "Would you like to Hit[Y] or Stay[N]";
-                    decided = Decision.HIT;
-                }
-                while (decided == Decision.HIT && yn) {
-                    int player_random3 = 100;
-                    while (player_random3 >= 12 || player_random3 < 3) {
-                        player_random3 = (int) (Math.random() * 100);
-                    }
-                    player_total = player_total + player_random3;
-
-                    message = "You drew a: " + player_random3 + ". Your new total is: " + player_total;
-                    if (player_total > 21) {
-                        message2 = "Busted! Dealer wins!";
-                        return;
-                    } else if (player_total == 21) {
-                        message2 = "You Win!";
-                        return;
-                    }
-                    message3 = "Would you like to Hit[Y] or Stay[N]";
-
-                }
-                if (decided == Decision.HIT) {
-                    int dealer_random3 = 100;
-                    while (dealer_random3 >= 12 || dealer_random3 < 3) {
-                        dealer_random3 = (int) (Math.random() * 100);
-                    }
-                    message = "Okay, dealer's turn... His hidden card was: " + dealer_random2 + " and his total was: " + dealer_total;
-
-                    if (dealer_total > 16) {
-                        message2 = "Dealer stays.";
-                    } else {
-                        while (dealer_total <= 16) {
-                            dealer_total = dealer_total + dealer_random3;
-                            message2 = "Dealer chooses to hit... He draws a: " + dealer_random3 + ". His total is: " + dealer_total;
-                        }
-                    }
-
-                    message3 = "Dealer's total is: " + dealer_total + ". Your total is: " + player_total;
-
-                    if ((player_total > dealer_total && player_total < 21) || dealer_total > 21) {
-                        message4 = "YOU WIN!";
-                        return;
-                    } else if ((dealer_total < 21 && player_total < dealer_total) || player_total > 21) {
-                        message4 = "Dealer wins!";
-                        return;
-                    }
-                }
-
-            }
-            else {
-                message = "You don't have enough Gold to play";
-            }
+            //BlackJackGame.playBlackJack();
         }
         else if (decided == Decision.PLAY_BLACKJACK) {
             message = "I'd rather not lose me Gold...";
@@ -285,7 +196,8 @@ public class MyMethods {
             message3 = "";
         }
 
-            decided = Decision.NONE;
+
+        decided = Decision.NONE;
 
     }
 
@@ -311,11 +223,18 @@ public class MyMethods {
     }
 
 
+    public static void setMessage(String bjMessage) {message = bjMessage;}
+    public static void setMessage2(String bjMessage2) {message2 = bjMessage2;}
+    public static void setMessage3(String bjMessage3) {message3 = bjMessage3;}
+    public static void setMessage4(String bjMessage4) {message4 = bjMessage4;}
+
     public static String getMessage() {return message;}
 
     public static String getMessage2() {return message2;}
 
     public static String getMessage3() {return message3;}
+
+    public static String getMessage4() {return message4;}
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {

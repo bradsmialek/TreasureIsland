@@ -23,7 +23,7 @@ public class Music {
 //        songClip = Applet.newAudioClip(song);
 //        System.out.println("MUSIC CLASS: PLAYING SONG: "+songNumber);
 //    }
-public void playMusic(String musicLocation) {
+public static void playMusic(String musicLocation) {
         try {
             File musicpath = new File(musicLocation);
 

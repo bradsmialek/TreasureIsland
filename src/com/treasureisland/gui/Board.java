@@ -5,6 +5,7 @@ import com.treasureisland.Attributes;
 import com.treasureisland.Main;
 import com.treasureisland.components.Island;
 import com.treasureisland.components.Player;
+//import com.treasureisland.utilities.BlackJackGame;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
@@ -146,6 +147,7 @@ implements KeyListener {
             g.drawString(MyMethods.getMessage(), 15, 700);
             g.drawString(MyMethods.getMessage2(), 15, 750);
             g.drawString(MyMethods.getMessage3(), 15, 800);
+            g.drawString(MyMethods.getMessage4(), 15, 850);
         } catch (Exception drawMessageException) {
             System.out.println("Board Class: Something went wrong while we were drawing your message board");
         }
@@ -197,6 +199,13 @@ implements KeyListener {
                     MyMethods.locationTree(3);
                     Attributes.currentIsland.posUpdate();
                     break;
+//                case KeyEvent.VK_T:
+//                    BlackJackGame.hitDecision(true);
+//                    Attributes.currentIsland.posUpdate();
+//                    break;
+//                case KeyEvent.VK_F:
+//                    BlackJackGame.hitDecision(false);
+//                    Attributes.currentIsland.posUpdate();
             }
 //            MyMethods.checkIsDead();
         }
@@ -208,6 +217,8 @@ implements KeyListener {
 //            Main.StartGame();
 //        }
     }
+
+
 
 
     @Override
