@@ -21,6 +21,7 @@ public class Attributes {
     public static ArrayList<Pirate> pirates;
     public static ArrayList<PeopleInterest> peopleInterests;
 
+
     public static Island getCurrentIsland() {
         return currentIsland;
     }

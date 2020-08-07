@@ -16,6 +16,9 @@ public class MyMethods {
     private static String message = " ";
     private static String message2 = " ";
     private static String message3 = " ";
+    private static String message4 = " ";
+    private static String message5 = " ";
+    private static String message6 = " ";
 
     public static void initializeTiles(){
         for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
@@ -148,9 +151,12 @@ public class MyMethods {
             case POI:
                 PeopleInterest.poiTree(Entity.getPosXinterest(), Entity.getPosYinterest(), Island.getIslandName(Island.getIslandNumber()));
 
-                message = "should tell story";
-                message2 = " ";
-                message3 = " ";
+                message = PeopleInterest.messages.get(0);
+                message2 = PeopleInterest.messages.get(1);
+                message3 = PeopleInterest.messages.get(2);
+                message4 = PeopleInterest.messages.get(3);
+                message5 = PeopleInterest.messages.get(4);
+                message6 = PeopleInterest.messages.get(5);
                 break;
             default:
                 System.out.println("???");
@@ -216,7 +222,7 @@ public class MyMethods {
             MyMethods.initializeTiles();
         }
         else {
-            message = "I'm fine exploring here.";
+            message = "Arhg... Fine, stay here.";
         }
         locationDecided = LocationDecision.NOWHERE;
     }
