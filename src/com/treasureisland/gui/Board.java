@@ -59,11 +59,6 @@ implements KeyListener {
                         g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
                         g.setColor(Color.lightGray);
                     }
-                    else if (Attributes.currentMap.getTileChar(j, i) == '~') {
-                        g.setColor(Color.BLUE);
-                        g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
-                        g.setColor(Color.orange);
-                    }
                     else if (Attributes.currentMap.getTileChar(j, i) == '.') {
                             g.setColor(Color.darkGray);
                             g.drawString("" + Attributes.currentMap.getTileChar(j, i), a, b);
@@ -86,8 +81,9 @@ implements KeyListener {
         }
 
         //Island
+        g.setColor(Color.orange);
         try {
-            g.setColor(Color.orange);
+
             int x = 15, y = 20;
             for (int i = 0; i < Attributes.currentIsland.getHeight(); i++) {
                 for (int j = 0; j < Attributes.currentIsland.getWidth(); j++) {
@@ -96,27 +92,23 @@ implements KeyListener {
                         g.setColor(Color.MAGENTA);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
-
-                    } else if (Attributes.currentIsland.getTileChar(j, i) == '#') {
-                        g.setColor(Color.pink);
-                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                        g.setColor(Color.orange);
-
-                    } else if (Attributes.currentIsland.getTileChar(j, i) == '~') {
-                        g.setColor(Color.BLUE);
-                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
-                        g.setColor(Color.orange);
-
-                    }else if (Attributes.currentIsland.getTileChar(j, i) == '+') {
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '+') {
                         g.setColor(Color.lightGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
-
                     } else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
                         g.setColor(Color.darkGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
-                    } else {
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '~') {
+                        g.setColor(Color.blue);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == '#') {
+                        g.setColor(Color.pink);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    }else {
                         g.setColor(Color.orange);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                     }

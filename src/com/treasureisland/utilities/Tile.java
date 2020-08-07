@@ -20,6 +20,8 @@ public enum Tile {
     C('C'),
     D('D'),
     E('E'),
+    F('F'),
+    P('P'),
     H('H'),
     I('I'),
     J('J'),
@@ -43,7 +45,9 @@ public enum Tile {
     X('x'),
     TILDE('~'),
     SPACE(' '),
-    POI('?');
+    POI('?'),
+    p('p'),
+    f('f');
 
     private char symbol;
 

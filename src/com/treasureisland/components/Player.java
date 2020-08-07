@@ -14,15 +14,16 @@ public class Player extends Entity {
 
     public Player(int posX, int posY) {
         super(posX, posY,20, 0, 1);
+        System.out.println("PLAYER CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
         this.gold = 0;
         this.keys = 0;
-        System.out.println("PLAYER CLASS: CREATING PLAYER");
+
     }
 
     @Override
     public void move(Directions dir){
         super.move(dir);
-        System.out.println("PLAYER CLASS: POSITION IS "+posX+" "+posY);
+        System.out.println("\nPLAYER CLASS: POSITION IS NOW "+posX+" "+posY);
     }
 
     public void move() {

@@ -24,8 +24,15 @@ public class MyMethods {
                     case PLAYER:
                         Attributes.player.setPos(j, i);
                         break;
-//                    case PIRATE:
-//                        Attributes.pirates.add(new Pirate("Pirate", x, y, 10, 2, 2));
+                    case PIRATE:
+                        Attributes.pirates.add(new Pirate("Pirate", j, i, 5)); // TODO make strength and or defense
+                        break;
+                    case POI:
+                        Attributes.peopleInterests.add(new PeopleInterest("POI", j, i, "tells story"));
+                        break;
+//                    case FRIENDLY:
+//                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
+//                        break;
                     default:
                         break;
                 }
@@ -76,7 +83,7 @@ public class MyMethods {
                 Attributes.player.move(dir);
                 Attributes.currentIsland = new Island(1);
                 Attributes.currentMap = new Maps(1);
-                message = "You have returned to your Ship!33333eEeeeeskvnsldkvnsdljgf;sldkjg;lsdjg;lsdmg;sldmgpoopoo";
+                message = "You have returned to your Ship!"; // 89 char
                 message2 = " ";
                 message3 = " ";
                 MyMethods.initializeTiles();
@@ -95,6 +102,9 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case TREASURE:
+                message = "You found a chest.  You need a key to open it!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open chest
             case KEY:
                 Attributes.player.move(dir);
@@ -104,6 +114,9 @@ public class MyMethods {
                 message3 = " ";
                 break; //Adds a key
             case DOOR:
+                message = "This door is locked. You need a key!";
+                message2 = " ";
+                message3 = " ";
                 break; //Ask to open door
             case PIRATE:
                 Attributes.player.damage(MyMethods.getRandomNumber(2));
@@ -129,13 +142,11 @@ public class MyMethods {
                 message2 = "list of stuff";
                 //Attributes.vendorItems.getAll();
                 message3 = Attributes.vendorItems.getAll();
-
-
                 // deduct from coins depending on item cost
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-                PeopleInterest.poiTree(Entity.getPosX(), Entity.getPosY(), Island.getIslandName(Island.getIslandNumber()));
+                PeopleInterest.poiTree(Entity.getPosXinterest(), Entity.getPosYinterest(), Island.getIslandName(Island.getIslandNumber()));
 
                 message = "should tell story";
                 message2 = " ";
@@ -192,15 +203,17 @@ public class MyMethods {
             return;
         }
         else if ( islandNumber == 2) {
+
             Attributes.currentIsland = new Island(2);
             Attributes.currentMap = new Maps(2);
-
+            MyMethods.initializeTiles();
         }
         else if (islandNumber == 3) {
             //check for special key and map ------------------------------------------TODO
             // no key no go message
             Attributes.currentIsland = new Island(3);
             Attributes.currentMap = new Maps(3);
+            MyMethods.initializeTiles();
         }
         else {
             message = "I'm fine exploring here.";
