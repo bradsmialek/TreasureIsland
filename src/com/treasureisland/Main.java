@@ -6,11 +6,12 @@ import com.treasureisland.gui.Music;
 import com.treasureisland.utilities.MyMethods;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * No Ascii Panel, only JFranm
+ * No Ascii Panel, only JFrame
  */
 public class Main {
     private static JFrame window;
@@ -35,6 +36,13 @@ public class Main {
     private static void createBoard(){
         System.out.println("MAIN CLASS: CREATING BOARD....");
         board = new Board();
+
+//        JTextField tf = new JTextField();
+//        tf.setBackground(Color.cyan);
+//        JScrollPane pane = new JScrollPane(tf);
+//        pane.setSize(Attributes.windowWidth - 20, Attributes.windowHeight - 700);
+//
+//        board.add(pane);
         window.add(board);
         board.requestFocusInWindow();
     }
@@ -47,12 +55,10 @@ public class Main {
         System.out.println("\n*[Creating Initial Character]*");
         Attributes.player = new Player(19, 18);
 
-
-
 //        Music.playMusic();
         Attributes.pirates = new ArrayList<Pirate>();
         Attributes.peopleInterests = new ArrayList<PeopleInterest>();
-//        Attributes.friendlies = new ArrayList<Friend>();
+//        Attributes.friendlies = new ArrayList<Friend>();  maybe make friendlies move??
         MyMethods.initializeTiles();
     }
 }

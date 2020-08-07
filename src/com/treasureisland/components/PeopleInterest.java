@@ -1,5 +1,9 @@
 package com.treasureisland.components;
 
+import com.treasureisland.Attributes;
+
+import java.util.ArrayList;
+
 /**
  * Created by bradsmialek on Tue - 8/4/20 @ 12:24 PM
  * POI Logic
@@ -8,6 +12,7 @@ public class PeopleInterest extends Entity {
 
     private static int tileX;
     private static int tileY;
+    public static ArrayList<String> messages;
 
     private String name;
 
@@ -20,34 +25,43 @@ public class PeopleInterest extends Entity {
 
 
     public static void poiTree(int x, int y, String island){
-//        get current island
-//                get posx  get pos y of ?   and character
-//                if same
-//                display correct story
 
-        //to left x decremaent, y same       20 , 13    (19,13 / 21,13) or  (20,12 / 20,14)
-         // up x same , y decrament
-
+        messages = new ArrayList<>();
 
         if(island == "Black Pearl"){
-            System.out.println("black pearl");
-            System.out.println(x);
-            System.out.println(y);
+            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
 
-
-//            if (){
-//
+            if (x == 57 && y == 9){
+                System.out.println("true");
+                //go get message from this person
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+                messages.add("Ask master brewer for the Sunshine Rum sample.");
+//                System.out.println(messages.get(0));
+            }
+//            if (x == 57 && y == 9){
+//                System.out.println("true");
+//                //go get message from this person
 //            }
+//            if (x == 57 && y == 9){
+//                System.out.println("true");
+//                //go get message from this person
+//            }
+//            if (x == 57 && y == 9){
+//                System.out.println("true");
+//                //go get message from this person
+//            }
+
         }
         if(island == "Rum Runner Island"){
-            System.out.println("Rum Runner Island");
-            System.out.println(x);
-            System.out.println(y);
+            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
         }
+
         if(island == "Port Royal"){
-            System.out.println("Port Royal");
-            System.out.println(x);
-            System.out.println(y);
+            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
         }
 
 
