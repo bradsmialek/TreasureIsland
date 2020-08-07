@@ -10,15 +10,23 @@ public class Entity {
 
     protected static int posX;
     protected static int posY;
+    protected static int posXinterest;
+    protected static int posYinterest;
+    protected static int posXpirate;
+    protected static int posYpirate;
     protected int health;
+    protected int pirateHealth;
     protected int xp;
     protected int level;
     protected int nextLevel = 100;
     protected int maxHealth;
 
 
-    //PLAYER OBJECT
+    // OBJECT Constructors
+
+    //Character
     protected Entity(int posX, int posY, int health, int xp, int level) {
+        System.out.println("\n[Setting Character @ x: "+posX+", "+"y: "+posY+"]");
         this.setPos(posX, posY);
         this.health=health;
         this.maxHealth=health;
@@ -26,10 +34,46 @@ public class Entity {
         this.level = level;
     }
 
+    //character
+    protected Entity(int posX, int posY) {
+        System.out.println("setting somethings x,y");
+        this.setPos(posX, posY);
+    }
+
+    //People of interest
+    protected Entity(int posX, int posY, String story) {
+        System.out.println("\n[Setting POI @ x: "+posX+", y: "+posY+"]");
+        this.setInterestsPos(posX, posY);
+    }
+
+    //Pirate
+    protected Entity(int posX, int posY, int health) {
+        System.out.println("\n[Setting PIRATE @ x: "+posX+", y: "+posY+"]");
+        this.setPiratePos(posX, posY);
+        this.pirateHealth=health;
+    }
+
+    //SETTERS
+
+    // CHARACTER
     public void setPos(int posX, int posY){
-//        System.out.println(posX + posY);
+        System.out.println("[Done Setting Character @ x: "+posX+", "+"y: "+posY);
         this.posX = posX;
         this.posY = posY;
+    }
+
+    //PEOPLE OF INTEREST
+    public void setInterestsPos(int x, int y){
+        System.out.println("[Done Setting POI @ x: "+x+", y: "+y+"]");
+        this.posXinterest = x;
+        this.posYinterest = y;
+    }
+
+    //PIRATES
+    public void setPiratePos(int x, int y){
+        System.out.println("[Done Setting PIRATE @ x: "+x+", y: "+y+"]");
+        this.posXpirate = x;
+        this.posYpirate = y;
     }
 
     // GETTERS
@@ -39,6 +83,26 @@ public class Entity {
 
     public static int getPosY() {
         return posY;
+    }
+
+    public static int getPosXinterest() {
+        return posXinterest;
+    }
+
+    public static int getPosYinterest() {
+        return posYinterest;
+    }
+
+    public static int getPosXpirate() {
+        return posXpirate;
+    }
+
+    public static int getPosYpirate() {
+        return posYpirate;
+    }
+
+    public int getPirateHealth() {
+        return pirateHealth;
     }
 
     public int getHealth() {

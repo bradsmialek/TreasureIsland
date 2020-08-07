@@ -19,7 +19,7 @@ public class Island {
 
     public Island(int islandNumber) {
         Island.setIslandNumber(islandNumber);
-        System.out.println("ISLAND CLASS: CREATING ISLAND "+islandNumber);
+        System.out.println("\nISLAND CLASS: CREATING ISLAND "+islandNumber);
 
         tiles = new ArrayList<ArrayList<Tile>>();
 
@@ -49,9 +49,9 @@ public class Island {
                         tiles.get(i).add(Tile.KEY); break;
                     case '/':
                         tiles.get(i).add(Tile.DOOR); break;
-                    case 'P':
+                    case 'p':
                         tiles.get(i).add(Tile.PIRATE); break;
-                    case 'F':
+                    case 'f':
                         tiles.get(i).add(Tile.FRIENDLY); break;
                     case 'A':
                         tiles.get(i).add(Tile.A); break;
@@ -111,6 +111,10 @@ public class Island {
                         tiles.get(i).add(Tile.SPACE); break;
                     case '?':
                         tiles.get(i).add(Tile.POI); break;
+                    case 'P':
+                        tiles.get(i).add(Tile.P); break;
+                    case 'F':
+                        tiles.get(i).add(Tile.F); break;
 
                 }
             }
