@@ -5,7 +5,6 @@ import com.treasureisland.components.*;
 //import sun.security.pkcs11.wrapper.Functions;
 
 
-import java.sql.Ref;
 import java.util.Random;
 
 /**
@@ -160,6 +159,12 @@ public class MyMethods {
                 message5 = PeopleInterest.messages.get(4);
                 message6 = PeopleInterest.messages.get(5);
                 break;
+            case COINTOSS:
+                message = "Would you like to play CoinToss for 5 Gold?";
+                message2 = "   [Y] Yes     [N] No";
+                message3 = " ";
+                decided = Decision.COIN_TOSS;
+                break;
             default:
                 System.out.println("???");
                 break; //If something glitches out
@@ -175,8 +180,16 @@ public class MyMethods {
     private enum Decision {
         NONE,
         RUM_UP,
+        COIN_TOSS
+    }
+
+    private enum CoinTossDecision {
+        NONE,
+        SIDEOFCOIN
     }
     private static LocationDecision locationDecided = LocationDecision.NOWHERE;
+
+    private static CoinTossDecision tossDecision = CoinTossDecision.NONE;
 
     private static Decision decided = Decision.NONE;
     //private static //something location = //whatever
@@ -198,7 +211,22 @@ public class MyMethods {
             message = "I'm too drunk already!";
             message2 = "";
             message3 = "";
-
+        }
+        else if(decided == Decision.COIN_TOSS && yn) {
+            if (Attributes.player.getsGold() >= 5) {
+                message = "Heads or Tails?";
+                message2 = "    [H]        [T]";
+                tossDecision = CoinTossDecision.SIDEOFCOIN;
+            }
+            else {
+                message = "You don't have enough Gold...";
+                message2 = " ";
+                message3 = " ";
+            }
+        }
+        else if(decided == Decision.COIN_TOSS) {
+            message = "'I'd rather not lose me money...'";
+            message2 = " ";
         }
 
         decided = Decision.NONE;
@@ -229,6 +257,49 @@ public class MyMethods {
         locationDecided = LocationDecision.NOWHERE;
     }
 
+    public static void coinTossTree(String chooseCoinSide) {
+        HeadsOrTails.coinToss();
+        System.out.println(chooseCoinSide);
+        if (tossDecision == CoinTossDecision.NONE) {
+            return;
+        }
+        else if (chooseCoinSide.equals("Heads")) {
+            System.out.println("You chose heads");
+            message = "You chose Heads...";
+            if (HeadsOrTails.coinSide.equals("Heads")) {
+                message2 = "Coin landed on Heads...";
+                message3 = "You Win!";
+                Attributes.player.addsGold(5);
+            }
+            else {
+                message = "Coin landed on Tails...";
+                message2 = "You Lose!";
+                Attributes.player.takesGold(5);
+            }
+        }
+        else if (chooseCoinSide.equals("Tails")) {
+            System.out.println("You chose Tails");
+            message = "You chose Tails";
+            if (HeadsOrTails.coinSide.equals("Tails")) {
+                message2 = "Coin landed on Tails...";
+                message3 = "You Win!";
+                Attributes.player.addsGold(5);
+            }
+            else {
+                message = "Coin landed on Heads...";
+                message2 = "You Lose!";
+                Attributes.player.takesGold(5);
+            }
+        }
+        else {
+            message = "Arhg... I hate this game.";
+        }
+        tossDecision = CoinTossDecision.NONE;
+
+    }
+
+    public static void setMessage(String message1) {message = message1;}
+    public static void setMessage2(String messageTwo) {message2 = messageTwo;}
 
     public static String getMessage() {return message;}
 
