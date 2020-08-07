@@ -1,18 +1,11 @@
 package com.treasureisland.maps;
 
-import com.treasureisland.components.Island;
-import com.treasureisland.components.Player;
-
 public class MapArt {
     public static final String BG_RED = "\u001b1[41m";
     public static final String COLOR_RESET = "\u001B[0m";
 
 
-
-
-
-
-    public static String map0(){
+    public static String map0() {
         return
                 "##### RUM RUNNER ###########################################################\n" +
                         "############# ISLE #########################################################\n" +
@@ -39,7 +32,7 @@ public class MapArt {
                         "############################################################################";
     }
 
-    public static String map1(){
+    public static String map1() {
         return
                 "## ## RUM RUNNER ##### #####################################################\n" +
                         "## ########## ISLE ### #####################################################\n" +
@@ -68,7 +61,7 @@ public class MapArt {
                 ;
     }
 
-    public static void map2(){
+    public static void map2() {
         System.out.println(
                 "##### RUM RUNNER ##############################        YOU ARE HERE      ###\n" +
                         "############# ISLE ############################ ######################## ###\n" +
@@ -96,7 +89,7 @@ public class MapArt {
         );
     }
 
-    public static void map3(){
+    public static void map3() {
         System.out.println(
                 "##### RUM RUNNER ###########################################################\n" +
                         "############# ISLE #########################################################\n" +
