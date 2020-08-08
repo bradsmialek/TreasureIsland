@@ -1,8 +1,11 @@
 package com.treasureisland.components;
 
 import com.treasureisland.Attributes;
+import com.treasureisland.utilities.Directions;
+import com.treasureisland.utilities.Storyline;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bradsmialek on Tue - 8/4/20 @ 12:24 PM
@@ -10,9 +13,6 @@ import java.util.ArrayList;
  */
 public class PeopleInterest extends Entity {
 
-    private static int tileX;
-    private static int tileY;
-    public static ArrayList<String> messages;
 
     private String name;
 
@@ -23,59 +23,49 @@ public class PeopleInterest extends Entity {
 
     }
 
+     public static ArrayList<String> poiTree(Directions direction, String island) {
 
-    public static void poiTree(int x, int y, String island){
+         int poiX=0, poiY=0;
 
-        messages = new ArrayList<>();
+         switch(direction) {
+             case UP:
+                 poiX = Attributes.player.getPosX(); poiY = Attributes.player.getPosY()-1; break;
+             case LEFT:
+                 poiX = Attributes.player.getPosX()-1; poiY = Attributes.player.getPosY(); break;
+             case DOWN:
+                 poiX = Attributes.player.getPosX(); poiY = Attributes.player.getPosY()+1; break;
+             case RIGHT:
+                 poiX = Attributes.player.getPosX()+1; poiY = Attributes.player.getPosY(); break;
+         }
+         int sum = poiX+poiY;
+         System.out.println("POI is at "+poiX+ " "+ posY);
+         System.out.println(sum);
+
+        ArrayList<String> messages = new ArrayList<>();
+
 
         if(island == "Black Pearl"){
-            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
-
-            if (x == 57 && y == 9){
-                System.out.println("true");
-                //go get message from this person
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-                messages.add("Ask master brewer for the Sunshine Rum sample.");
-//                System.out.println(messages.get(0));
-            }
-//            if (x ==  && y == 9){
-//                System.out.println("true");
-//                //go get message from this person
-//            }
-//            if (x == 57 && y == 9){
-//                System.out.println("true");
-//                //go get message from this person
-//            }
-//            if (x == 57 && y == 9){
-//                System.out.println("true");
-//                //go get message from this person
-//            }
-
+                messages = Storyline.getbPearlMessages();
         }
-        if(island == "Rum Runner Island"){
-            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
-            if (x == 17 && y == 14){
-                System.out.println("true");
-                //go get message from this person
-                messages.add("poo");
-                messages.add("Ask mast");
-                messages.add("Ask master brewer for th");
-                messages.add("Asklkjlknlknlknlkjb");
-                messages.add("Ask mtest ksks d,mg slkdnglskndgoisdnvlksndlkvnsldlknf");
-                messages.add("fuck im tired");
-//                System.out.println(messages.get(0));
+        else if(island == "Rum Runner Island"){
+            switch(sum) {
+                case 31:
+                    messages = Storyline.getRum1messages();
+                    break;
+                case 34:
+                    messages = Storyline.getRum2messages();
+                    break;
+                case 25:
+                    messages = Storyline.getRum3messages();
+                    break;
+                case 29:
+                    messages = Storyline.getRum4messages();
+                    break;
+
             }
         }
 
-        if(island == "Port Royal"){
-            System.out.println("\nNow Talking to POI at ("+x+","+y+") from "+island);
-        }
-
-
+        return messages;
     }
 
     public String getName(){
