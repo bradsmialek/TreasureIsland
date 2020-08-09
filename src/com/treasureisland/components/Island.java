@@ -4,6 +4,7 @@ import com.treasureisland.Attributes;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.ComponentsManager;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 
 /**
@@ -203,23 +204,23 @@ public class Island {
         tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
     }
 
-//    public void updateMonstersPos() {
-//        //Deletes old pos
-//        for(int i=0;i<this.getHeight();i++) {
-//            for(int j=0;j<this.getWidth();j++) {
-//                if(tiles.get(i).get(j) == Tile.MONSTER)
-//                    tiles.get(i).set(j, Tile.NOTHING);
-//            }
-//        }
-//        //Sets new pos
-//        for(int i=0;i<Reference.monsters.size();i++) {
-//            if(Reference.monsters.get(i).getHP()<=0)
-//                Reference.monsters.remove(i);
-//            else
-//                tiles.get(Reference.monsters.get(i).getY()).set(Reference.monsters.get(i).getX(), Tile.MONSTER);
-//        }
-//
-//    }
+    public void posPirateUpdate() {
+        //Deletes old pos
+        for(int i=0;i<this.getHeight();i++) {
+            for(int j=0;j<this.getWidth();j++) {
+                if(tiles.get(i).get(j) == Tile.PIRATE)
+                    tiles.get(i).set(j, Tile.NOTHING);
+            }
+        }
+        //Sets new pos
+        for(int i=0;i<Attributes.pirates.size();i++) {
+            if(Attributes.pirates.get(i).getHealth()<=0)
+                Attributes.pirates.remove(i);
+            else
+                tiles.get(Attributes.pirates.get(i).getPosY()).set(Attributes.pirates.get(i).getPosX(), Tile.PIRATE);
+        }
+
+    }
 
     public static int getIslandNumber() {
         return islandNumber;

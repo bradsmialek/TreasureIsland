@@ -204,32 +204,32 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.UP);
                     MyMethods.playerHandler(Directions.UP);
                     Attributes.currentIsland.posUpdate();
-//                    MyMethods.movePirates();
-//                    Attributes.currentIsland.posPirateUpdate();
+                    MyMethods.movePirates();
+                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_A:
                 case KeyEvent.VK_LEFT:
                     Attributes.player.setFacing(Directions.LEFT);
                     MyMethods.playerHandler(Directions.LEFT);
                     Attributes.currentIsland.posUpdate();
-//                    MyMethods.movePirates();
-//                    Attributes.currentIsland.posPirateUpdate();
+                    MyMethods.movePirates();
+                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_S:
                 case KeyEvent.VK_DOWN:
                     Attributes.player.setFacing(Directions.DOWN);
                     MyMethods.playerHandler(Directions.DOWN);
                     Attributes.currentIsland.posUpdate();
-//                    MyMethods.movePirates();
-//                    Attributes.currentIsland.posPirateUpdate();
+                    MyMethods.movePirates();
+                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_D:
                 case KeyEvent.VK_RIGHT:
                     Attributes.player.setFacing(Directions.RIGHT);
                     MyMethods.playerHandler(Directions.RIGHT);
                     Attributes.currentIsland.posUpdate();
-//                    MyMethods.movePirates();
-//                    Attributes.currentIsland.posPirateUpdate();
+                    MyMethods.movePirates();
+                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_Y:
                     MyMethods.decisionTree(true);
