@@ -61,6 +61,10 @@ public class Player extends Entity {
         gold-=amount;
     }
 
+    public void addsXP(int amount){
+        xp+= amount;
+    }
+
     public boolean isLiving() {
         return alive;
     }

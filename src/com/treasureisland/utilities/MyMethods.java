@@ -227,9 +227,10 @@ public class MyMethods {
         }
         else if(decided == Decision.RUM_UP && yn) {
             Attributes.player.heal(MyMethods.getRandomNumber(5)+3);
-            message = "You drank Rum and it gave you health.";
-            message2 = "";
-            message3 = "";
+            Attributes.player.addsXP(2);
+            message = "Down the hatchet...";
+            message2 = "+ HP";
+            message3 = "+2 XP";
             Attributes.player.move();//replace tile to .
         }
         else if(decided == Decision.RUM_UP) {
@@ -256,6 +257,7 @@ public class MyMethods {
         else if(decided == Decision.OPEN_DOOR && yn) {
             if (Attributes.player.getsKeys() >= 1) {
                 Attributes.player.takesKey();
+                Attributes.player.addsXP(2);
                 message = "You opened the door!";
                 message2 = " On with ye discovery...";
                 message3 = " "; //Open chest
@@ -271,9 +273,7 @@ public class MyMethods {
                 message = "You might be better off not knowing what's behind this door!";
                 message2 = " ";
                 message3 = " ";
-
         }
-
 
         decided = Decision.NONE;
     }
@@ -313,13 +313,17 @@ public class MyMethods {
             System.out.println("You chose heads");
             message = "You chose Heads...";
             if (HeadsOrTails.coinSide.equals("Heads")) {
+                Attributes.player.addsGold(5);
+                Attributes.player.addsXP(2);
                 message2 = "Coin landed on Heads...";
                 message3 = "You Win!";
-                Attributes.player.addsGold(5);
+                message4 = "+5 Gold";
+                message5 = "+2 XP";
             }
             else {
                 message = "Coin landed on Tails...";
                 message2 = "You Lose!";
+                message4 = "-5 Gold";
                 Attributes.player.takesGold(5);
             }
         }
@@ -327,13 +331,17 @@ public class MyMethods {
             System.out.println("You chose Tails");
             message = "You chose Tails";
             if (HeadsOrTails.coinSide.equals("Tails")) {
+                Attributes.player.addsGold(5);
+                Attributes.player.addsXP(2);
                 message2 = "Coin landed on Tails...";
                 message3 = "You Win!";
-                Attributes.player.addsGold(5);
+                message4 = "+5 Gold";
+                message5 = "+2 XP";
             }
             else {
                 message = "Coin landed on Heads...";
                 message2 = "You Lose!";
+                message4 = "-5 Gold";
                 Attributes.player.takesGold(5);
             }
         }
