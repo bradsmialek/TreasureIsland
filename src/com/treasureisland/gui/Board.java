@@ -111,7 +111,15 @@ implements KeyListener {
                         g.setColor(Color.lightGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
-                    } else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == 'p') {
+                        g.setColor(Color.red);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    }else if (Attributes.currentIsland.getTileChar(j, i) == 'f') {
+                        g.setColor(Color.green);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    }else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
                         g.setColor(Color.darkGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
@@ -196,7 +204,7 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.UP);
                     MyMethods.playerHandler(Directions.UP);
                     Attributes.currentIsland.posUpdate();
-//                    Attributes.movePirates();
+//                    MyMethods.movePirates();
 //                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_A:
@@ -204,7 +212,7 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.LEFT);
                     MyMethods.playerHandler(Directions.LEFT);
                     Attributes.currentIsland.posUpdate();
-//                    Attributes.movePirates();
+//                    MyMethods.movePirates();
 //                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_S:
@@ -212,7 +220,7 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.DOWN);
                     MyMethods.playerHandler(Directions.DOWN);
                     Attributes.currentIsland.posUpdate();
-//                    Attributes.movePirates();
+//                    MyMethods.movePirates();
 //                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_D:
@@ -220,7 +228,7 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.RIGHT);
                     MyMethods.playerHandler(Directions.RIGHT);
                     Attributes.currentIsland.posUpdate();
-//                    Attributes.movePirates();
+//                    MyMethods.movePirates();
 //                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_Y:

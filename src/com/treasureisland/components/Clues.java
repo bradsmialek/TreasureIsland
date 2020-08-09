@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class Clues extends Entity{
 
     public Clues(int posX, int posY) {
-        super(posX, posY);
-        System.out.println("CLUES CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
+        super(posX, posY, 'c');
+        System.out.println("CLUES CLASS: CREATING CLUE AT "+posX+ " "+posY);
 
     }
 
@@ -39,12 +39,12 @@ public class Clues extends Entity{
 
 
         if(island.equals("Black Pearl")){
-            messages = Storyline.getbPearlMessages();
+            messages = Storyline.getbPearlClues();
         }
         else if(island.equals("Rum Runner Island")){   //TODO   get positions where clues are created and put them in here as the case.  Look in console for sum
             switch(sum) {
-                case 31:
-                    messages = Storyline.getRum1messages();
+                case 66:
+                    messages = Storyline.getRum1Clues();
                     break;
                 case 34:
                     messages = Storyline.getRum2messages();

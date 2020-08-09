@@ -31,98 +31,100 @@ public class Entity {
     public static List<Integer> myCoords = new ArrayList<>();
     // OBJECT Constructors
 
-    //Character
-    protected Entity(int posX, int posY, int health, int xp, int level) {
-        System.out.println("\n[Setting Character @ x: "+posX+", "+"y: "+posY+"]");
+    //Character and Pirate
+    protected Entity(int posX, int posY, int health) {
+
         this.setPos(posX, posY);
+//        this.setPiratePos(posX, posY);
         this.health=health;
         this.maxHealth=health;
-        this.xp = xp;
-        this.level = level;
+
     }
 
     //People of interest
-    protected Entity(int posX, int posY, String story) {
-        System.out.println("\n[Setting POI @ x: "+posX+", y: "+posY+"]");
+    protected Entity(int posX, int posY, String type) {
+
         this.setInterestsPos(posX, posY);
         addtoArray(posX, posY);
     }
 
+    //Clue
+    protected Entity(int posX, int posY, char c) {
+
+        this.setCluePos(posX, posY);
+    }
+//
     public static void addtoArray(int x, int y){
         myCoords.add(x);
         myCoords.add(y);
     }
-
+//
     public static List<Integer> getMyCoords() {
         return myCoords;
     }
 
     //Pirate
-    protected Entity(int posX, int posY, int health) {
-        System.out.println("\n[Setting PIRATE @ x: "+posX+", y: "+posY+"]");
-        this.setPiratePos(posX, posY);
-        this.pirateHealth=health;
-    }
+//    protected Entity(int posX, int posY, int health) {
+//        System.out.println("\n[Setting PIRATE @ x: "+posX+", y: "+posY+"]");
+//        this.setPiratePos(posX, posY);
+//        this.health = health;
+//        this.pirateHealth=health;
+////        this.setPos(posX,posY);
+//    }
 
-    //Clue
-    protected Entity(int posX, int posY) {
-        System.out.println("\n[Setting CLUE @ x: "+posX+", y: "+posY+"]");
-        this.setCluePos(posX, posY);
-    }
+
 
     //SETTERS
 
     // CHARACTER
     public void setPos(int posX, int posY){
-        System.out.println("[Done Setting Character @ x: "+posX+", "+"y: "+posY);
         this.posX = posX;
         this.posY = posY;
     }
 
     //PEOPLE OF INTEREST
     public void setInterestsPos(int x, int y){
-        System.out.println("[Done Setting POI @ x: "+x+", y: "+y+"]");
+
         posXinterest = x;
         posYinterest = y;
     }
 
     //Clue
     public void setCluePos(int x, int y){
-        System.out.println("[Done Setting CLUE @ x: "+x+", y: "+y+"]");
         posXClue = x;
         posYClue = y;
     }
     //PIRATES
     public void setPiratePos(int x, int y){
-        System.out.println("[Done Setting PIRATE @ x: "+x+", y: "+y+"]");
+
         this.posXpirate = x;
         this.posYpirate = y;
     }
 
     // GETTERS
-    public static int getPosX() {
+    public int getPosX() {
         return posX;
     }
 
-    public static int getPosY() {
+    public int getPosY() {
         return posY;
     }
 
-    public static int getPosXinterest() {
+    public int getPosXinterest() {
         return posXinterest;
     }
 
-    public static int getPosYinterest() {
+    public int getPosYinterest() {
         return posYinterest;
     }
 
-    public static int getPosXpirate() {
-        return posXpirate;
-    }
-
-    public static int getPosYpirate() {
-        return posYpirate;
-    }
+//    public static int getPosXpirate() {
+//        return posXpirate;
+//    }
+//
+//    public static int getPosYpirate() {
+//        return posYpirate;
+//    }
 
     public int getPirateHealth() {
         return pirateHealth;
@@ -210,7 +212,7 @@ public class Entity {
     protected void move(Directions dir) {
         switch (dir) {
             case UP:
-                posY--;
+                this.posY--;
                 break;
             case LEFT:
                 this.posX--;

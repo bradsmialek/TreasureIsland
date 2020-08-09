@@ -2,7 +2,7 @@ package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
 import com.treasureisland.components.*;
-//import sun.security.pkcs11.wrapper.Functions;
+
 
 
 import java.sql.Ref;
@@ -23,23 +23,26 @@ public class MyMethods {
     private static String message6 = " ";
 
     public static void initializeTiles(){
-        for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
-            for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
-                switch (Attributes.currentIsland.getTile(j,i)) {
+
+        Attributes.pirates.clear();
+
+        for (int y = 0; y < Attributes.currentIsland.getHeight()-1; y++) {
+            for (int x = 0; x < Attributes.currentIsland.getWidth()-1; x++) {
+                switch (Attributes.currentIsland.getTile(x,y)) {
                     case PLAYER:
-                        Attributes.player.setPos(j, i);
+                        Attributes.player.setPos(x, y);
                         break;
                     case PIRATE:
-                        Attributes.pirates.add(new Pirate("Pirate", j, i, 5)); // TODO make strength and or defense
+                        Attributes.pirates.add(new Pirate("Monster", x, y, 5)); // TODO make strength and or defense
                         break;
                     case POI:
-                        Attributes.peopleInterests.add(new PeopleInterest("POI", j, i, "tells story"));
+                        Attributes.peopleInterests.add(new PeopleInterest(x,y));
                         break;
 //                    case FRIENDLY:
 //                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
 //                        break;
                     case CLUE:
-                        Attributes.clues.add(new Clues(j, i));
+                        Attributes.clues.add(new Clues(x, y));
                         break;
                     default:
                         break;
@@ -60,16 +63,17 @@ public class MyMethods {
 
         switch(dir) {
             case UP:
-                tile = Attributes.currentIsland.getTile(Entity.getPosX(), Entity.getPosY()-1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()-1);
                 break;
             case LEFT:
-                tile = Attributes.currentIsland.getTile(Entity.getPosX()-1, Entity.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()-1, Attributes.player.getPosY());
                 break;
             case DOWN:
-                tile = Attributes.currentIsland.getTile(Entity.getPosX(), Entity.getPosY()+1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()+1);
                 break;
             case RIGHT:
-                tile = Attributes.currentIsland.getTile(Entity.getPosX()+1, Entity.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()+1, Attributes.player.getPosY());
+                System.out.println(tile);
                 break;
         }
 
@@ -110,9 +114,10 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case TREASURE:
-                message = "You found a chest.  You need a key to open it!";
-                message2 = " ";
+                message = "You found a chest.  Do you want to open it!";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.OPEN_TREASURE;
                 break; //Ask to open chest
             case KEY:
                 Attributes.player.move(dir);
@@ -128,12 +133,14 @@ public class MyMethods {
                 decided = Decision.OPEN_DOOR;
                 break; //Ask to open door
             case PIRATE:
-                Attributes.player.damage(MyMethods.getRandomNumber(2));
-                message = "You fought a pirate and took damage!";
-                //drops items  -----------------------------------------------------------TODO
-                //option to fight and kill deal damage------------------------------------TODO
-                message2 = " ";
+                message = "Fight the pirate!?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
+                decided = Decision.FIGHT_PIRATE;
+
                 break; //Handles encounters with pirates
             case FRIENDLY:
                 message = RandomMessage.randomMessageGenerator();
@@ -160,6 +167,9 @@ public class MyMethods {
                 message = "Would you like to talk?";
                 message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
                 decided = Decision.TALK;
                 break;
             case COINTOSS:
@@ -172,7 +182,6 @@ public class MyMethods {
                 message = "You found a clue. Would you like to read it?";
                 message2 = "   [Y] Yes     [N] No";
                 decided = Decision.CLUE;
-                /////////
 
                 break;
             default:
@@ -193,7 +202,9 @@ public class MyMethods {
         COIN_TOSS,
         RETURN_TO_SHIP,
         OPEN_DOOR,
+        OPEN_TREASURE, //TODO give random good thing
         CLUE,
+        FIGHT_PIRATE, // drops stuff
         TALK;
     }
 
@@ -262,7 +273,7 @@ public class MyMethods {
                 Attributes.player.addsXP(2);
                 message = "You opened the door!";
                 message2 = " On with ye discovery...";
-                message3 = " "; //Open chest
+                message3 = "+2 XP"; //Open chest
                 Attributes.player.move();
             }
             else{
@@ -291,6 +302,7 @@ public class MyMethods {
         }
         else if(decided == Decision.TALK && yn) {
             ArrayList<String> m = PeopleInterest.poiTree(Attributes.player.getFacing(), Island.getIslandName(Island.getIslandNumber()));
+            System.out.println(m);
             message = m.get(0);
             message2 = m.get(1);
             message3 = m.get(2);
@@ -302,6 +314,46 @@ public class MyMethods {
             message = "They might have something important to tell you!";
             message2 = " ";
             message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
+        }
+        else if(decided == Decision.FIGHT_PIRATE && yn) {
+            MyMethods.fightPirate(Attributes.player.getFacing());
+
+        }
+        else if (decided == Decision.FIGHT_PIRATE) {
+            message = "That pirate might have fucked you up...hahahaha. Good choice matey!!";
+            message2 = " ";
+            message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
+        }
+        else if(decided == Decision.OPEN_TREASURE && yn) {
+            if (Attributes.player.getsKeys() >= 1) {
+                Attributes.player.takesKey();
+                Attributes.player.addsXP(2);
+                Attributes.player.addsGold(20);
+                message = "You opened the chest!";
+                message2 = " On with ye discovery...";
+                message3 = "+2 XP"; //Open chest
+                message4 = "+20 Gold";
+                Attributes.player.move();
+            }
+            else{
+                message = "You don't have any keys!";
+                message2 = " ";
+            }
+
+        }
+        else if (decided == Decision.OPEN_TREASURE) {
+            message = "Yeah, you're right... there could be snake or a critter of your dislike in there!";
+            message2 = " ";
+            message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
         }
 
         decided = Decision.NONE;
@@ -393,6 +445,50 @@ public class MyMethods {
 
     public static String getMessage6() {return message6;}
 
+    public static void movePirates() {
+        for(int i=0;i<Attributes.pirates.size();i++) {
+            System.out.println("pirate x:"+ Attributes.pirates.get(i).getPosX()+"y:"+ Attributes.pirates.get(i).getPosY());
+            System.out.println("player x:"+ Attributes.player.getPosX()+"y:"+ Attributes.player.getPosY());
+            Attributes.pirates.get(i).randomMove();
+        }
+    }
+
+    public static void fightPirate(Directions dir) {
+        int pirateX=0, pirateY=0;
+
+        switch(dir) {
+            case UP:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                break;
+            case LEFT:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                break;
+            case DOWN:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                break;
+            case RIGHT:
+                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                break;
+        }
+
+//        int sum = pirateX+pirateY;
+        for(int i=0; i<Attributes.pirates.size(); i++) {
+            System.out.println(Attributes.pirates.size());
+            System.out.println(Attributes.pirates.get(i).getPosX() + ", "+Attributes.pirates.get(i).getPosY() );
+            System.out.println(pirateX+ ", " + pirateY );
+            if(Attributes.pirates.get(i).getPosX() == pirateX && Attributes.pirates.get(i).getPosY() == pirateY) {
+                Attributes.pirates.get(i).damage(2);
+                Attributes.player.damage(2);
+
+                message = "You attacked the pirate.."; // and left him with " + Attributes.pirates.get(i).getHealth() + " HP!";
+                message2 = "Pirate HP = "+ + Attributes.pirates.get(i).getHealth();
+                message3 = " ";
+                message4 = "The pirate attacked you back!";
+                message5 = "-2 Dmg";
+
+            }
+        }
+    }
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {

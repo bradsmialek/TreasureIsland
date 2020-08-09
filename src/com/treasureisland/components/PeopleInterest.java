@@ -14,12 +14,9 @@ import java.util.List;
 public class PeopleInterest extends Entity {
 
 
-    private String name;
-
-    public PeopleInterest(String name, int posX, int posY, String story) {
-        super(posX, posY, story);
-        System.out.println("PEOPLEINTEREST CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
-        this.name=name;
+    public PeopleInterest(int posX, int posY) {
+        super(posX, posY, 6);
+        System.out.println("PEOPLEINTEREST CLASS: CREATING POI AT "+posX+ " "+posY);
 
     }
 
@@ -29,13 +26,21 @@ public class PeopleInterest extends Entity {
 
          switch(direction) {
              case UP:
-                 poiX = Attributes.player.getPosX(); poiY = Attributes.player.getPosY()-1; break;
+                 poiX = Attributes.player.getPosX();
+                 poiY = Attributes.player.getPosY()-1;
+                 break;
              case LEFT:
-                 poiX = Attributes.player.getPosX()-1; poiY = Attributes.player.getPosY(); break;
+                 poiX = Attributes.player.getPosX()-1;
+                 poiY = Attributes.player.getPosY();
+                 break;
              case DOWN:
-                 poiX = Attributes.player.getPosX(); poiY = Attributes.player.getPosY()+1; break;
+                 poiX = Attributes.player.getPosX();
+                 poiY = Attributes.player.getPosY()+1;
+                 break;
              case RIGHT:
-                 poiX = Attributes.player.getPosX()+1; poiY = Attributes.player.getPosY(); break;
+                 poiX = Attributes.player.getPosX()+1;
+                 poiY = Attributes.player.getPosY();
+                 break;
          }
          int sum = poiX+poiY;
          System.out.println("POI is at "+poiX+ " "+ posY);
@@ -66,9 +71,5 @@ public class PeopleInterest extends Entity {
         }
 
         return messages;
-    }
-
-    public String getName(){
-        return name;
     }
 }

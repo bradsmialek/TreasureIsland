@@ -1,5 +1,6 @@
 package com.treasureisland.components;
 
+import com.treasureisland.Attributes;
 import com.treasureisland.utilities.Directions;
 
 /**
@@ -7,25 +8,33 @@ import com.treasureisland.utilities.Directions;
  */
 public class Player extends Entity {
 
-
-
     private Directions facing;
     private int keys;
     private int gold;
     private boolean alive;
 
-    public Player(int posX, int posY) {
-        super(posX, posY,20, 0, 1);
-        System.out.println("PLAYER CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
-        this.gold = 0;
-        this.keys = 0;
+//    public Player(int posX, int posY) {
+//
+//        super(posX, posY,20);
+//
+//        System.out.println("PLAYER CLASS: CREATING PLAYER AT "+posX+ " "+posY);
+//        this.gold = 0;
+//        this.keys = 0;
+//
+//    }
 
+    public Player(int posX, int posY) {
+        super(posX, posY, 20);
+        this.gold=0;
+//        this.equippedWeapon = Weapon.hand;
+//        this.equippedArmor = Armor.normal;
+        this.alive=true;
+        System.out.println("PLAYER CLASS: CREATING PLAYER AT "+posX+ " "+posY);
     }
 
     @Override
     public void move(Directions dir){
         super.move(dir);
-        System.out.println("\nPLAYER CLASS: POSITION IS NOW "+posX+" "+posY);
     }
 
     public void move() {
@@ -34,6 +43,7 @@ public class Player extends Entity {
 
     public void setFacing(Directions dir) {
         this.facing = dir;
+
     }
 
     public Directions getFacing() {
