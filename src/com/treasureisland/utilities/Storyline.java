@@ -9,20 +9,33 @@ import java.util.ArrayList;
 public class Storyline {
 
     private static ArrayList<String> bPearlMessages;
+    private static ArrayList<String> bPearlClues;
 
     private static ArrayList<String> rum1messages;
     private static ArrayList<String> rum2messages;
     private static ArrayList<String> rum3messages;
     private static ArrayList<String> rum4messages;
+    private static ArrayList<String> rum1Clues;
+
+
 
     public static void createStoryline(){
         bPearlMessages = new ArrayList<>();
         bPearlMessages.add("black pearl 1  message 1vknsldvgknsldknvlklksndflksnflbknsflkbnsfvnsdlkn gvksdn glksdnlkkk"); //91 characters across
-        bPearlMessages.add("black pearl 2  message 2");
-        bPearlMessages.add("black pearl 3  message 3");
-        bPearlMessages.add("black pearl 4  message 4");
-        bPearlMessages.add("black pearl 5  message 5");
-        bPearlMessages.add("black pearl 6  message 6");
+        bPearlMessages.add("black pearl 1  message 2");
+        bPearlMessages.add("black pearl 1  message 3");
+        bPearlMessages.add("black pearl 1  message 4");
+        bPearlMessages.add("black pearl 1  message 5");
+        bPearlMessages.add("black pearl 1  message 6");
+
+        bPearlClues = new ArrayList<>();
+        bPearlClues.add("black pearl Clue 1  message 1vknsldvgknsldknvlklksndflksnflbknsflkbnsfvnsdlkn gvksdn glksdnlkkk"); //91 characters across
+        bPearlClues.add("black pearl Clue 1  message 2");
+        bPearlClues.add("black pearl Clue 1  message 3");
+        bPearlClues.add("black pearl Clue 1  message 4");
+        bPearlClues.add("black pearl Clue 1  message 5");
+        bPearlClues.add("black pearl Clue 1  message 6");
+
 
         rum1messages = new ArrayList<>();
         rum1messages.add("rum 1  message 1");
@@ -31,6 +44,15 @@ public class Storyline {
         rum1messages.add("rum 1  message 4");
         rum1messages.add("rum 1  message 5");
         rum1messages.add("rum 1  message 6");
+
+        rum1Clues = new ArrayList<>();
+        rum1Clues.add("rum1 Clue 1  message 1vknsldvgknsldknvlklksndflksnflbknsflkbnsfvnsdlkn gvksdn glksdnlkkk"); //91 characters across
+        rum1Clues.add("rum1 Clue 1  message 2");
+        rum1Clues.add("rum1 Clue 1  message 3");
+        rum1Clues.add("rum1 Clue 1  message 4");
+        rum1Clues.add("rum1 Clue 1  message 5");
+        rum1Clues.add("rum1 Clue 1  message 6");
+
 
         rum2messages = new ArrayList<>();
         rum2messages.add("rum 2  message 1");
@@ -58,6 +80,8 @@ public class Storyline {
 
     }
 
+
+
     //GETTERS
 
     public static ArrayList<String> getbPearlMessages() {
@@ -83,6 +107,15 @@ public class Storyline {
     public static ArrayList<String> getRum4messages() {
         System.out.println("GETTING Rum 4 MESSAGES");
         return rum4messages;
+    }
+
+    //GETTERS for Clues
+    public static ArrayList<String> getbPearlClues() {
+        return bPearlClues;
+    }
+
+    public static ArrayList<String> getRum1Clues() {
+        return rum1Clues;
     }
 
 

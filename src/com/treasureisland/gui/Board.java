@@ -11,7 +11,7 @@ import com.treasureisland.utilities.HeadsOrTails;
 import com.treasureisland.utilities.Tile;
 import com.treasureisland.utilities.Directions;
 import com.treasureisland.utilities.MyMethods;
-
+//import sun.jvm.hotspot.ui.treetable.AbstractTreeTableModel;
 
 
 import javax.swing.*;
@@ -29,18 +29,10 @@ import java.awt.event.KeyListener;
 public class Board extends JPanel
 implements KeyListener {
 
-    private JTextField field;
-    private JScrollPane pane;
 
     public Board() {
         addKeyListener(this);
         this.setFocusable(true);
-
-//        this.setBackground(Color.BLACK);
-//        field = new JTextField();
-//        field.setBackground(Color.cyan);
-//        pane = new JScrollPane(field);
-//        this.add(pane);
 
     }
 
@@ -111,7 +103,15 @@ implements KeyListener {
                         g.setColor(Color.lightGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
-                    } else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
+                    } else if (Attributes.currentIsland.getTileChar(j, i) == 'p') {
+                        g.setColor(Color.red);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    }else if (Attributes.currentIsland.getTileChar(j, i) == 'f') {
+                        g.setColor(Color.green);
+                        g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
+                        g.setColor(Color.orange);
+                    }else if (Attributes.currentIsland.getTileChar(j, i) == '.') {
                         g.setColor(Color.darkGray);
                         g.drawString("" + Attributes.currentIsland.getTileChar(j, i), x, y);
                         g.setColor(Color.orange);
@@ -168,8 +168,6 @@ implements KeyListener {
             System.out.println("Something went wrong while we were drawing Player stats");
         }
 
-
-
         //Message
         try {
 
@@ -198,24 +196,32 @@ implements KeyListener {
                     Attributes.player.setFacing(Directions.UP);
                     MyMethods.playerHandler(Directions.UP);
                     Attributes.currentIsland.posUpdate();
+//                    MyMethods.movePirates();
+//                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_A:
                 case KeyEvent.VK_LEFT:
                     Attributes.player.setFacing(Directions.LEFT);
                     MyMethods.playerHandler(Directions.LEFT);
                     Attributes.currentIsland.posUpdate();
+//                    MyMethods.movePirates();
+//                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_S:
                 case KeyEvent.VK_DOWN:
                     Attributes.player.setFacing(Directions.DOWN);
                     MyMethods.playerHandler(Directions.DOWN);
                     Attributes.currentIsland.posUpdate();
+//                    MyMethods.movePirates();
+//                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_D:
                 case KeyEvent.VK_RIGHT:
                     Attributes.player.setFacing(Directions.RIGHT);
                     MyMethods.playerHandler(Directions.RIGHT);
                     Attributes.currentIsland.posUpdate();
+//                    MyMethods.movePirates();
+//                    Attributes.currentIsland.posPirateUpdate();
                     break;
                 case KeyEvent.VK_Y:
                     MyMethods.decisionTree(true);

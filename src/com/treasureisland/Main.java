@@ -55,12 +55,12 @@ public class Main {
         Attributes.currentMap = new Maps(Maps.getMapNumber());
         System.out.println("\nMAIN CLASS: CREATING STORYLINE");
         Storyline.createStoryline();
-        System.out.println("\n*[Creating Initial Character]*");
-        Attributes.player = new Player(19, 18);
+        //        Music.playMusic("/Users/bradsmialek/tlg/java/projects/TreasureIsland/src/com/treasureisland/music/song1.wav");
 
-//        Music.playMusic();
+        Attributes.player = new Player(19, 18);
         Attributes.pirates = new ArrayList<Pirate>();
         Attributes.peopleInterests = new ArrayList<PeopleInterest>();
+        Attributes.clues = new ArrayList<Clues>();
 //        Attributes.friendlies = new ArrayList<Friend>();  maybe make friendlies move??
         MyMethods.initializeTiles();
     }

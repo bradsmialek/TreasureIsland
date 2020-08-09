@@ -2,7 +2,7 @@ package com.treasureisland.utilities;
 
 import com.treasureisland.Attributes;
 import com.treasureisland.components.*;
-//import sun.security.pkcs11.wrapper.Functions;
+
 
 
 import java.sql.Ref;
@@ -23,17 +23,17 @@ public class MyMethods {
     private static String message6 = " ";
 
     public static void initializeTiles(){
-        for (int i = 0; i < Attributes.currentIsland.getHeight()-1; i++) {
-            for (int j = 0; j < Attributes.currentIsland.getWidth()-1; j++) {
-                switch (Attributes.currentIsland.getTile(j,i)) {
+
+        Attributes.pirates.clear();
+
+        for (int y = 0; y < Attributes.currentIsland.getHeight()-1; y++) {
+            for (int x = 0; x < Attributes.currentIsland.getWidth()-1; x++) {
+                switch (Attributes.currentIsland.getTile(x,y)) {
                     case PLAYER:
-                        Attributes.player.setPos(j, i);
+                        Attributes.player.setPos(x, y);
                         break;
                     case PIRATE:
-                        Attributes.pirates.add(new Pirate("Pirate", j, i, 5)); // TODO make strength and or defense
-                        break;
-                    case POI:
-                        Attributes.peopleInterests.add(new PeopleInterest("POI", j, i, "tells story"));
+                        Attributes.pirates.add(new Pirate("Monster", x, y, 5)); // TODO make strength and or defense
                         break;
 //                    case FRIENDLY:
 //                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
@@ -57,16 +57,17 @@ public class MyMethods {
 
         switch(dir) {
             case UP:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()-1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx(), Attributes.player.gety()-1);
                 break;
             case LEFT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()-1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx()-1, Attributes.player.gety());
                 break;
             case DOWN:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()+1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx(), Attributes.player.gety()+1);
                 break;
             case RIGHT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()+1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx()+1, Attributes.player.gety());
+                System.out.println(tile);
                 break;
         }
 
@@ -86,6 +87,9 @@ public class MyMethods {
                 message = "You ran into a wall!";
                 message2 = " ";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
                 break;
             case DOCK:
                 message = "Do you want to return to your Ship?";
@@ -107,9 +111,10 @@ public class MyMethods {
                 message3 = " ";
                 break;
             case TREASURE:
-                message = "You found a chest.  You need a key to open it!";
-                message2 = " ";
+                message = "You found a chest.  Do you want to open it!";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.OPEN_TREASURE;
                 break; //Ask to open chest
             case KEY:
                 Attributes.player.move(dir);
@@ -119,17 +124,20 @@ public class MyMethods {
                 message3 = " ";
                 break; //Adds a key
             case DOOR:
-                message = "This door is locked. You need a key!";
-                message2 = " ";
+                message = "This door is locked. Do you want to use a key and open it?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.OPEN_DOOR;
                 break; //Ask to open door
             case PIRATE:
-                Attributes.player.damage(MyMethods.getRandomNumber(2));
-                message = "You fought a pirate and took damage!";
-                //drops items  -----------------------------------------------------------TODO
-                //option to fight and kill deal damage------------------------------------TODO
-                message2 = " ";
+                message = "Fight the pirate!?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
+                decided = Decision.FIGHT_PIRATE;
+
                 break; //Handles encounters with pirates
             case FRIENDLY:
                 message = RandomMessage.randomMessageGenerator();
@@ -137,31 +145,30 @@ public class MyMethods {
                 break;
             case MAP:
                 message = "Where would you like to sail to?";
-                message2 = "Rum Runners Is. [2]    Port Royal [3]     Isle Cruces [4]";
-                message3 = "Isla De Muerta [5]    Treasure Island [6]";
-                message4 = "";
-                message5 = "";
-                message6 = "";
+                message2 = " ";
+                message3 = "Rum Runner Island [2]    Port Royal [3]    Isle Cruces [4]";
+                message4 = "Isla De Muerta [5]    Treasure Island [6]";
+                message5 = " ";
+                message6 = " ";
                 locationDecided = LocationDecision.LOCATION;
                 break;
             case VENDOR:
                 message = "What would you like to Buy?";
-                message2 = "list of stuff";
-                //Attributes.vendorItems.getAll();
-                message3 = Attributes.vendorItems.getAll();
-                // deduct from coins depending on item cost
-                //itemDecided = itemDecision.ITEMS;  or something like this
+                message2 = "[a]  [r]  []  []  []";
+                message3 = "[a]  [r]  []  []  []";
+                message4 = "[a]  [r]  []  []  []";
+                message5 = "[a]  [r]  []  []  []";
+                message6 = " ";
+                vendorDecided = VendorDecision.VENDOR_DECISION;
                 break;
             case POI:
-
-                ArrayList<String> m = PeopleInterest.poiTree(dir, Island.getIslandName(Island.getIslandNumber()));
-
-                message = m.get(0);
-                message2 = m.get(1);
-                message3 = m.get(2);
-                message4 = m.get(3);
-                message5 = m.get(4);
-                message6 = m.get(5);
+                message = "Would you like to talk?";
+                message2 = "   [Y] Yes     [N] No";
+                message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
+                decided = Decision.TALK;
                 break;
             case COINTOSS:
                 message = "Would you like to play CoinToss for 5 Gold?";
@@ -169,9 +176,15 @@ public class MyMethods {
                 message3 = " ";
                 decided = Decision.COIN_TOSS;
                 break;
+            case CLUE:
+                message = "You found a clue. Would you like to read it?";
+                message2 = "   [Y] Yes     [N] No";
+                decided = Decision.CLUE;
+
+                break;
             default:
-                System.out.println("???");
-                break; //If something glitches out
+                System.out.println("Where are you???");
+                break;
         }
     }
 
@@ -181,27 +194,39 @@ public class MyMethods {
         NOWHERE;
     }
 
+    private enum VendorDecision {
+        NONE,
+        VENDOR_DECISION;
+    }
+
     private enum Decision {
         NONE,
         RUM_UP,
         COIN_TOSS,
-        RETURN_TO_SHIP
+        RETURN_TO_SHIP,
+        OPEN_DOOR,
+        OPEN_TREASURE, //TODO give random good thing
+        CLUE,
+        FIGHT_PIRATE, // drops stuff
+        TALK;
     }
 
     private enum CoinTossDecision {
         NONE,
-        SIDEOFCOIN
+        SIDEOFCOIN;
     }
     private static LocationDecision locationDecided = LocationDecision.NOWHERE;
+
+    private static VendorDecision vendorDecided = VendorDecision.NONE;
 
     private static CoinTossDecision tossDecision = CoinTossDecision.NONE;
 
     private static Decision decided = Decision.NONE;
-    //private static //something location = //whatever
+
 
     //DECISION TREE
     public static void decisionTree(boolean yn) {
-        System.out.println(yn);
+
         if (decided == Decision.NONE) {
             return;
         }
@@ -220,9 +245,10 @@ public class MyMethods {
         }
         else if(decided == Decision.RUM_UP && yn) {
             Attributes.player.heal(MyMethods.getRandomNumber(5)+3);
-            message = "You drank Rum and it gave you health.";
-            message2 = "";
-            message3 = "";
+            Attributes.player.addsXP(2);
+            message = "Down the hatchet...";
+            message2 = "+ HP";
+            message3 = "+2 XP";
             Attributes.player.move();//replace tile to .
         }
         else if(decided == Decision.RUM_UP) {
@@ -245,6 +271,94 @@ public class MyMethods {
         else if(decided == Decision.COIN_TOSS) {
             message = "'I'd rather not lose me money...'";
             message2 = " ";
+        }
+        else if(decided == Decision.OPEN_DOOR && yn) {
+            if (Attributes.player.getsKeys() >= 1) {
+                Attributes.player.takesKey();
+                Attributes.player.addsXP(2);
+                message = "You opened the door!";
+                message2 = " On with ye discovery...";
+                message3 = "+2 XP"; //Open chest
+                Attributes.player.move();
+            }
+            else{
+                message = "You don't have any keys!";
+                message2 = " ";
+            }
+        }
+        else if(decided == Decision.OPEN_DOOR) {
+                message = "You might be better off not knowing what's behind this door!";
+                message2 = " ";
+                message3 = " ";
+        }
+        else if(decided == Decision.CLUE && yn) {
+            ArrayList<String> c = Clues.clueTree(Attributes.player.getFacing(), Island.getIslandName(Island.getIslandNumber()));////TODO
+            message = c.get(0);
+            message2 = c.get(1);
+            message3 = c.get(2);
+            message4 = c.get(3);
+            message5 = c.get(4);
+            message6 = c.get(5);
+        }
+        else if (decided == Decision.CLUE) {
+            message = "Alright ... but it could be a good clue!";
+            message2 = " ";
+            message3 = " ";
+        }
+        else if(decided == Decision.TALK && yn) {
+            ArrayList<String> m = PeopleInterest.poiTree(Attributes.player.getFacing(), Island.getIslandName(Island.getIslandNumber()));
+            System.out.println(m);
+            message = m.get(0);
+            message2 = m.get(1);
+            message3 = m.get(2);
+            message4 = m.get(3);
+            message5 = m.get(4);
+            message6 = m.get(5);
+        }
+        else if(decided == Decision.TALK) {
+            message = "They might have something important to tell you!";
+            message2 = " ";
+            message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
+        }
+        else if(decided == Decision.FIGHT_PIRATE && yn) {
+            MyMethods.fightPirate(Attributes.player.getFacing());
+
+        }
+        else if (decided == Decision.FIGHT_PIRATE) {
+            message = "That pirate might have fucked you up...hahahaha. Good choice matey!!";
+            message2 = " ";
+            message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
+        }
+        else if(decided == Decision.OPEN_TREASURE && yn) {
+            if (Attributes.player.getsKeys() >= 1) {
+                Attributes.player.takesKey();
+                Attributes.player.addsXP(2);
+                Attributes.player.addsGold(20);
+                message = "You opened the chest!";
+                message2 = " On with ye discovery...";
+                message3 = "+2 XP"; //Open chest
+                message4 = "+20 Gold";
+                Attributes.player.move();
+            }
+            else{
+                message = "You don't have any keys!";
+                message2 = " ";
+            }
+
+        }
+        else if (decided == Decision.OPEN_TREASURE) {
+            message = "Yeah, you're right... there could be snake or a critter of your dislike in there!";
+            message2 = " ";
+            message3 = " ";
+            message4 = " ";
+            message5 = " ";
+            message6 = " ";
         }
 
         decided = Decision.NONE;
@@ -270,7 +384,7 @@ public class MyMethods {
             MyMethods.initializeTiles();
         }
         else {
-            message = "Arhg... Fine, stay here.";
+            message = "Argh... fine, stay here.";
         }
         locationDecided = LocationDecision.NOWHERE;
     }
@@ -285,13 +399,17 @@ public class MyMethods {
             System.out.println("You chose heads");
             message = "You chose Heads...";
             if (HeadsOrTails.coinSide.equals("Heads")) {
+                Attributes.player.addsGold(5);
+                Attributes.player.addsXP(2);
                 message2 = "Coin landed on Heads...";
                 message3 = "You Win!";
-                Attributes.player.addsGold(5);
+                message4 = "+5 Gold";
+                message5 = "+2 XP";
             }
             else {
                 message = "Coin landed on Tails...";
                 message2 = "You Lose!";
+                message4 = "-5 Gold";
                 Attributes.player.takesGold(5);
             }
         }
@@ -299,26 +417,27 @@ public class MyMethods {
             System.out.println("You chose Tails");
             message = "You chose Tails";
             if (HeadsOrTails.coinSide.equals("Tails")) {
+                Attributes.player.addsGold(5);
+                Attributes.player.addsXP(2);
                 message2 = "Coin landed on Tails...";
                 message3 = "You Win!";
-                Attributes.player.addsGold(5);
+                message4 = "+5 Gold";
+                message5 = "+2 XP";
             }
             else {
                 message = "Coin landed on Heads...";
                 message2 = "You Lose!";
+                message4 = "-5 Gold";
                 Attributes.player.takesGold(5);
             }
         }
         else {
-            message = "Arhg... I hate this game.";
+            message = "Argh... I hate this game.";
         }
         tossDecision = CoinTossDecision.NONE;
-
     }
 
-    public static void setMessage(String message1) {message = message1;}
-    public static void setMessage2(String messageTwo) {message2 = messageTwo;}
-
+    // Returns messages
     public static String getMessage() {return message;}
 
     public static String getMessage2() {return message2;}
@@ -331,17 +450,51 @@ public class MyMethods {
 
     public static String getMessage6() {return message6;}
 
-    public static void setMessage() {message = "";}
+    public static void movePirates() {
+        for(int i=0;i<Attributes.pirates.size();i++) {
+            System.out.println("pirate x:"+ Attributes.pirates.get(i).getx()+"y:"+ Attributes.pirates.get(i).gety());
+            System.out.println("player x:"+ Attributes.player.getx()+"y:"+ Attributes.player.gety());
+            Attributes.pirates.get(i).randomMove();
+        }
+    }
 
-    public static void setMessage2() {message2 = "";}
+    public static void fightPirate(Directions dir) {
+        int pirateX=0, pirateY=0;
 
-    public static void setMessage3() {message3 = "";}
+        switch(dir) {
+            case UP:
+                pirateX = Attributes.player.getx(); pirateY = Attributes.player.gety()-1;
+                break;
+            case LEFT:
+                pirateX = Attributes.player.getx()-1; pirateY = Attributes.player.gety();
+                break;
+            case DOWN:
+                pirateX = Attributes.player.getx(); pirateY = Attributes.player.gety()+1;
+                break;
+            case RIGHT:
+                pirateX = Attributes.player.getx()+1; pirateY = Attributes.player.gety();
+                break;
+        }
 
-    public static void setMessage4() { message4 = "";}
+//        int sum = pirateX+pirateY;
+        for(int i=0; i<Attributes.pirates.size(); i++) {
+            System.out.println("pirate array size: "+Attributes.pirates.size());
+            System.out.println("pirate in array: "+Attributes.pirates.get(i).getx() + ", "+Attributes.pirates.get(i).gety() );
+            System.out.println("character: "+Attributes.player.getx() + ", "+Attributes.player.gety() );
+            System.out.println("new pirate x and y: "+pirateX+ ", " + pirateY );
+            if(Attributes.pirates.get(i).getx() == pirateX && Attributes.pirates.get(i).gety() == pirateY) {
+                Attributes.pirates.get(i).damage(2);
+                Attributes.player.damage(2);
 
-    public static void setMessage5() {message5 = "";}
+                message = "You attacked the pirate.."; // and left him with " + Attributes.pirates.get(i).getHealth() + " HP!";
+                message2 = "Pirate HP = "+ + Attributes.pirates.get(i).getHealth();
+                message3 = " ";
+                message4 = "The pirate attacked you back!";
+                message5 = "-2 Dmg";
 
-    public static void setMessage6() {message6 = "";}
+            }
+        }
+    }
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {
