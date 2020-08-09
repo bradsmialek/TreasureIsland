@@ -34,13 +34,23 @@ public class Island {
                         tiles.get(i).add(Tile.NOTHING); break;
                     case '#':
                         tiles.get(i).add(Tile.WALL); break;
+                    case '+':
+                        tiles.get(i).add(Tile.PLUS); break;
+                    case '*':
+                        tiles.get(i).add(Tile.MAP); break;
                     case '@':
                         tiles.get(i).add(Tile.PLAYER); break;
+                    case '~':
+                        tiles.get(i).add(Tile.TILDE); break; // ?? don't know yet
+                    case ' ':
+                        tiles.get(i).add(Tile.SPACE); break;
+                    case '?':
+                        tiles.get(i).add(Tile.POI); break;
                     case '^':
                         tiles.get(i).add(Tile.DOCK); break;
                     case 'r':
                         tiles.get(i).add(Tile.RUM); break;
-                    case 'G':
+                    case 'g':
                         tiles.get(i).add(Tile.GOLD); break;
                     case 'm':
                         tiles.get(i).add(Tile.TREASURE); break;
@@ -52,16 +62,27 @@ public class Island {
                         tiles.get(i).add(Tile.PIRATE); break;
                     case 'f':
                         tiles.get(i).add(Tile.FRIENDLY); break;
+                    case 'V':
+                        tiles.get(i).add(Tile.VENDOR); break;
+                    case 'C':
+                        tiles.get(i).add(Tile.COINTOSS); break;
+                    case '`':
+                        tiles.get(i).add(Tile.CLUE); break;
+
+                        // Full alphabet ; tiles for constructing island and map only; do nothing
                     case 'A':
                         tiles.get(i).add(Tile.A); break;
                     case 'B':
                         tiles.get(i).add(Tile.B); break;
-                    case 'C':
-                        tiles.get(i).add(Tile.COINTOSS); break;
+                    // C for cointoss
                     case 'D':
                         tiles.get(i).add(Tile.D); break;
                     case 'E':
                         tiles.get(i).add(Tile.E); break;
+                    case 'F':
+                        tiles.get(i).add(Tile.F); break;
+                    case 'G':
+                        tiles.get(i).add(Tile.G); break;
                     case 'H':
                         tiles.get(i).add(Tile.H); break;
                     case 'I':
@@ -78,6 +99,8 @@ public class Island {
                         tiles.get(i).add(Tile.N); break;
                     case 'O':
                         tiles.get(i).add(Tile.O); break;
+                    case 'P':
+                        tiles.get(i).add(Tile.P); break;
                     case 'Q':
                         tiles.get(i).add(Tile.Q); break;
                     case 'R':
@@ -88,33 +111,15 @@ public class Island {
                         tiles.get(i).add(Tile.T); break;
                     case 'U':
                         tiles.get(i).add(Tile.U); break;
-                    case 'V':
-                        tiles.get(i).add(Tile.VENDOR); break;
+                    //V for Vendor
                     case 'W':
                         tiles.get(i).add(Tile.W); break;
-                    case 'x':
-                        tiles.get(i).add(Tile.x); break;
+                    case 'X':
+                        tiles.get(i).add(Tile.X); break;
                     case 'Y':
                         tiles.get(i).add(Tile.Y); break;
                     case 'Z':
                         tiles.get(i).add(Tile.Z); break;
-                    case '+':
-                        tiles.get(i).add(Tile.PLUS); break;
-                    case '*':
-                        tiles.get(i).add(Tile.MAP); break;
-                    case 'X':
-                        tiles.get(i).add(Tile.X); break;
-                    case '~':
-                        tiles.get(i).add(Tile.TILDE); break;
-                    case ' ':
-                        tiles.get(i).add(Tile.SPACE); break;
-                    case '?':
-                        tiles.get(i).add(Tile.POI); break;
-                    case 'P':
-                        tiles.get(i).add(Tile.P); break;
-                    case 'F':
-                        tiles.get(i).add(Tile.F); break;
-
                 }
             }
         }
@@ -143,7 +148,6 @@ public class Island {
         return tiles.get(y).get(x).symbol();
     }
 
-
     public void posUpdate(){
         //DELETES
         for(int i=0;i<this.getHeight();i++) {
@@ -153,7 +157,7 @@ public class Island {
             }
         }
         //Sets new pos
-        tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
+        tiles.get(Entity.getPosY()).set(Entity.getPosX(), Tile.PLAYER);
     }
 
     public static int getIslandNumber() {

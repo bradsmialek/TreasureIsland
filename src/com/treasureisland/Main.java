@@ -58,7 +58,7 @@ public class Main {
         System.out.println("\n*[Creating Initial Character]*");
         Attributes.player = new Player(19, 18);
 
-//        Music.playMusic();
+//        Music.playMusic("/Users/bradsmialek/tlg/java/projects/TreasureIsland/src/com/treasureisland/music/song1.wav");
         Attributes.pirates = new ArrayList<Pirate>();
         Attributes.peopleInterests = new ArrayList<PeopleInterest>();
 //        Attributes.friendlies = new ArrayList<Friend>();  maybe make friendlies move??

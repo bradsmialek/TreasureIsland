@@ -57,16 +57,16 @@ public class MyMethods {
 
         switch(dir) {
             case UP:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()-1);
+                tile = Attributes.currentIsland.getTile(Entity.getPosX(), Entity.getPosY()-1);
                 break;
             case LEFT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()-1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Entity.getPosX()-1, Entity.getPosY());
                 break;
             case DOWN:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()+1);
+                tile = Attributes.currentIsland.getTile(Entity.getPosX(), Entity.getPosY()+1);
                 break;
             case RIGHT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()+1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Entity.getPosX()+1, Entity.getPosY());
                 break;
         }
 
@@ -119,9 +119,10 @@ public class MyMethods {
                 message3 = " ";
                 break; //Adds a key
             case DOOR:
-                message = "This door is locked. You need a key!";
-                message2 = " ";
+                message = "This door is locked. Do you want to use a key and open it?";
+                message2 = "   [Y] Yes     [N] No";
                 message3 = " ";
+                decided = Decision.OPEN_DOOR;
                 break; //Ask to open door
             case PIRATE:
                 Attributes.player.damage(MyMethods.getRandomNumber(2));
@@ -137,11 +138,11 @@ public class MyMethods {
                 break;
             case MAP:
                 message = "Where would you like to sail to?";
-                message2 = "Rum Runners Is. [2]    Port Royal [3]     Isle Cruces [4]";
-                message3 = "Isla De Muerta [5]    Treasure Island [6]";
-                message4 = "";
-                message5 = "";
-                message6 = "";
+                message2 = " ";
+                message3 = "Rum Runner Island [2]    Port Royal [3]    Isle Cruces [4]";
+                message4 = "Isla De Muerta [5]    Treasure Island [6]";
+                message5 = " ";
+                message6 = " ";
                 locationDecided = LocationDecision.LOCATION;
                 break;
             case VENDOR:
@@ -153,9 +154,7 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-
                 ArrayList<String> m = PeopleInterest.poiTree(dir, Island.getIslandName(Island.getIslandNumber()));
-
                 message = m.get(0);
                 message2 = m.get(1);
                 message3 = m.get(2);
@@ -169,9 +168,16 @@ public class MyMethods {
                 message3 = " ";
                 decided = Decision.COIN_TOSS;
                 break;
+            case CLUE:
+                Attributes.player.move(dir);
+                message = "You found a clue?";
+                message2 = " ";
+                message3 = " ";
+//                decided = Decision.COIN_TOSS;
+                break;
             default:
-                System.out.println("???");
-                break; //If something glitches out
+                System.out.println("Where are you???");
+                break;
         }
     }
 
@@ -185,19 +191,20 @@ public class MyMethods {
         NONE,
         RUM_UP,
         COIN_TOSS,
-        RETURN_TO_SHIP
+        RETURN_TO_SHIP,
+        OPEN_DOOR;
     }
 
     private enum CoinTossDecision {
         NONE,
-        SIDEOFCOIN
+        SIDEOFCOIN;
     }
     private static LocationDecision locationDecided = LocationDecision.NOWHERE;
 
     private static CoinTossDecision tossDecision = CoinTossDecision.NONE;
 
     private static Decision decided = Decision.NONE;
-    //private static //something location = //whatever
+
 
     //DECISION TREE
     public static void decisionTree(boolean yn) {
@@ -246,6 +253,27 @@ public class MyMethods {
             message = "'I'd rather not lose me money...'";
             message2 = " ";
         }
+        else if(decided == Decision.OPEN_DOOR && yn) {
+            if (Attributes.player.getsKeys() >= 1) {
+                Attributes.player.takesKey();
+                message = "You opened the door!";
+                message2 = " On with ye discovery...";
+                message3 = " "; //Open chest
+                Attributes.player.move();
+            }
+            else{
+                message = "You don't have any keys!";
+                message2 = " ";
+            }
+
+        }
+        else if(decided == Decision.OPEN_DOOR) {
+                message = "You might be better off not knowing what's behind this door!";
+                message2 = " ";
+                message3 = " ";
+
+        }
+
 
         decided = Decision.NONE;
     }
@@ -270,7 +298,7 @@ public class MyMethods {
             MyMethods.initializeTiles();
         }
         else {
-            message = "Arhg... Fine, stay here.";
+            message = "Argh... fine, stay here.";
         }
         locationDecided = LocationDecision.NOWHERE;
     }
@@ -310,15 +338,12 @@ public class MyMethods {
             }
         }
         else {
-            message = "Arhg... I hate this game.";
+            message = "Argh... I hate this game.";
         }
         tossDecision = CoinTossDecision.NONE;
-
     }
 
-    public static void setMessage(String message1) {message = message1;}
-    public static void setMessage2(String messageTwo) {message2 = messageTwo;}
-
+    // Returns messages
     public static String getMessage() {return message;}
 
     public static String getMessage2() {return message2;}
@@ -331,17 +356,6 @@ public class MyMethods {
 
     public static String getMessage6() {return message6;}
 
-    public static void setMessage() {message = "";}
-
-    public static void setMessage2() {message2 = "";}
-
-    public static void setMessage3() {message3 = "";}
-
-    public static void setMessage4() { message4 = "";}
-
-    public static void setMessage5() {message5 = "";}
-
-    public static void setMessage6() {message6 = "";}
 
     public static void checkIsDead() {
         if(Attributes.player.getHealth()<=0) {

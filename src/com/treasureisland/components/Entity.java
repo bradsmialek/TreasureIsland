@@ -53,17 +53,14 @@ public class Entity {
     }
 
     public static void addtoArray(int x, int y){
-
         myCoords.add(x);
         myCoords.add(y);
 //        System.out.println(myCoords);
-
     }
 
     public static List<Integer> getMyCoords() {
         return myCoords;
     }
-
 
     //Pirate
     protected Entity(int posX, int posY, int health) {
@@ -84,8 +81,8 @@ public class Entity {
     //PEOPLE OF INTEREST
     public void setInterestsPos(int x, int y){
         System.out.println("[Done Setting POI @ x: "+x+", y: "+y+"]");
-        this.posXinterest = x;
-        this.posYinterest = y;
+        posXinterest = x;
+        posYinterest = y;
     }
 
     //PIRATES
@@ -206,7 +203,7 @@ public class Entity {
     protected void move(Directions dir) {
         switch (dir) {
             case UP:
-                this.posY--;
+                posY--;
                 break;
             case LEFT:
                 this.posX--;

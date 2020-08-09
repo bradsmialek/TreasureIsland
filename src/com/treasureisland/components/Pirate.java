@@ -13,6 +13,8 @@ public class Pirate extends Entity{
         System.out.println("PIRATE CLASS: CREATING PIRATE AT "+posX+ " "+posY);
     }
 
+
+
     public String getName() {
         return name;
     }
