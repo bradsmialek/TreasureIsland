@@ -61,6 +61,7 @@ public class Main {
 //        Music.playMusic("/Users/bradsmialek/tlg/java/projects/TreasureIsland/src/com/treasureisland/music/song1.wav");
         Attributes.pirates = new ArrayList<Pirate>();
         Attributes.peopleInterests = new ArrayList<PeopleInterest>();
+        Attributes.clues = new ArrayList<Clues>();
 //        Attributes.friendlies = new ArrayList<Friend>();  maybe make friendlies move??
         MyMethods.initializeTiles();
     }

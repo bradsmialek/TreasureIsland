@@ -20,6 +20,7 @@ public class Attributes {
     public static Vendor vendorItems = Vendor.getInstance();
     public static ArrayList<Pirate> pirates;
     public static ArrayList<PeopleInterest> peopleInterests;
+    public static ArrayList<Clues> clues;
 
 
     public static Island getCurrentIsland() {

@@ -7,6 +7,8 @@ import com.treasureisland.utilities.Directions;
  */
 public class Player extends Entity {
 
+
+
     private Directions facing;
     private int keys;
     private int gold;
@@ -32,6 +34,10 @@ public class Player extends Entity {
 
     public void setFacing(Directions dir) {
         this.facing = dir;
+    }
+
+    public Directions getFacing() {
+        return facing;
     }
 
     public int getsKeys() {

@@ -18,7 +18,7 @@ public class PeopleInterest extends Entity {
 
     public PeopleInterest(String name, int posX, int posY, String story) {
         super(posX, posY, story);
-        System.out.println("PEOPLEINTERST CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
+        System.out.println("PEOPLEINTEREST CLASS: JUST FINISHED CALL TO SUPER[ENTITY]");
         this.name=name;
 
     }
@@ -44,10 +44,10 @@ public class PeopleInterest extends Entity {
         ArrayList<String> messages = new ArrayList<>();
 
 
-        if(island == "Black Pearl"){
+        if(island.equals("Black Pearl")){
                 messages = Storyline.getbPearlMessages();
         }
-        else if(island == "Rum Runner Island"){
+        else if(island.equals("Rum Runner Island")){
             switch(sum) {
                 case 31:
                     messages = Storyline.getRum1messages();

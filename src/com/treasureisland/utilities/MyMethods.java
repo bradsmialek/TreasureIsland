@@ -38,6 +38,9 @@ public class MyMethods {
 //                    case FRIENDLY:
 //                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
 //                        break;
+                    case CLUE:
+                        Attributes.clues.add(new Clues(j, i));
+                        break;
                     default:
                         break;
                 }
@@ -154,13 +157,10 @@ public class MyMethods {
                 //itemDecided = itemDecision.ITEMS;  or something like this
                 break;
             case POI:
-                ArrayList<String> m = PeopleInterest.poiTree(dir, Island.getIslandName(Island.getIslandNumber()));
-                message = m.get(0);
-                message2 = m.get(1);
-                message3 = m.get(2);
-                message4 = m.get(3);
-                message5 = m.get(4);
-                message6 = m.get(5);
+                message = "Would you like to talk?";
+                message2 = "   [Y] Yes     [N] No";
+                message3 = " ";
+                decided = Decision.TALK;
                 break;
             case COINTOSS:
                 message = "Would you like to play CoinToss for 5 Gold?";
@@ -169,11 +169,11 @@ public class MyMethods {
                 decided = Decision.COIN_TOSS;
                 break;
             case CLUE:
-                Attributes.player.move(dir);
-                message = "You found a clue?";
-                message2 = " ";
-                message3 = " ";
-//                decided = Decision.COIN_TOSS;
+                message = "You found a clue. Would you like to read it?";
+                message2 = "   [Y] Yes     [N] No";
+                decided = Decision.CLUE;
+                /////////
+
                 break;
             default:
                 System.out.println("Where are you???");
@@ -192,7 +192,9 @@ public class MyMethods {
         RUM_UP,
         COIN_TOSS,
         RETURN_TO_SHIP,
-        OPEN_DOOR;
+        OPEN_DOOR,
+        CLUE,
+        TALK;
     }
 
     private enum CoinTossDecision {
@@ -208,7 +210,7 @@ public class MyMethods {
 
     //DECISION TREE
     public static void decisionTree(boolean yn) {
-        System.out.println(yn);
+
         if (decided == Decision.NONE) {
             return;
         }
@@ -267,12 +269,39 @@ public class MyMethods {
                 message = "You don't have any keys!";
                 message2 = " ";
             }
-
         }
         else if(decided == Decision.OPEN_DOOR) {
                 message = "You might be better off not knowing what's behind this door!";
                 message2 = " ";
                 message3 = " ";
+        }
+        else if(decided == Decision.CLUE && yn) {
+            ArrayList<String> c = Clues.clueTree(Attributes.player.getFacing(), Island.getIslandName(Island.getIslandNumber()));////TODO
+            message = c.get(0);
+            message2 = c.get(1);
+            message3 = c.get(2);
+            message4 = c.get(3);
+            message5 = c.get(4);
+            message6 = c.get(5);
+        }
+        else if (decided == Decision.CLUE) {
+            message = "Alright ... but it could be a good clue!";
+            message2 = " ";
+            message3 = " ";
+        }
+        else if(decided == Decision.TALK && yn) {
+            ArrayList<String> m = PeopleInterest.poiTree(Attributes.player.getFacing(), Island.getIslandName(Island.getIslandNumber()));
+            message = m.get(0);
+            message2 = m.get(1);
+            message3 = m.get(2);
+            message4 = m.get(3);
+            message5 = m.get(4);
+            message6 = m.get(5);
+        }
+        else if(decided == Decision.TALK) {
+            message = "They might have something important to tell you!";
+            message2 = " ";
+            message3 = " ";
         }
 
         decided = Decision.NONE;

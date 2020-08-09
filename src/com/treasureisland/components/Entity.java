@@ -13,6 +13,8 @@ public class Entity {
 
     protected static int posX;
     protected static int posY;
+    protected static int posXClue;
+    protected static int posYClue;
     private static int posXinterest;
     private static int posYinterest;
     protected static int posXpirate;
@@ -39,12 +41,6 @@ public class Entity {
         this.level = level;
     }
 
-    //character
-    protected Entity(int posX, int posY) {
-        System.out.println("setting somethings x,y");
-        this.setPos(posX, posY);
-    }
-
     //People of interest
     protected Entity(int posX, int posY, String story) {
         System.out.println("\n[Setting POI @ x: "+posX+", y: "+posY+"]");
@@ -55,7 +51,6 @@ public class Entity {
     public static void addtoArray(int x, int y){
         myCoords.add(x);
         myCoords.add(y);
-//        System.out.println(myCoords);
     }
 
     public static List<Integer> getMyCoords() {
@@ -67,6 +62,12 @@ public class Entity {
         System.out.println("\n[Setting PIRATE @ x: "+posX+", y: "+posY+"]");
         this.setPiratePos(posX, posY);
         this.pirateHealth=health;
+    }
+
+    //Clue
+    protected Entity(int posX, int posY) {
+        System.out.println("\n[Setting CLUE @ x: "+posX+", y: "+posY+"]");
+        this.setCluePos(posX, posY);
     }
 
     //SETTERS
@@ -85,6 +86,12 @@ public class Entity {
         posYinterest = y;
     }
 
+    //Clue
+    public void setCluePos(int x, int y){
+        System.out.println("[Done Setting CLUE @ x: "+x+", y: "+y+"]");
+        posXClue = x;
+        posYClue = y;
+    }
     //PIRATES
     public void setPiratePos(int x, int y){
         System.out.println("[Done Setting PIRATE @ x: "+x+", y: "+y+"]");
