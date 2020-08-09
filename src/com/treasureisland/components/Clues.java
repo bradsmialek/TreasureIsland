@@ -9,13 +9,13 @@ import java.util.ArrayList;
 /**
  * Created by bradsmialek on Sat - 8/8/20 @ 7:16 PM
  */
-public class Clues extends Entity{
+public class Clues{
 
-    public Clues(int posX, int posY) {
-        super(posX, posY, 'c');
-        System.out.println("CLUES CLASS: CREATING CLUE AT "+posX+ " "+posY);
-
-    }
+//    public Clues(int posX, int posY) {
+//        super(posX, posY, 'c');
+//        System.out.println("CLUES CLASS: CREATING CLUE AT "+posX+ " "+posY);
+//
+//    }
 
     public static ArrayList<String> clueTree(Directions direction, String island) {
 
@@ -23,13 +23,13 @@ public class Clues extends Entity{
 
         switch(direction) {
             case UP:
-                clueX = Attributes.player.getPosX(); clueY = Attributes.player.getPosY()-1; break;
+                clueX = Attributes.player.getx(); clueY = Attributes.player.gety()-1; break;
             case LEFT:
-                clueX = Attributes.player.getPosX()-1; clueY = Attributes.player.getPosY(); break;
+                clueX = Attributes.player.getx()-1; clueY = Attributes.player.gety(); break;
             case DOWN:
-                clueX = Attributes.player.getPosX(); clueY = Attributes.player.getPosY()+1; break;
+                clueX = Attributes.player.getx(); clueY = Attributes.player.gety()+1; break;
             case RIGHT:
-                clueX = Attributes.player.getPosX()+1; clueY = Attributes.player.getPosY(); break;
+                clueX = Attributes.player.getx()+1; clueY = Attributes.player.gety(); break;
         }
         int sum = clueX+clueY;
         System.out.println("CLUE is at "+clueX+ " "+ clueY);

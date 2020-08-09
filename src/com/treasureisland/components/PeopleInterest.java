@@ -11,14 +11,14 @@ import java.util.List;
  * Created by bradsmialek on Tue - 8/4/20 @ 12:24 PM
  * POI Logic
  */
-public class PeopleInterest extends Entity {
+public class PeopleInterest  {
 
 
-    public PeopleInterest(int posX, int posY) {
-        super(posX, posY, 6);
-        System.out.println("PEOPLEINTEREST CLASS: CREATING POI AT "+posX+ " "+posY);
-
-    }
+//    public PeopleInterest(int posX, int posY) {
+//        super(posX, posY, 6);
+//        System.out.println("PEOPLEINTEREST CLASS: CREATING POI AT "+posX+ " "+posY);
+//
+//    }
 
      public static ArrayList<String> poiTree(Directions direction, String island) {
 
@@ -26,24 +26,24 @@ public class PeopleInterest extends Entity {
 
          switch(direction) {
              case UP:
-                 poiX = Attributes.player.getPosX();
-                 poiY = Attributes.player.getPosY()-1;
+                 poiX = Attributes.player.getx();
+                 poiY = Attributes.player.gety()-1;
                  break;
              case LEFT:
-                 poiX = Attributes.player.getPosX()-1;
-                 poiY = Attributes.player.getPosY();
+                 poiX = Attributes.player.getx()-1;
+                 poiY = Attributes.player.gety();
                  break;
              case DOWN:
-                 poiX = Attributes.player.getPosX();
-                 poiY = Attributes.player.getPosY()+1;
+                 poiX = Attributes.player.getx();
+                 poiY = Attributes.player.gety()+1;
                  break;
              case RIGHT:
-                 poiX = Attributes.player.getPosX()+1;
-                 poiY = Attributes.player.getPosY();
+                 poiX = Attributes.player.getx()+1;
+                 poiY = Attributes.player.gety();
                  break;
          }
          int sum = poiX+poiY;
-         System.out.println("POI is at "+poiX+ " "+ posY);
+         System.out.println("POI is at "+poiX+ " "+ poiY);
          System.out.println(sum);
 
         ArrayList<String> messages = new ArrayList<>();

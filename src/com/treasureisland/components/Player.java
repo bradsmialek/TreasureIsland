@@ -13,28 +13,20 @@ public class Player extends Entity {
     private int gold;
     private boolean alive;
 
-//    public Player(int posX, int posY) {
-//
-//        super(posX, posY,20);
-//
-//        System.out.println("PLAYER CLASS: CREATING PLAYER AT "+posX+ " "+posY);
-//        this.gold = 0;
-//        this.keys = 0;
-//
-//    }
 
-    public Player(int posX, int posY) {
-        super(posX, posY, 20);
+    public Player(int x, int y) {
+        super(x, y, 20);
         this.gold=0;
 //        this.equippedWeapon = Weapon.hand;
 //        this.equippedArmor = Armor.normal;
         this.alive=true;
-        System.out.println("PLAYER CLASS: CREATING PLAYER AT "+posX+ " "+posY);
+        System.out.println("PLAYER CLASS: CREATING PLAYER AT "+x+ " "+y);
     }
 
     @Override
     public void move(Directions dir){
         super.move(dir);
+        System.out.println("\nPLAYER CLASS: POSITION IS NOW "+x+" "+y);
     }
 
     public void move() {
@@ -43,7 +35,6 @@ public class Player extends Entity {
 
     public void setFacing(Directions dir) {
         this.facing = dir;
-
     }
 
     public Directions getFacing() {
@@ -67,8 +58,6 @@ public class Player extends Entity {
         return gold;
     }
 
-    /**Adds gold to the player
-     * @param amount - The amount of gold to add*/
     public void addsGold(int amount) {
         gold+=amount;
     }

@@ -35,15 +35,9 @@ public class MyMethods {
                     case PIRATE:
                         Attributes.pirates.add(new Pirate("Monster", x, y, 5)); // TODO make strength and or defense
                         break;
-                    case POI:
-                        Attributes.peopleInterests.add(new PeopleInterest(x,y));
-                        break;
 //                    case FRIENDLY:
 //                        Attributes.friendlys.add(new Friendly("Friendly", x, y));  //  maybe??
 //                        break;
-                    case CLUE:
-                        Attributes.clues.add(new Clues(x, y));
-                        break;
                     default:
                         break;
                 }
@@ -63,16 +57,16 @@ public class MyMethods {
 
         switch(dir) {
             case UP:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()-1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx(), Attributes.player.gety()-1);
                 break;
             case LEFT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()-1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx()-1, Attributes.player.gety());
                 break;
             case DOWN:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX(), Attributes.player.getPosY()+1);
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx(), Attributes.player.gety()+1);
                 break;
             case RIGHT:
-                tile = Attributes.currentIsland.getTile(Attributes.player.getPosX()+1, Attributes.player.getPosY());
+                tile = Attributes.currentIsland.getTile(Attributes.player.getx()+1, Attributes.player.gety());
                 System.out.println(tile);
                 break;
         }
@@ -93,6 +87,9 @@ public class MyMethods {
                 message = "You ran into a wall!";
                 message2 = " ";
                 message3 = " ";
+                message4 = " ";
+                message5 = " ";
+                message6 = " ";
                 break;
             case DOCK:
                 message = "Do you want to return to your Ship?";
@@ -157,11 +154,12 @@ public class MyMethods {
                 break;
             case VENDOR:
                 message = "What would you like to Buy?";
-                message2 = "list of stuff";
-                //Attributes.vendorItems.getAll();
-                message3 = Attributes.vendorItems.getAll();
-                // deduct from coins depending on item cost
-                //itemDecided = itemDecision.ITEMS;  or something like this
+                message2 = "[a]  [r]  []  []  []";
+                message3 = "[a]  [r]  []  []  []";
+                message4 = "[a]  [r]  []  []  []";
+                message5 = "[a]  [r]  []  []  []";
+                message6 = " ";
+                vendorDecided = VendorDecision.VENDOR_DECISION;
                 break;
             case POI:
                 message = "Would you like to talk?";
@@ -196,6 +194,11 @@ public class MyMethods {
         NOWHERE;
     }
 
+    private enum VendorDecision {
+        NONE,
+        VENDOR_DECISION;
+    }
+
     private enum Decision {
         NONE,
         RUM_UP,
@@ -213,6 +216,8 @@ public class MyMethods {
         SIDEOFCOIN;
     }
     private static LocationDecision locationDecided = LocationDecision.NOWHERE;
+
+    private static VendorDecision vendorDecided = VendorDecision.NONE;
 
     private static CoinTossDecision tossDecision = CoinTossDecision.NONE;
 
@@ -447,8 +452,8 @@ public class MyMethods {
 
     public static void movePirates() {
         for(int i=0;i<Attributes.pirates.size();i++) {
-            System.out.println("pirate x:"+ Attributes.pirates.get(i).getPosX()+"y:"+ Attributes.pirates.get(i).getPosY());
-            System.out.println("player x:"+ Attributes.player.getPosX()+"y:"+ Attributes.player.getPosY());
+            System.out.println("pirate x:"+ Attributes.pirates.get(i).getx()+"y:"+ Attributes.pirates.get(i).gety());
+            System.out.println("player x:"+ Attributes.player.getx()+"y:"+ Attributes.player.gety());
             Attributes.pirates.get(i).randomMove();
         }
     }
@@ -458,25 +463,26 @@ public class MyMethods {
 
         switch(dir) {
             case UP:
-                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                pirateX = Attributes.player.getx(); pirateY = Attributes.player.gety()-1;
                 break;
             case LEFT:
-                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                pirateX = Attributes.player.getx()-1; pirateY = Attributes.player.gety();
                 break;
             case DOWN:
-                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                pirateX = Attributes.player.getx(); pirateY = Attributes.player.gety()+1;
                 break;
             case RIGHT:
-                pirateX = Attributes.player.getPosX(); pirateY = Attributes.player.getPosY();
+                pirateX = Attributes.player.getx()+1; pirateY = Attributes.player.gety();
                 break;
         }
 
 //        int sum = pirateX+pirateY;
         for(int i=0; i<Attributes.pirates.size(); i++) {
-            System.out.println(Attributes.pirates.size());
-            System.out.println(Attributes.pirates.get(i).getPosX() + ", "+Attributes.pirates.get(i).getPosY() );
-            System.out.println(pirateX+ ", " + pirateY );
-            if(Attributes.pirates.get(i).getPosX() == pirateX && Attributes.pirates.get(i).getPosY() == pirateY) {
+            System.out.println("pirate array size: "+Attributes.pirates.size());
+            System.out.println("pirate in array: "+Attributes.pirates.get(i).getx() + ", "+Attributes.pirates.get(i).gety() );
+            System.out.println("character: "+Attributes.player.getx() + ", "+Attributes.player.gety() );
+            System.out.println("new pirate x and y: "+pirateX+ ", " + pirateY );
+            if(Attributes.pirates.get(i).getx() == pirateX && Attributes.pirates.get(i).gety() == pirateY) {
                 Attributes.pirates.get(i).damage(2);
                 Attributes.player.damage(2);
 

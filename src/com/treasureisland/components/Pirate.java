@@ -15,16 +15,11 @@ public class Pirate extends Entity{
 
     private String name;
 
-    //Create a pirate
-//    public Pirate(int posX, int posY, int health) { //endurance and or strenght later
-//        super(posX, posY, health);
-//
-//    }
 
-    public Pirate(String name, int posX, int posY, int health) {
-        super(posX, posY, health);
+    public Pirate(String name, int x, int y, int health) {
+        super(x, y, health);
         this.name=name;
-        System.out.println("PIRATE CLASS: CREATING PIRATE AT "+posX+ " "+posY);
+        System.out.println("PIRATE CLASS: CREATING PIRATE AT "+x+ " "+y);
     }
 
     // Randomly moves pirate
@@ -33,37 +28,37 @@ public class Pirate extends Entity{
             case 1:
                 System.out.println("case 1");
                 System.out.println(this);
-                System.out.println(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1));
-                if(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1) == Tile.NOTHING)
+                System.out.println(Attributes.currentIsland.getTile(this.getx(), this.gety()-1));
+                if(Attributes.currentIsland.getTile(this.getx(), this.gety()-1) == Tile.NOTHING)
                     super.move(Directions.UP);
-                else if(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1) == Tile.PLAYER)
+                else if(Attributes.currentIsland.getTile(this.getx(), this.gety()-1) == Tile.PLAYER)
                     MyMethods.fightPirate(Directions.UP);
                 break;
             case 2:
                 System.out.println("case 2");
                 System.out.println(this);
-                System.out.println(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1));
-                if(Attributes.currentIsland.getTile(this.getPosX()-1, this.getPosY()) == Tile.NOTHING)
+                System.out.println(Attributes.currentIsland.getTile(this.getx(), this.gety()-1));
+                if(Attributes.currentIsland.getTile(this.getx()-1, this.gety()) == Tile.NOTHING)
                     super.move(Directions.LEFT);
-                else if(Attributes.currentIsland.getTile(this.getPosX()-1, this.getPosY()) == Tile.PLAYER)
+                else if(Attributes.currentIsland.getTile(this.getx()-1, this.gety()) == Tile.PLAYER)
                     MyMethods.fightPirate(Directions.LEFT);
                 break;
             case 3:
                 System.out.println("case 3");
                 System.out.println(this);
-                System.out.println(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1));
-                if(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()+1) == Tile.NOTHING)
+                System.out.println(Attributes.currentIsland.getTile(this.getx(), this.gety()-1));
+                if(Attributes.currentIsland.getTile(this.getx(), this.gety()+1) == Tile.NOTHING)
                     super.move(Directions.DOWN);
-                else if(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()+1) == Tile.PLAYER)
+                else if(Attributes.currentIsland.getTile(this.getx(), this.gety()+1) == Tile.PLAYER)
                     MyMethods.fightPirate(Directions.DOWN);
                 break;
             case 4:
                 System.out.println("case 4");
                 System.out.println(this);
-                System.out.println(Attributes.currentIsland.getTile(this.getPosX(), this.getPosY()-1));
-                if(Attributes.currentIsland.getTile(this.getPosX()+1, this.getPosY()) == Tile.NOTHING)
+                System.out.println(Attributes.currentIsland.getTile(this.getx(), this.gety()-1));
+                if(Attributes.currentIsland.getTile(this.getx()+1, this.gety()) == Tile.NOTHING)
                     super.move(Directions.RIGHT);
-                else if(Attributes.currentIsland.getTile(this.getPosX()+1, this.getPosY()) == Tile.PLAYER)
+                else if(Attributes.currentIsland.getTile(this.getx()+1, this.gety()) == Tile.PLAYER)
                     MyMethods.fightPirate(Directions.RIGHT);
                 break;
 

@@ -167,8 +167,6 @@ public class Island {
                 }
             }
         }
-//        if(islandNumber == 0) firstFloor = true;//-------------------------------------------------------------------------------TODO
-//        else firstFloor = false;
     }
 
 
@@ -201,7 +199,7 @@ public class Island {
             }
         }
         //Sets new pos
-        tiles.get(Attributes.player.getPosY()).set(Attributes.player.getPosX(), Tile.PLAYER);
+        tiles.get(Attributes.player.gety()).set(Attributes.player.getx(), Tile.PLAYER);
     }
 
     public void posPirateUpdate() {
@@ -217,7 +215,7 @@ public class Island {
             if(Attributes.pirates.get(i).getHealth()<=0)
                 Attributes.pirates.remove(i);
             else
-                tiles.get(Attributes.pirates.get(i).getPosY()).set(Attributes.pirates.get(i).getPosX(), Tile.PIRATE);
+                tiles.get(Attributes.pirates.get(i).gety()).set(Attributes.pirates.get(i).getx(), Tile.PIRATE);
         }
 
     }
