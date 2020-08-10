@@ -52,7 +52,7 @@ public class Maps {
                     case 'A':
                         tiles.get(i).add(Tile.A); break;
                     case 'B':
-                        tiles.get(i).add(Tile.B); break;
+                        tiles.get(i).add(Tile.BLACKJACK); break;
                     case 'C':
                         tiles.get(i).add(Tile.COINTOSS); break;
                     case 'D':
@@ -89,8 +89,6 @@ public class Maps {
                         tiles.get(i).add(Tile.VENDOR); break;
                     case 'W':
                         tiles.get(i).add(Tile.W); break;
-                    case 'x':
-                        tiles.get(i).add(Tile.x); break;
                     case 'Y':
                         tiles.get(i).add(Tile.Y); break;
                     case 'Z':
